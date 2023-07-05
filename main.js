@@ -11,8 +11,10 @@ const options = {
         <section>
             <main class="main-layout">
                 <AppHeader />
-                <RouterView />
-                <AppFooter />
+                <div class="main-route">
+                    <RouterView />
+                    <AppFooter />
+                </div>
             </main>
             <UserMsg />
         </section>
