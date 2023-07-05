@@ -1,11 +1,22 @@
-export default{
-    template:`
+export default {
+    template: `
     <div class="email-filter">
-        <input type="text" placeholder="Search Mail">
+        <div>
+            <button @click="search" class="fa-solid">
+            
+            </button>
+            <input type="text" placeholder="Search Mail">
+        </div>
         <select>
-            <option>read</option>
-            <option>unread</option>
+            <option>show all</option>
+            <option>show read</option>
+            <option>show unread</option>
         </select>
     </div>
-    `
+    `,
+    methods:{
+        search(){
+            console.log('searching :DDD')
+        }
+    }
 }

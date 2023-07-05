@@ -1,6 +1,6 @@
 export default{
     template:`
-        <ul>
+        <ul class="email-folder-list">
             <li>inbox</li>
             <li>outgoing</li>
             <li>trash</li>

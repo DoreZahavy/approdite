@@ -18,6 +18,7 @@
 /* misterEmail */
 @import 'apps/mail/EmailIndex.css';
 @import 'apps/mail/cmps/EmailFilter.css';
+@import 'apps/mail/cmps/EmailFolderList.css';
 
 /* missKeep */
 @import 'apps/note/NoteIndex.css';

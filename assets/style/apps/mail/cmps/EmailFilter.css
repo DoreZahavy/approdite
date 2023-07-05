@@ -3,11 +3,29 @@
     display: flex;
     justify-content: center;
     padding-block: 1rem;
+    grid-area: filter;
 }
-.email-filter input[type="text"]{
+
+.email-filter input[type="text"] {
     border-radius: 99999px;
+    min-width: 30vw;
+    padding-inline-start: 2.2rem;
 }
-.email-filter input[type="text"]::before{
-    content:'';
-    font-family:'fa-solid'
+
+
+.email-filter button {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    font-size: 1.2rem;
+}
+.email-filter div{
+    opacity: .5;
+    transition: 300ms;
+}
+.email-filter div:hover{
+    opacity: 1;
+}
+.email-filter div:focus-within{
+    opacity: 1;
 }
