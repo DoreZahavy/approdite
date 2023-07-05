@@ -1,4 +1,4 @@
-import { bookService } from "../services/book.service"
+import { bookService } from "../services/book.service.js"
 
 import AddReview from '../cmps/AddReview.js'
 

@@ -1,0 +1,26 @@
+/* MOBILE ONLY */
+@media (max-width: 900px) {
+
+    html {
+        font-size: 18px;
+    }
+
+}
+
+/* SMALL */
+@media (min-width: 640px) {
+    .note-index .notes-columns{
+        columns: auto;
+        column-width: 238px;
+    }
+}
+
+/* MEDIUM */
+@media (min-width: 900px) { 
+
+}
+
+/* LARGE  */
+@media (min-width: 1050px) {
+  
+}

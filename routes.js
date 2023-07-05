@@ -9,6 +9,7 @@ import AboutUs from './views/AboutUs.js'
 
 //missKeep
 import NoteIndex from './apps/keep/pages/NoteIndex.js'
+// import NoteEdit from './apps/keep/pages/NoteEdit.js'
 
 //misterEmail
 import MailIndex from './apps/mail/pages/MailIndex.js'
@@ -47,7 +48,14 @@ const routerOptions = {
 		// missKeep
 		{
             path: '/note',
-            component: NoteIndex
+            component: NoteIndex,
+			// children: [
+            //     {
+            //         path: ':noteId',
+            //         component: NoteEdit,
+            //     }
+
+            // ]
         },
 
 		// misterEmail
