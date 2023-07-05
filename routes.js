@@ -9,7 +9,7 @@ import BookAdd from './apps/book/cmps/BookAdd.js'
 
 //missKeep
 import NoteIndex from './apps/keep/pages/NoteIndex.js'
-// import NoteEdit from './apps/keep/pages/NoteEdit.js'
+import NoteEdit from './apps/keep/cmps/NoteEdit.js'
 
 //misterEmail
 import MailIndex from './apps/mail/pages/MailIndex.js'
@@ -49,13 +49,13 @@ const routerOptions = {
 		{
             path: '/note',
             component: NoteIndex,
-			// children: [
-            //     {
-            //         path: ':noteId',
-            //         component: NoteEdit,
-            //     }
+			children: [
+                {
+                    path: ':noteId',
+                    component: NoteEdit,
+                }
 
-            // ]
+            ]
         },
 
 		// misterEmail

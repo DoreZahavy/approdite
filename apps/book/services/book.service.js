@@ -9,14 +9,14 @@ var gSortBy = { vendor: 1 }
 var gPageIdx
 var gBookList = null
 
-fetch("../data/books.json")
-.then(response => {
-   return response.json();
-})
-.then(data => {
-    gBookList = data
-    _createBooks()
-});
+// fetch("../data/books.json")
+// .then(response => {
+//    return response.json();
+// })
+// .then(data => {
+//     gBookList = data
+//     _createBooks()
+// });
 
 
 
