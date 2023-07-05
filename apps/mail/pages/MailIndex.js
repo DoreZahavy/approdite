@@ -2,6 +2,8 @@ import { emailService } from "../services/email.service.js"
 import MailList from "../cmps/MailList.js"
 import EmailFilter from "../cmps/EmailFilter.js"
 import EmailFolderList from "../cmps/EmailFolderList.js"
+import ComposeEmail from "../cmps/ComposeEmail.js"
+
 export default {
     template: `
     <section class="book-index" >
@@ -11,6 +13,7 @@ export default {
             v-if="emails"
             :emails="emails"
        />
+       <ComposeEmail/>
     </section>
     `,
     data(){
@@ -27,6 +30,8 @@ export default {
         MailList,
         EmailFilter,
         EmailFolderList,
+        ComposeEmail,
+
     },
     
 }

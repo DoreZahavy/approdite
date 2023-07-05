@@ -23,7 +23,7 @@ export default {
                     this.email = email
                 })
                 .catch(err => {
-                    console.log(error)
+                    console.log(err)
                 })
         }
     },
