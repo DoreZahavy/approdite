@@ -11,20 +11,20 @@ export default {
             <div class="actions">
                 <button @click="onCopyNote">Copy</button>
                 <button @click="onRemoveNote">Remove</button>
-                <RouterLink :to="'/note/' + note.id">edit</RouterLink>
+                <Router-link :to="'/note/' + note.id">edit</Router-link>
            </div>
         </article>
     `,
      methods: {
         onCopyNote(){
-            this.$emit('copy' , this.note.id)
+            this.$emit('copy' , this.note)
         },
         onRemoveNote(){
             this.$emit('remove' , this.note.id)
         },
-        oneditNote(){
-            this.$emit('edit' , this.note.id)
-        }
+        // onEditNote(){
+        //     this.$emit('edit' , this.note.id)
+        // }
     },
     components:{
         NoteTxt

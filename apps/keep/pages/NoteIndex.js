@@ -1,5 +1,7 @@
 
 import { noteService } from '../services/note.service.js'
+import { utilService } from '../../../services/util.service.js'
+import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import NotePreview from '../cmps/NotePreview.js'
 import NoteFilter from '../cmps/NoteFilter.js'
@@ -21,7 +23,7 @@ export default {
                 :note="note" 
                 @remove="removeNote"
                 @copy="copyNote"
-                @edit="editNote" />
+                 />
             </div>
         </section>
 
@@ -38,14 +40,34 @@ export default {
         noteService.query()
             .then(notes => {
                 this.notes = notes
-                console.log('notes:', notes)
-                console.log('notes:', this.notes)
                
             })
 
     },
     methods: {
-
+        removeNote(noteId){
+            noteService.remove(noteId)
+            .then(() => {
+                const idx = this.notes.findIndex(note => noteId === note.id)
+                this.notes.splice(idx, 1)
+                showSuccessMsg('Note removed')
+            })
+            .catch(err => {
+                showErrorMsg('Cannot remove note')
+            })
+        },
+        copyNote(note){
+            // const duplicateNote = utilService.deepCopy(this.note)
+            
+            const duplicateNote = utilService.deepCopy(note)
+            duplicateNote.id = ''
+            noteService.save(duplicateNote)
+                .then(()=>{
+                    this.notes.push(duplicateNote)
+                    showSuccessMsg('Note copied')
+                })
+                .catch(()=>{showErrorMsg('Cannot copy note')})
+        }
     },
     components:{
         NotePreview,
