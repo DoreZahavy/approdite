@@ -1,13 +1,14 @@
 .main-layout {
+  display: grid;
   /* margin: 0 auto;
   padding-left: 1.6rem;
   padding-right: 1.6rem; */
-  min-height: 100%;
+  min-height: 100vh;
   /* grid-template-rows: 140px auto 140px; */
 }
 
 .main-layout .main-route{
-  display: grid;
   /* align-self: start; */
+
 }
 

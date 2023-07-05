@@ -13,8 +13,8 @@ const options = {
                 <AppHeader />
                 <div class="main-route">
                     <RouterView />
-                    <AppFooter />
                 </div>
+                    <AppFooter />
             </main>
             <UserMsg />
         </section>
