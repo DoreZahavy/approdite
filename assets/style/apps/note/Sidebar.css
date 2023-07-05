@@ -1,4 +1,14 @@
-.sidebar{
+.sidebar {
     grid-area: sidebar;
-    width: 60px;
+    background-color: #fff;
+    /* background-color: #d67979; */
+    width: 80px;
+    transition: 150ms;
+}
+
+.sidebar:hover {
+    width: 280px;
+    z-index: 2;
+    transition-delay: 350ms;
+    box-shadow: 0 16px 10px 0 rgba(0, 0, 0, .14), 0 11px 18px 0 rgba(0, 0, 0, .12), 0 13px 5px -1px rgba(0, 0, 0, .2);
 }

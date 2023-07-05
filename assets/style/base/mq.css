@@ -10,7 +10,8 @@
 /* SMALL */
 @media (min-width: 720px) {
     .note-index .notes-columns{
-        columns: 2;
+        /* columns: 2; */
+        column-count: auto;
         column-width: 238px;
     }
 }
