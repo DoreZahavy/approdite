@@ -93,6 +93,8 @@ function save(note) {
     }
 }
 
+
+
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)
     if (!notes || !notes.length) {

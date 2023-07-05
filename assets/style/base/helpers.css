@@ -40,6 +40,18 @@
     font-family: fa;
 }
 
+.fa-brands {
+    font-family: fa-brands;
+}
+
+.fa-solid {
+    font-family: fa-solid;
+}
+
+.fa-regular {
+    font-family: fa-regular;
+}
+
 .fa.fa-facebook::before {
     content: "\f39e";
 }

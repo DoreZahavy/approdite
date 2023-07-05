@@ -21,10 +21,8 @@ export default {
         },
         onRemoveNote(){
             this.$emit('remove' , this.note.id)
-        },
-        // onEditNote(){
-        //     this.$emit('edit' , this.note.id)
-        // }
+        }
+  
     },
     components:{
         NoteTxt

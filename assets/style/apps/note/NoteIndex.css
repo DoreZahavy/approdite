@@ -1,4 +1,6 @@
 .note-index .notes-columns{
     columns: 1;
-    /* gap: 10px; */
+    place-items: center;
+    column-gap: 15px;
+    margin-inline: 17px;
 }
