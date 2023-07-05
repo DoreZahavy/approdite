@@ -36,190 +36,63 @@ function query(criteria={status:'inbox'}) {
 function get(emailId){
     return storageService.get(EMAIL_KEY, emailId)
 }
+function remove(emailId){
+    
+}
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_KEY)
     if (!emails || !emails.length) {
         emails = []
-        emails = [{
-            "id": "01H4JGABGJSD1Q0TE0CYGXB4NX",
-            "subject": "Synchronised responsive analyzer",
-            "body": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "dprozescky2@livejournal.com",
-            "to": "myuser@approdite.com "
-        },
-        {
-            "id": "01H4JGABGMCDZS63M4WTWFHPSV",
-            "subject": "Cross-group optimal groupware",
-            "body": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "cadamiec3@meetup.com",
-            "to": "myuser@approdite.com"
-        },
-        {
-            "id": "01H4JGABGPS3PY3FEQ6NM9X6YJ",
-            "subject": "Triple-buffered incremental local area network",
-            "body": "Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "dendrici4@geocities.jp",
-            "to": "myuser@approdite.com "
-        },
-        {
-            "id": "01H4JGABGR9F0SCD72J88MYGVV",
-            "subject": "De-engineered client-driven archive",
-            "body": "Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
-            "isRead": true,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "fburgen5@wunderground.com",
-            "to": "myuser@approdite.com"
-        },
-        {
-            "id": "01H4JGABGSDBCZP0DBDE5G9V3V",
-            "subject": "Focused incremental instruction set",
-            "body": "Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "jfuxman6@cam.ac.uk"
-        },
-        {
-            "id": "01H4JGABGVKQ641TW7R7DEXB0F",
-            "subject": "Future-proofed modular extranet",
-            "body": "Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "cmileham7@mozilla.com"
-        },
-        {
-            "id": "01H4JGABGXSTSFB53STQMFS2KS",
-            "subject": "Optional clear-thinking encryption",
-            "body": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "spendlebury8@si.edu"
-        },
-        {
-            "id": "01H4JGABGY7N4F0SE6M8CTM3CN",
-            "subject": "Reverse-engineered content-based parallelism",
-            "body": "Cras in purus eu magna vulputate luctus.",
-            "isRead": true,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "msaffrin9@typepad.com"
-        },
-        {
-            "id": "01H4JGABH01W2YES9R16HV4GNG",
-            "subject": "Intuitive background frame",
-            "body": "Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "lgogana@ezinearticles.com"
-        },
-        {
-            "id": "01H4JGABH32EGXMTHZPMZBCFFW",
-            "subject": "Versatile intermediate flexibility",
-            "body": "Donec vitae nisi. Nam ultrices, libero non mattis pulvinar, nulla pede ullamcorper augue, a suscipit nulla elit ac nulla. Sed vel enim sit amet nunc viverra dapibus. Nulla suscipit ligula in lacus.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "ereedeb@bluehost.com"
-        },
-        {
-            "id": "01H4JGABH5BQWZMW53Z12CDD5M",
-            "subject": "Realigned eco-centric database",
-            "body": "Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "mbridgstockc@uol.com.br"
-        },
-        {
-            "id": "01H4JGABH74EHJ630KHBWP24JK",
-            "subject": "Face to face incremental infrastructure",
-            "body": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.",
-            "isRead": true,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "ftaddd@reverbnation.com"
-        },
-        {
-            "id": "01H4JGABH8C51GAKVCHFS50P4P",
-            "subject": "Multi-channelled logistical secured line",
-            "body": "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "nhaingee@privacy.gov.au"
-        },
-        {
-            "id": "01H4JGABHA9MT8FAMT7XT8FQ3J",
-            "subject": "Open-architected multimedia challenge",
-            "body": "In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante. Vivamus tortor.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "khempshallf@sfgate.com"
-        },
-        {
-            "id": "01H4JGABHCKAPETB44JTWMAD73",
-            "subject": "Realigned 6th generation algorithm",
-            "body": "Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo.",
-            "isRead": true,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "jviccaryg@storify.com"
-        },
-        {
-            "id": "01H4JGABHD3Q37T5D9H42FTFRA",
-            "subject": "Multi-lateral value-added model",
-            "body": "Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "btrimmillh@narod.ru"
-        },
-        {
-            "id": "01H4JGABHF41SKG8760PVQMEKY",
-            "subject": "Synergistic multi-tasking synergy",
-            "body": "In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat. Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem.",
-            "isRead": true,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "adeverillei@cafepress.com"
-        },
-        {
-            "id": "01H4JGABHH1W2D5N66V9YB9KF8",
-            "subject": "Proactive optimizing standardization",
-            "body": "Fusce consequat. Nulla nisl.",
-            "isRead": false,
-            "sentAt": "1551052800",
-            "removedAt": null,
-            "from": "myuser@approdite.com",
-            "to": "mgiovannonij@google.fr"
-        }]
+        emails = [{"id":"01H4KFD327T59P5TZMA0M3TSDR","subject":"Polarised composite attitude","body":"Mauris lacinia sapien quis libero. Nullam sit amet turpis elementum ligula vehicula consequat.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"pjedrzejewsky0@irs.gov","to":"myuser@approdite.com"},
+        {"id":"01H4KFD32CQM5MNCP0R15AJFTX","subject":"Public-key needs-based open system","body":"Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis. Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"gjohannes1@dedecms.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD33VKZ5ZFZ51Z7SZ7CZ1","subject":"De-engineered solution-oriented data-warehouse","body":"Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"hcuncarr2@msu.edu","to":"myuser@approdite.com"},
+        {"id":"01H4KFD33W20SSQQGK4KFHDRWJ","subject":"Self-enabling bifurcated Graphical User Interface","body":"Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lwestbury3@addtoany.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD33XT297V17HKX1P3JQ3","subject":"Up-sized fresh-thinking frame","body":"Nullam sit amet turpis elementum ligula vehicula consequat. Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"mlillecrop4@amazon.co.uk","to":"myuser@approdite.com"},
+        {"id":"01H4KFD33YWJZZTCJTK4M9ZPR9","subject":"Digitized zero administration productivity","body":"Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"agarfitt5@mapy.cz","to":"myuser@approdite.com"},
+        {"id":"01H4KFD33ZQHHV0J6NSY5WRDXK","subject":"Expanded coherent migration","body":"Morbi non lectus. Aliquam sit amet diam in magna bibendum imperdiet. Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ksamper6@tuttocitta.it","to":"myuser@approdite.com"},
+        {"id":"01H4KFD340JTTNV0V742J8Y7X7","subject":"Balanced composite productivity","body":"Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue. Etiam justo.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"pcarse7@domainmarket.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD341P91Q6GVG430J325N","subject":"Enterprise-wide multi-tasking complexity","body":"Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ajull8@nps.gov","to":"myuser@approdite.com"},
+        {"id":"01H4KFD3426RVFTT447J1QG1R0","subject":"Profit-focused solution-oriented capacity","body":"Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"rcarlone9@harvard.edu","to":"myuser@approdite.com"},
+        {"id":"01H4KFD344245QFC4ZY0BS1ZNE","subject":"Mandatory multi-state framework","body":"In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo. Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis. Sed ante.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"caudleya@hatena.ne.jp","to":"myuser@approdite.com"},
+        {"id":"01H4KFD345CF47BEM931A4XFAN","subject":"Right-sized content-based definition","body":"Sed ante. Vivamus tortor. Duis mattis egestas metus. Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lwaudbyb@si.edu","to":"myuser@approdite.com"},
+        {"id":"01H4KFD3461YA0EQZCC8N5XHYW","subject":"Organized client-server toolset","body":"Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dasipenkoc@hc360.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD3474D2Z8KSVYCQCCZZC","subject":"Universal responsive toolset","body":"Maecenas pulvinar lobortis est.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dsturgisd@fc2.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD349QJV0G8K11FEZRWXT","subject":"Managed heuristic process improvement","body":"Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"srudhame@utexas.edu","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34B85GNBJJCQFVJHKXE","subject":"Multi-lateral next generation artificial intelligence","body":"In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"rburkerf@lulu.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34CMHZZSJBBEF5NG7FN","subject":"Reactive encompassing approach","body":"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"gmobbsg@digg.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34DHQHXMDYSSQSG6E13","subject":"Assimilated even-keeled workforce","body":"Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"akildayh@exblog.jp","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34ES1SJRKSTKXK2MHXR","subject":"Diverse solution-oriented implementation","body":"Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dumneyi@opensource.org","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34GTRC502E3GHXXH99R","subject":"Total disintermediate capacity","body":"Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dwaggettj@google.com.br","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34JY1T8DMSC2YJZVPQQ","subject":"Triple-buffered uniform service-desk","body":"Praesent id massa id nisl venenatis lacinia.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"rjowlingk@acquirethisname.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34KFMMCSBN75KFSNF0V","subject":"Networked full-range service-desk","body":"Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"obatterl@apple.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34N2RQ2F5B8TXVAQ21S","subject":"Persistent static firmware","body":"Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"akivlinm@time.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34PZF91XEWRWJ17HNYH","subject":"Fully-configurable stable matrices","body":"Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"epregeln@sun.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34QQSESFN3MGS1ESAVJ","subject":"Right-sized didactic attitude","body":"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ckelsowo@pbs.org","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34RFWFAW8MG3B2MB5A2","subject":"Horizontal 5th generation support","body":"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lklessmannp@google.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34SWKY44PF1XEH7XX14","subject":"Automated context-sensitive local area network","body":"Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"egeddesq@ovh.net","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34V6SCPM8TX389WZSF0","subject":"Integrated modular complexity","body":"Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst. Morbi vestibulum, velit id pretium iaculis, diam erat fermentum justo, nec condimentum neque sapien placerat ante. Nulla justo.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dhairsr@cargocollective.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34WFV7DTG8ANXXSBNSM","subject":"Vision-oriented coherent alliance","body":"In congue. Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ebernaldos@360.cn","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34XG8TE2XWCD1V1963M","subject":"Object-based solution-oriented strategy","body":"Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit. Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"jdonaldt@buzzfeed.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD34ZGS6GSDTZHT6P8WEK","subject":"Realigned multimedia throughput","body":"Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam vel augue. Vestibulum rutrum rutrum neque.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"adoveyu@skyrock.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD350E7G1GD5K9SRDSNNF","subject":"Versatile well-modulated algorithm","body":"Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla dapibus dolor vel est. Donec odio justo, sollicitudin ut, suscipit a, feugiat et, eros. Vestibulum ac est lacinia nisi venenatis tristique. Fusce congue, diam id ornare imperdiet, sapien urna pretium nisl, ut volutpat sapien arcu sed augue. Aliquam erat volutpat. In congue.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"bjoddensv@boston.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD351X7R94DA9MCDW3N5G","subject":"Ameliorated system-worthy success","body":"Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"strigglew@whitehouse.gov","to":"myuser@approdite.com"},
+        {"id":"01H4KFD353WM6HYN5F78VEM5XW","subject":"Re-contextualized heuristic conglomeration","body":"Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lfernantx@plala.or.jp","to":"myuser@approdite.com"},
+        {"id":"01H4KFD355J90HM7DJSC1XA775","subject":"Realigned asymmetric archive","body":"Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lbigliny@buzzfeed.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD356NC2M8EXN7MG7G47A","subject":"Compatible asymmetric strategy","body":"Integer ac neque. Duis bibendum.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"dmctrustramz@examiner.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD3587DNQ9JNER7A6EYA5","subject":"Compatible tertiary leverage","body":"Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ccosford10@redcross.org","to":"myuser@approdite.com"},
+        {"id":"01H4KFD359JFVP2MXEDGHQG3S7","subject":"Robust systemic installation","body":"Aliquam erat volutpat. In congue.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"jdominka11@answers.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35AZB0PWG1Z1NNX7SQV","subject":"Advanced static monitoring","body":"Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo. Maecenas pulvinar lobortis est. Phasellus sit amet erat.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"lkoppelmann12@cafepress.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35B6KGXM9BSB463TWZP","subject":"Configurable bandwidth-monitored framework","body":"Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec pharetra, magna vestibulum aliquet ultrices, erat tortor sollicitudin mi, sit amet lobortis sapien sapien non mi. Integer ac neque. Duis bibendum.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"kbadgers13@feedburner.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35CCC3SYFFX23MJ272B","subject":"Universal contextually-based capability","body":"Integer ac neque. Duis bibendum. Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"tfowls14@chron.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35EWCFFV127B7K63SD4","subject":"Vision-oriented analyzing framework","body":"Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"gmcilwaine15@webmd.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35FQ43RJASEF0MNFS57","subject":"Re-engineered asynchronous interface","body":"Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ncrummay16@redcross.org","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35H203DBNTXWZ0CM20N","subject":"Configurable non-volatile archive","body":"In est risus, auctor sed, tristique in, tempus sit amet, sem.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"faudley17@weebly.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35JBWP2RM20P46XZTN3","subject":"Virtual 24/7 software","body":"Etiam justo. Etiam pretium iaculis justo. In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus. Nulla ut erat id mauris vulputate elementum. Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"tfairlamb18@eventbrite.com","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35KD7JBNT48XZTAY518","subject":"Automated even-keeled standardization","body":"Nullam varius. Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus. Phasellus in felis. Donec semper sapien a libero.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"fdifranceshci19@google.co.jp","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35NWNKDTBN1FD6KZ3HN","subject":"Ameliorated systemic success","body":"Donec dapibus. Duis at velit eu est congue elementum. In hac habitasse platea dictumst.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"rdewett1a@privacy.gov.au","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35PR0B7VJZ2DM6Q0DBD","subject":"Devolved holistic forecast","body":"Nulla tellus.","isRead":false,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"ccraske1b@gmpg.org","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35QV640SZDDKYZMK5H6","subject":"Multi-layered incremental groupware","body":"Nullam orci pede, venenatis non, sodales sed, tincidunt eu, felis. Fusce posuere felis sed lacus. Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"htapenden1c@nps.gov","to":"myuser@approdite.com"},
+        {"id":"01H4KFD35RBFKAEEMARHWVAHEG","subject":"Organic uniform task-force","body":"Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst.","isRead":true,"sentAt":"2/25/2019","removedAt":"2/25/2019","from":"cproom1d@wikimedia.org","to":"myuser@approdite.com"}]
         utilService.saveToStorage(EMAIL_KEY, emails)
     }
 }

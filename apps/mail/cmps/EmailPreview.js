@@ -13,15 +13,30 @@
 export default {
     props: ['email'],
     template: `
-        <article class="email-preview" @click="openDetails(email.id)">
+        <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
             <RouterLink :to="'/mail/emaildetails/' + email.id">
                 <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
+                <span>
+                    <button class="fa-solid">
+                    
+                    </button>
+                    <button class="fa-solid">
+                    
+                    </button>
+                </span>
             </RouterLink>
         </article>
     `,
     computed: {
         formattedTime() {
             return Date(this.email.sentAt).toString()
+        },
+        isRead() {
+            // return email.isRead? 'email-read': 'email-unread'
+            return {
+                read: this.email.isRead,
+                unread: !this.email.isRead
+            }
         }
     },
     methods: {

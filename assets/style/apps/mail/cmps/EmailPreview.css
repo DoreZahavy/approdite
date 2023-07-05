@@ -1,0 +1,16 @@
+.email-preview{
+    background-color: var(--gmail-li);
+    padding-inline: 1rem;
+    border-block: 1px solid lightgrey;
+}
+.email-preview button{
+    padding: 0;
+    border:none;
+    background-color: transparent;
+}
+.read{
+    background-color: aliceblue;
+}
+.unread{
+    background-color: #fff;
+}

@@ -22,6 +22,7 @@
 @import 'apps/mail/cmps/EmailFolderList.css';
 @import 'apps/mail/cmps/EmailList.css';
 @import 'apps/mail/cmps/EmailCompose.css';
+@import 'apps/mail/cmps/EmailPreview.css';
 
 /* missKeep */
 @import 'apps/note/NoteIndex.css';
