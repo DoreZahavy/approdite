@@ -6,7 +6,7 @@ import ComposeEmail from "../cmps/ComposeEmail.js"
 
 export default {
     template: `
-    <section class="book-index" >
+    <section class="email-index" >
         <EmailFilter/>
         <EmailFolderList/>
        <MailList

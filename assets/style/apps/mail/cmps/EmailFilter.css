@@ -1,0 +1,13 @@
+.email-filter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-block: 1rem;
+}
+.email-filter input[type="text"]{
+    border-radius: 99999px;
+}
+.email-filter input[type="text"]::before{
+    content:'';
+    font-family:'fa-solid'
+}
