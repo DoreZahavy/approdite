@@ -6,6 +6,11 @@
     src: url('../../fonts/montserrat/Montserrat-Regular.ttf');
     font-style: normal;
 }
+@font-face {
+    font-family: roboto;
+    src: url('../../fonts/Roboto/roboto-regular-webfont.woff2');
+    font-style: normal;
+}
 
 /* Font Awesome */
 
