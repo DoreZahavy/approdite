@@ -2,10 +2,10 @@ import HomePage from './views/HomePage.js'
 import AboutUs from './views/AboutUs.js'
 
 // missBooks
-// import BookIndex from './apps/book/pages/BookIndex.js'
-// import BookDetails from './apps/book/pages/BookDetails.js'
-// import BookEdit from './apps/book/pages/BookEdit.js'
-// import BookAdd from './apps/book/cmps/BookAdd.js'
+import BookIndex from './apps/book/pages/BookIndex.js'
+import BookDetails from './apps/book/pages/BookDetails.js'
+import BookEdit from './apps/book/pages/BookEdit.js'
+import BookAdd from './apps/book/cmps/BookAdd.js'
 
 //missKeep
 import NoteIndex from './apps/keep/pages/NoteIndex.js'
@@ -28,22 +28,22 @@ const routerOptions = {
 			component: AboutUs,
 		},
 		// missBooks
-		// {
-        //     path: '/book',
-        //     component: BookIndex
-        // },
-        // {
-        //     path: '/book/add',
-        //     component: BookAdd
-        // },
-        // {
-        //     path: '/book/:bookId',
-        //     component: BookDetails
-        // },
-        // {
-        //     path: '/book/edit/:bookId?',
-        //     component: BookEdit
-        // },
+		{
+            path: '/book',
+            component: BookIndex
+        },
+        {
+            path: '/book/add',
+            component: BookAdd
+        },
+        {
+            path: '/book/:bookId',
+            component: BookDetails
+        },
+        {
+            path: '/book/edit/:bookId?',
+            component: BookEdit
+        },
 
 		// missKeep
 		{
