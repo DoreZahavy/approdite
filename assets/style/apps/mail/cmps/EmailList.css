@@ -6,9 +6,3 @@
     list-style: none;
     padding-inline: 1rem;
 }
-
-.email-list li {
-    background-color: var(--gmail-li);
-    padding-inline: 1rem;
-    border-block: 1px solid lightgrey;
-}

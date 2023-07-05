@@ -8,7 +8,9 @@ export default {
     template: `
     <section class="email-index" >
         <EmailFilter/>
-        <EmailFolderList/>
+        <EmailFolderList
+            :emails="emails"
+        />
        <MailList
             v-if="emails"
             :emails="emails"
