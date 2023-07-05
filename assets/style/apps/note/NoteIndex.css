@@ -6,6 +6,9 @@
     "sidebar add"
     "sidebar notes"
     ;
+
+    font-size: 14px;
+    color: rgb(32, 33, 36);
 }
 
 .note-index .notes-columns{
@@ -16,5 +19,12 @@
     margin-inline: 17px;
     grid-area: notes;
     
+}
+
+.note-index h2{
+    font-size: 16px;
+    font-family: roboto, sans-serif;
+    color: rgb(32, 33, 36);
+    letter-spacing: 0.1px;
 }
 

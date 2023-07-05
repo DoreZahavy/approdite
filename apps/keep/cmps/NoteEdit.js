@@ -13,7 +13,7 @@ export default {
                 @set-val="setAns($event, idx)" />
            <pre>{{noteToEdit}}</pre>
            <button>Save</button>
-           <div class="edit-screen"></div>
+           <div class="edit-screen" @click="onExitModal"></div>
         </article>
     `,
      data() {

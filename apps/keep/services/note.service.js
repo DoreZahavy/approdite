@@ -8,6 +8,7 @@ const gNoteList = [
             backgroundColor: '#00d'
         },
         info: {
+            title: 'Title11',
             txt: 'Fullstack Me Baby!'
         }
     },
@@ -16,6 +17,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isPinned: false,
         info: {
+            title: 'Title1',
             txt: 'Bobi and Me'
         },
         style: {
@@ -27,6 +29,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isPinned: false,
         info: {
+            title: 'Title123',
             txt: 'Get my stuff together'
         }
     }

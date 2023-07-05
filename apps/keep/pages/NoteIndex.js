@@ -6,6 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import NotePreview from '../cmps/NotePreview.js'
 import NoteFilter from '../cmps/NoteFilter.js'
 import NoteAdd from '../cmps/NoteAdd.js'
+import NoteAddTxt from '../cmps/NoteAddTxt.js'
 import NoteEdit from '../cmps/NoteEdit.js'
 import Sidebar from '../cmps/Sidebar.js'
 
@@ -17,7 +18,10 @@ export default {
 
        <Sidebar />
 
-       <NoteAdd />
+       <section class="add-cmps">
+           <NoteAdd />
+           <NoteAddTxt />
+        </section>
 
         <section class="notes-columns">
 
@@ -75,6 +79,7 @@ export default {
     components:{
         NotePreview,
         NoteAdd,
+        NoteAddTxt,
         NoteFilter,
         NoteEdit,
         Sidebar
