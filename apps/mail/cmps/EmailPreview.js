@@ -10,16 +10,23 @@
 //     "to": "myuser@approdite.com "
 // }
 
-export default{
-    props:['email'],
-    template:`
-        <article class="email-preview">
-            <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
+export default {
+    props: ['email'],
+    template: `
+        <article class="email-preview" @click="openDetails(email.id)">
+            <RouterLink :to="'/mail/emaildetails/' + email.id">
+                <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
+            </RouterLink>
         </article>
     `,
-    computed:{
-        formattedTime(){
+    computed: {
+        formattedTime() {
             return Date(this.email.sentAt).toString()
+        }
+    },
+    methods: {
+        openDetails(emailId) {
+            // this.email.isRead = true
         }
     }
 }

@@ -13,6 +13,7 @@ import NoteEdit from './apps/keep/cmps/NoteEdit.js'
 
 //misterEmail
 import MailIndex from './apps/mail/pages/MailIndex.js'
+import EmailDetails from './apps/mail/pages/EmailDetails.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
 
@@ -63,7 +64,11 @@ const routerOptions = {
 		{
 			path: '/mail',
             component: MailIndex
-		}
+		},
+        {
+            path: '/mail/emaildetails/:emailId?',
+            component: EmailDetails
+        }
 	],
 }
 
