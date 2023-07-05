@@ -1,6 +1,6 @@
 .note-index{
     display: grid;
-    grid-template-columns: 60px auto;
+    grid-template-columns: 80px auto;
     grid-template-areas: 
     "filter filter"
     "sidebar add"

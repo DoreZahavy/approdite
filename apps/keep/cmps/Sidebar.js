@@ -2,9 +2,10 @@ export default {
     template: `
     <div class="sidebar">
 <ul class="clean-list">
-    <li>1</li>
-    <li>2</li>
-    <li>3</li>
+    <li><span class="fa-regular"></span></li><span>Notes</span></li>
+    <li><span class="fa-regular"></span></li><span>Edit Labes</span></li>
+    <li><span class="fa-regular"></span></li><span>Notes</span></li>
+    
 </ul>
     </div>
     `
