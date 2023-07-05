@@ -1,6 +1,20 @@
+.note-index{
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-template-areas: 
+    "filter filter"
+    "sidebar add"
+    "sidebar notes"
+    ;
+}
+
 .note-index .notes-columns{
+   
     columns: 1;
     place-items: center;
     column-gap: 15px;
     margin-inline: 17px;
+    grid-area: notes;
+    
 }
+

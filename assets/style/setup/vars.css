@@ -9,6 +9,7 @@
   --secondary-clr1: #141414;
   --secondary-clr2: rgb(122, 7, 70);
 
-  --btnSize: 48px
+  --btnSize: 48px;
+  --noteGap: 17px;
 
 } 

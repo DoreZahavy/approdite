@@ -7,12 +7,15 @@ import NotePreview from '../cmps/NotePreview.js'
 import NoteFilter from '../cmps/NoteFilter.js'
 import NoteAdd from '../cmps/NoteAdd.js'
 import NoteEdit from '../cmps/NoteEdit.js'
+import Sidebar from '../cmps/Sidebar.js'
 
 export default {
     template: `
     <section class="note-index">
-       <h1>notes here</h1>
+       <!-- <h1>notes here</h1> -->
        <NoteFilter />
+
+       <Sidebar />
 
        <NoteAdd />
 
@@ -73,6 +76,7 @@ export default {
         NotePreview,
         NoteAdd,
         NoteFilter,
-        NoteEdit
+        NoteEdit,
+        Sidebar
     }
 }
