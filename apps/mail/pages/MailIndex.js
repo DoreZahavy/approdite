@@ -1,10 +1,12 @@
 import { emailService } from "../services/email.service.js"
 import MailList from "../cmps/MailList.js"
-
+import EmailFilter from "../cmps/EmailFilter.js"
+import EmailFolderList from "../cmps/EmailFolderList.js"
 export default {
     template: `
     <section class="book-index" >
-       <h1>emails here</h1>
+        <EmailFilter/>
+        <EmailFolderList/>
        <MailList
             v-if="emails"
             :emails="emails"
@@ -23,6 +25,8 @@ export default {
     components:{
         emailService,
         MailList,
+        EmailFilter,
+        EmailFolderList,
     },
     
 }
