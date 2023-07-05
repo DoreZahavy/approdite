@@ -52,3 +52,6 @@ button {
   outline: 1px solid gold
 }
 
+#app{
+  background-color: var(--background);
+}
