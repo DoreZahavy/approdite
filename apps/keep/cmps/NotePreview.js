@@ -4,6 +4,7 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview">
+         <span class="fa-regular"></span>
             <Component 
                 :is="note.type"  
                 :note="note" 

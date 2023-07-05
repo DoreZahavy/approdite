@@ -1,0 +1,10 @@
+.note-add{
+    max-width: 600px;
+    margin-inline: 17px;
+    padding: 4px 16px 12px 16px;
+}
+
+.note-add .note-types span{
+    width: var(--btnSize);
+    height: var(--btnSize);
+}
