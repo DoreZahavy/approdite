@@ -1,7 +1,7 @@
 export default{
     template:`
-    <div>
-        <input type="text">
+    <div class="email-filter">
+        <input type="text" placeholder="Search Mail">
         <select>
             <option>read</option>
             <option>unread</option>
