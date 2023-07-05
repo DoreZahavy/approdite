@@ -1,2 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Edu+VIC+WA+NT+Beginner&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+@font-face {
+    font-family: montserrat;
+    src: url('../../fonts/montserrat/Montserrat-Regular.ttf');
+    font-style: normal;
+}
+
+/* Font Awesome */
+
+@font-face {
+    font-family: fa-brands;
+    src: url('../../fonts/fa/fa-brands-400.ttf');
+}
+
+@font-face {
+    font-family: fa-solid;
+    src: url('../../fonts/fa/fa-solid-900.ttf');
+}
+
+@font-face {
+    font-family: fa-regular;
+    src: url('../../fonts/fa/fa-regular-400.ttf');
+}
