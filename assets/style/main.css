@@ -20,6 +20,8 @@
 @import 'apps/mail/EmailIndex.css';
 @import 'apps/mail/cmps/EmailFilter.css';
 @import 'apps/mail/cmps/EmailFolderList.css';
+@import 'apps/mail/cmps/EmailList.css';
+@import 'apps/mail/cmps/EmailCompose.css';
 
 /* missKeep */
 @import 'apps/note/NoteIndex.css';
