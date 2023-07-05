@@ -5,6 +5,7 @@
   padding-right: 1.6rem; */
   min-height: 100vh;
   /* grid-template-rows: 140px auto 140px; */
+  background-color: var(--background);
 }
 
 .main-layout .main-route{
