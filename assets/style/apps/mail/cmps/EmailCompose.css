@@ -1,4 +1,16 @@
-.email-compose{
+.email-compose {
+    /* grid-area: compose; */
+    position: fixed;
+    left: 500px;
+    bottom: 0px;
+    background-color: var(--gmail-li);
+    z-index: 10;
+}
+.email-compose form {
+    display: flex;
+    flex-direction: column;
+}
+
+.compose-btn {
     grid-area: compose;
-    display: none;
 }

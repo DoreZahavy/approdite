@@ -1,8 +1,8 @@
-.email-index{
+.email-index {
     display: grid;
     background-color: var(--silver);
-    grid-template-areas: 
-    "filter filter"
-    "folder-list list"
-    "folder-list list";
+    grid-template-areas:
+        "compose   filter"
+        "folder-list list  "
+        "folder-list list  ";
 }

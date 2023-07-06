@@ -11,7 +11,8 @@ const loggedinUser = {
 export const emailService = {
     query,
     get,
-    update
+    update,
+    add
 }
 function query(criteria = { status: 'inbox' }) {
     //TODO: add filtering
@@ -55,6 +56,9 @@ function remove(emailId) {
 }
 function update(email){
     storageService.put(EMAIL_KEY,email)
+}
+function add(email){
+    storageService.post(EMAIL_KEY,email)
 }
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_KEY)

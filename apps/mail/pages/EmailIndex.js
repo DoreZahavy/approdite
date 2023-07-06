@@ -7,16 +7,17 @@ import ComposeEmail from "../cmps/ComposeEmail.js"
 export default {
     template: `
     <section class="email-index" >
+            <button class="compose-btn" @click="viewCompose = true">
+                Compose
+            </button>
+        <ComposeEmail 
+            v-show="viewCompose"
+            @close="viewCompose = false"/>
         <EmailFilter/>
         <EmailFolderList
             :emails="emails"
         />
-       <!-- <MailList
-            v-if="emails"
-            :emails="emails"
-       /> -->
-       <RouterView :emails="emails" @remove="spliceRemoved"/>
-       <ComposeEmail/>
+       <RouterView :emails="emails" @remove="spliceRemoved" :criteria="criteria" />
     </section>
     `,
     data() {
@@ -28,7 +29,8 @@ export default {
                 isRead: null, // (optional property, if missing: show all)
                 isStared: null, // (optional property, if missing: show all)
                 // lables: ['important', 'romantic'] // has any of the labels
-            }
+            },
+            viewCompose:false,
         }
     },
     created() {
@@ -50,14 +52,14 @@ export default {
             const idx = this.emails.findIndex(email => {
                 return email.id === emailId
             })
-            this.emails.splice(idx,1)
-        }
+            this.emails.splice(idx, 1)
+        },
 
     },
     computed: {
         params() {
             return this.$route.params.folder
-        }
+        },
     },
     watch: {
         params() {

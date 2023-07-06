@@ -13,7 +13,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
-    props: ['email'],
+    props: ['email','criteria'],
     template: `
         <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
             <RouterLink :to="'/mail/' + email.id">
@@ -31,6 +31,7 @@ export default {
     `,
     created() {
         const folder = this.$route.params
+        // console.log(criteria)
     },
     data() {
         return {
