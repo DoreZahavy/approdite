@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-         <span class="tack fa-regular"></span>
+            <span class="tack fa-regular" @click="onSetPin"></span>
             <Component 
                 :is="note.type"  
                 :note="note" 
@@ -28,6 +28,7 @@ export default {
     `,
     data() {
         return {
+            
         }
     },
     methods: {
@@ -37,8 +38,12 @@ export default {
         onRemoveNote() {
             this.$emit('remove', this.note.id)
         },
-        onSetBgColor() {
-            this.$emit('paint',  this.note)
+        onUpdateNote() {
+            this.$emit('save',  this.note)
+        },
+        onSetPin(){
+            this.note.isPinned = !this.note.isPinned
+            this.$emit('save',  this.note)
         }
 
     },

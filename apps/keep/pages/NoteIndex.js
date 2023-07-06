@@ -25,14 +25,24 @@ export default {
                 @add="addNote" />
         <!-- </section> -->
 
-        <section class="notes-columns">
-
-            <div v-for="(note, idx) in notes"  v-if="notes">
+        <section class="notes-columns" >
+            <span class="pin-title" v-if="pinnedNotes">pinned</span>
+            <div v-for="(note, idx) in pinnedNotes"  v-if="notes">
                 <NotePreview  
                 :note="note" 
                 @remove="removeNote"
                 @copy="copyNote"
-                @paint="saveNote"
+                @save="saveNote"
+                
+                 />
+            </div>
+            <span class="pin-title" v-if="unpinnedNotes">others</span>
+            <div v-for="(note, idx) in unpinnedNotes"  v-if="notes">
+                <NotePreview  
+                :note="note" 
+                @remove="removeNote"
+                @copy="copyNote"
+                @save="saveNote"
                  />
             </div>
         </section>
@@ -54,6 +64,14 @@ export default {
                
             })
 
+    },
+    computed: {
+        pinnedNotes(){
+           return  this.notes.filter(note=>note.isPinned)
+        },
+        unpinnedNotes(){
+           return  this.notes.filter(note=>!note.isPinned)
+        }
     },
     methods: {
         removeNote(noteId){
