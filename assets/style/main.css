@@ -33,6 +33,7 @@
 @import 'apps/note/NoteAdd.css';
 @import 'apps/note/NoteAddOpen.css';
 @import 'apps/note/Sidebar.css';
+@import 'apps/note/EditScreen.css';
 
 /* missBooks */
 @import 'apps/book/app.css';
