@@ -14,7 +14,7 @@ const options = {
                 <div class="main-route">
                     <RouterView />
                 </div>
-                    <AppFooter />
+                <AppFooter />
             </main>
             <UserMsg />
         </section>

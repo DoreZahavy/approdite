@@ -9,6 +9,7 @@
 
     font-size: 14px;
     color: rgb(32, 33, 36);
+    background-color: white;
 }
 
 .note-index .notes-columns{
@@ -26,5 +27,9 @@
     font-family: roboto, sans-serif;
     color: rgb(32, 33, 36);
     letter-spacing: 0.1px;
+}
+
+.note-index .add-cmps{
+   /* margin-block-end: 20px; */
 }
 
