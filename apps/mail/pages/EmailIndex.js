@@ -8,17 +8,23 @@ export default {
     template: `
     <section class="email-index" >
             <button class="compose-btn" @click="viewCompose = true">
-                Compose
+            <i class="fa-regular"></i>
+            Compose
             </button>
         <ComposeEmail 
             v-show="viewCompose"
             @close="viewCompose = false"/>
         <EmailFilter 
-            @search="onSearch(params)"/>
+            @search="onSearch"
+            @filter="onFilter"
+            />
         <EmailFolderList
             :emails="emails"
         />
-       <RouterView :emails="emails" @remove="spliceRemoved"/>
+       <RouterView :emails="emails" 
+       @remove="spliceRemoved"
+       @toggleRead="loadEmails"
+       />
     </section>
     `,
     data() {
@@ -28,7 +34,7 @@ export default {
                 status: 'inbox',
                 txt: '', // no need to support complex text search
                 isRead: null, // (optional property, if missing: show all)
-                isStared: null, // (optional property, if missing: show all)
+                isStarred: null, // (optional property, if missing: show all)
                 // lables: ['important', 'romantic'] // has any of the labels
             },
             viewCompose:false,
@@ -42,6 +48,7 @@ export default {
             console.log('loading emails')
             const params = this.$route.params
             this.criteria.status = params.folder ? params.folder : 'inbox'
+            console.log(this.criteria)
             emailService.query(this.criteria)
                 .then(emails => {
                     this.emails = emails
@@ -54,10 +61,25 @@ export default {
                 return email.id === emailId
             })
             this.emails.splice(idx, 1)
+            this.loadEmails()
         },
         onSearch(params){
-            console.log('on search')
-            console.log(params)
+            this.criteria.txt = params
+            this.loadEmails()
+        },
+        onFilter(val){
+            switch (val){
+                case 'read':
+                    this.criteria.isRead = true
+                    break;
+                case 'unread':
+                    this.criteria.isRead = false
+                    break;
+                case 'all':
+                    this.criteria.isRead = null
+                    break;
+            }
+            this.loadEmails()
         }
 
     },

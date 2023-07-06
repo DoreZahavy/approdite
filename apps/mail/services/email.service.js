@@ -28,21 +28,36 @@ function query(criteria = { status: 'inbox' }) {
         if (criteria.status) {
             switch (criteria.status) {
                 case 'inbox':
-                    console.log('inbox')
                     emails = emails.filter(email => { if (email.to === loggedinUser.email && !email.removedAt) return email })
                     break;
                 case 'outgoing':
-                    console.log('outgoing')
                     emails = emails.filter(email => { if (email.to !== loggedinUser.email) return email })
                     break;
                 case 'trash':
-                    console.log('trash')
-                    emails = emails.filter(email=> {if(email.removedAt!==null) return email})
+                    emails = emails.filter(email => { if (email.removedAt !== null) return email })
                     break;
                 default:
                     emails = emails.filter(email => { if (email.to === loggedinUser.email) return email })
                     break;
             }
+
+        }
+        if (criteria.txt) {
+            console.log('checking text criteria')
+            emails = emails.filter(email => {
+                if (email.body.includes(criteria.txt)) return email
+            })
+        }
+        if(criteria.isRead && criteria.isRead!=null){
+            console.log('show read only')
+            emails = emails.filter(email=>{
+                if(email.isRead)return email
+            })
+        }else if(!criteria.isRead && criteria.isRead!=null){
+            console.log('show unread only')
+            emails = emails.filter(email=>{
+                if(email.isRead===false)return email
+            })
         }
         return emails
     })
@@ -53,11 +68,11 @@ function get(emailId) {
 function remove(emailId) {
 
 }
-function update(email){
-    storageService.put(EMAIL_KEY,email)
+function update(email) {
+    storageService.put(EMAIL_KEY, email)
 }
-function add(email){
-    storageService.post(EMAIL_KEY,email)
+function add(email) {
+    storageService.post(EMAIL_KEY, email)
 }
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_KEY)
@@ -69,6 +84,6 @@ function _createEmails() {
             .then(res => {
                 utilService.saveToStorage(EMAIL_KEY, res)
             })
-        
+
     }
 }

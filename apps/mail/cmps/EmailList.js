@@ -6,7 +6,11 @@ export default {
         <section class="email-list"   v-if="emails">
             <ul>
                 <li v-for="email in emails">
-                    <EmailPreview :email="email" @remove="onRemove"/>
+                    <EmailPreview 
+                    :email="email" 
+                    @remove="onRemove"
+                    @toggleRead="onToggleRead"
+                    />
                 </li>
             </ul>
         </section>
@@ -14,6 +18,9 @@ export default {
     methods:{
         onRemove(emailId){
             this.$emit('remove',emailId)
+        },
+        onToggleRead(emailId){
+            this.$emit('toggleRead', emailId)
         }
     },
     components: {

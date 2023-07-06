@@ -18,14 +18,19 @@
     background-color: transparent;
     position: absolute;
     font-size: 1.2rem;
+    height: 48px;
+    width: 48px;
 }
-.email-filter div{
+
+.email-filter div {
     opacity: .5;
     transition: 300ms;
 }
-.email-filter div:hover{
+
+.email-filter div:hover {
     opacity: 1;
 }
-.email-filter div:focus-within{
+
+.email-filter div:focus-within {
     opacity: 1;
 }

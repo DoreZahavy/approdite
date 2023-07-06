@@ -7,7 +7,7 @@ export default {
             </button>
             <input type="text" placeholder="Search Mail" @keydown.enter="search" v-model="searchParams">
         </div>
-        <select>
+        <select @input="filter">
             <option>show all</option>
             <option>show read</option>
             <option>show unread</option>
@@ -16,13 +16,18 @@ export default {
     `,
     data(){
         return{
-            searchParams:'' 
+            searchParams:'' ,
+            isRead:null
         }
     },
     methods:{
         search(){
             console.log(this.searchParams)
             this.$emit('search', this.searchParams)
+        },
+        filter(val){
+            const res = val.target.value.split(' ')
+            this.$emit('filter',res[1])
         }
     }
 }

@@ -4,9 +4,11 @@ import { emailService } from "../services/email.service.js"
 export default {
     template: `
         <section class="email-compose">
-            <button @click="onClose">
-                x
-            </button>
+            <nav >
+                <button @click="onClose" class="fa-solid">
+                    
+                </button>
+            </nav>
             <form @submit.prevent="onSend">
                 <input type="email" name="recipient" v-model="email.to" placeholder="recipient">
                 <input type="text" name="subject" v-model="email.subject" placeholder="subject">
