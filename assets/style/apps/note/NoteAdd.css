@@ -16,7 +16,7 @@
     align-items: center;
     width: var(--btnSize);
     height: var(--btnSize);
-  
+    cursor: pointer;
 
 }
 
