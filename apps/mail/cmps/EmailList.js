@@ -3,15 +3,21 @@ import EmailPreview from "./EmailPreview.js";
 export default {
     props: ['emails'],
     template: `
-        <section class="email-list">
+        <section class="email-list"   v-if="emails">
             <ul>
                 <li v-for="email in emails">
-                    <EmailPreview :email="email"/>
+                    <EmailPreview :email="email" @remove="onRemove"/>
                 </li>
             </ul>
         </section>
     `,
+    methods:{
+        onRemove(emailId){
+            this.$emit('remove',emailId)
+        }
+    },
     components: {
         EmailPreview,
-    }
+    },
+    name:'list'
 }
