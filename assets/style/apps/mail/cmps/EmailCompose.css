@@ -6,6 +6,7 @@
     background-color: var(--gmail-li);
     z-index: 10;
 }
+
 .email-compose form {
     display: flex;
     flex-direction: column;
@@ -13,4 +14,17 @@
 
 .compose-btn {
     grid-area: compose;
+    background-color: var(--clr1);
+    width: fit-content;
+    height: fit-content;
+    padding: 1rem;
+    justify-self: center;
+    align-self: center;
+    border:none;
+    border-radius: 2rem;
+    font-size: 1.1rem;
+    color:var(--clr3);
+}
+.compose-btn i{
+    padding-inline-end: .5rem;
 }

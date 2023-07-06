@@ -13,6 +13,7 @@ export default {
     },
     created(){
         this.loadEmail()
+        
     },
     methods: {
         loadEmail() {
@@ -21,6 +22,8 @@ export default {
             emailService.get(emailId)
                 .then(email => {
                     this.email = email
+                    this.email.isRead = true
+                    emailService.update(this.email)
                 })
                 .catch(err => {
                     console.log(err)

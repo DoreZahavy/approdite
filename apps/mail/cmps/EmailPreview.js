@@ -22,9 +22,12 @@ export default {
                 <span class="preview-buttons">
                     <button @click="onTrash(email.id)" class="fa-solid" title="move to trash">
                     
-                    </button>
-                    <button class="fa-solid" title="mark as read">
+                    </button >
+                    <button @click="onToggleRead(email.id)" v-if="!email.isRead" class="fa-solid" title="mark as read">
                     
+                    </button>
+                    <button @click="onToggleRead(email.id)" v-if="email.isRead" class="fa-solid" title="mark as unread">
+                    
                     </button>
                 </span>
         </article>
@@ -33,27 +36,26 @@ export default {
         const folder = this.$route.params
         // console.log(criteria)
     },
-    // data() {
-    //     // return {
-    //     //     criteria: {
-    //     //         status: 'inbox/sent/trash/draft',
-    //     //         txt: '', // no need to support complex text search
-    //     //         isRead: null, // (optional property, if missing: show all)
-    //     //         isStared: null, // (optional property, if missing: show all)
-    //     //         lables: ['important', 'romantic'] // has any of the labels
-    //     //     }
-    //     // }
-    // },
     computed: {
         formattedTime() {
 
-            // const sentAt = new Date(0)
-            // sentAt = this.email.sentAt
-            // const year = new Date(sentAt).getFullYear()
-            // const month = new Date(sentAt).getMonth() + 1
-            // const day = new Date(sentAt).getDate()
-            // return `${day}/${month}/${year}`
-            return this.email.sentAt
+
+            let epoch = new Date(0).setUTCSeconds(this.email.sentAt)
+            // formattedDate = this.email.sentAt
+            const year = new Date(epoch).getFullYear()
+            const month = new Date(epoch).getMonth() + 1
+            const day = new Date(epoch).getDate()
+            // const diff = Math.abs(epoch - Date.now())
+            // const timeDiffs = {
+            //     year: 31556952,
+            //     month: 2678411,
+            //     week: 604800,
+            //     day: 86400,
+            // }
+            // if (diff > timeDiffs.year) {
+            return `${day}/${month}/${year}`
+            // }
+
         },
         isRead() {
             // return email.isRead? 'email-read': 'email-unread'
@@ -70,10 +72,14 @@ export default {
         onTrash(emailId) {
             emailService.get(emailId)
                 .then(email => {
-                    email.removedAt = Date.now()+''
+                    email.removedAt = Date.now() + ''
                     emailService.update(email)
-                    this.$emit('remove',emailId)
+                    this.$emit('remove', emailId)
                 })
+        },
+        onToggleRead() {
+            this.email.isRead = !this.email.isRead
+            emailService.update(this.email)
         }
     }
 }

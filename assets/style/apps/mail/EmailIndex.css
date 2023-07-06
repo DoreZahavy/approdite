@@ -5,4 +5,5 @@
         "compose   filter"
         "folder-list list  "
         "folder-list list  ";
+    grid-template-columns: fit-content(20%) 1fr;
 }
