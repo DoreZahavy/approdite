@@ -1,16 +1,58 @@
-.email-preview{
+.email-preview {
+    display: grid;
+    grid-auto-columns: 6fr 1fr;
     background-color: var(--gmail-li);
     padding-inline: 1rem;
     border-block: 1px solid lightgrey;
+    font-size: .9rem;
+    padding-inline: 0;
+    justify-content: space-between;
+
 }
-.email-preview button{
+
+.email-preview a {
+    padding-inline-start: .5rem;
+    grid-row-start: -1;
+    display: grid;
+    grid-template-columns: repeat(3, 2fr);
+    align-items: center;
+    overflow: hidden;
+}
+
+.email-preview a span:last-of-type{
+    justify-self: end;
+}
+
+.email-preview .preview-buttons {
+    grid-row-start: -1;
+    justify-self: end;
+    transition: 200ms;
+    background-color: rgba(250, 235, 215, 0.651);
+    border-radius: 999px 0 0 999px;
+    opacity: 0;
+    translate: 20px;
+}
+.email-preview:hover .preview-buttons{
+    opacity:1;
+    translate:0;
+}
+
+/* .email-preview:hover span:last-of-type{
+    opacity: 1;
+    translate:0;
+
+} */
+.email-preview button {
     padding: 0;
-    border:none;
+    border: none;
     background-color: transparent;
 }
-.read{
+
+.read {
     background-color: aliceblue;
 }
-.unread{
+
+.unread {
     background-color: #fff;
+    font-weight: bold;
 }

@@ -12,24 +12,25 @@ import NoteIndex from './apps/keep/pages/NoteIndex.js'
 import NoteEdit from './apps/keep/cmps/NoteEdit.js'
 
 //misterEmail
-import MailIndex from './apps/mail/pages/MailIndex.js'
+import MailIndex from './apps/mail/pages/EmailIndex.js'
 import EmailDetails from './apps/mail/pages/EmailDetails.js'
+import MailList from './apps/mail/cmps/EmailList.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
 
 const routerOptions = {
-	history: createWebHashHistory(),
-	routes: [
-		{
-			path: '/',
-			component: HomePage,
-		},
-		{
-			path: '/about',
-			component: AboutUs,
-		},
-		// missBooks
-		{
+    history: createWebHashHistory(),
+    routes: [
+        {
+            path: '/',
+            component: HomePage,
+        },
+        {
+            path: '/about',
+            component: AboutUs,
+        },
+        // missBooks
+        {
             path: '/book',
             component: BookIndex
         },
@@ -46,11 +47,11 @@ const routerOptions = {
             component: BookEdit
         },
 
-		// missKeep
-		{
+        // missKeep
+        {
             path: '/note',
             component: NoteIndex,
-			children: [
+            children: [
                 {
                     path: ':noteId',
                     component: NoteEdit,
@@ -59,17 +60,30 @@ const routerOptions = {
             ]
         },
 
-		// misterEmail
-
-		{
-			path: '/mail',
-            component: MailIndex
-		},
+        // misterEmail
         {
-            path: '/mail/emaildetails/:emailId?',
-            component: EmailDetails
-        }
-	],
+            path: '/mail',
+            component: MailIndex,
+            children: [
+                {
+                    path: 'list/:folder?',
+                    component: MailList
+                }, 
+                {
+                    path: ':emailId?',
+                    component: EmailDetails
+                }
+            ]
+        },
+        // {
+        //     path: '/mail/emaildetails/:emailId?',
+        //     component: EmailDetails
+        // },
+        // {
+        //     path: '/mail/:folder?',
+        //     component:MailIndex
+        // }
+    ],
 }
 
 export const router = createRouter(routerOptions)
