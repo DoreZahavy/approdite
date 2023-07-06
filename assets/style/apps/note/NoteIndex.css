@@ -16,8 +16,8 @@
    
     columns: 1;
     place-items: center;
-    column-gap: 15px;
-    margin-inline: 17px;
+    margin-block-start: var(--noteGap);
+    margin-inline: var(--noteGap);
     grid-area: notes;
     
 }
@@ -26,6 +26,8 @@
     font-family: roboto;
     font-size: 0.6875em;
     text-transform: uppercase;
+    margin-block-end: var(--noteGap);
+    
 }
 
 .note-index h2{
@@ -36,6 +38,11 @@
 }
 
 .note-index .add-cmps{
-   /* margin-block-end: 20px; */
+    margin-block-end: 50px;
+}
+
+.note-index .notes-grp{
+    /* margin-block-start: 30px; */
+    
 }
 

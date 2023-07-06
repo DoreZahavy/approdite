@@ -25,9 +25,11 @@ export default {
                 @add="addNote" />
         <!-- </section> -->
 
-        <section class="notes-columns" >
-            <span class="pin-title" v-if="pinnedNotes">pinned</span>
-            <div v-for="(note, idx) in pinnedNotes"  v-if="notes">
+        <section class="notes-columns" v-if="notes" >
+            <div class="pin-title" v-if="pinnedNotes">
+                <span >pinned</span>
+            </div>
+            <div v-for="(note, idx) in pinnedNotes" class="notes-grp" v-if="pinnedNotes">
                 <NotePreview  
                 :note="note" 
                 @remove="removeNote"
@@ -36,8 +38,11 @@ export default {
                 
                  />
             </div>
-            <span class="pin-title" v-if="unpinnedNotes">others</span>
-            <div v-for="(note, idx) in unpinnedNotes"  v-if="notes">
+            <div  class="pin-title" v-if="unpinnedNotes">
+
+                <span >others</span>
+            </div>
+            <div v-for="(note, idx) in unpinnedNotes" class="notes-grp" v-if="unpinnedNotes">
                 <NotePreview  
                 :note="note" 
                 @remove="removeNote"
