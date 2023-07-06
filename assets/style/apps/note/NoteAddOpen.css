@@ -1,0 +1,33 @@
+.note-add-open{
+    position: relative;
+    box-shadow: 0 3px 3px 0 rgba(60,64,67,0.302),0 2px 3px 2px rgba(60,64,67,0.149);
+    border-radius: 0.4em;
+    margin-block-end: 15px;
+    padding: 10px;
+}
+
+.note-add-open .actions{
+    justify-content: end;
+}
+
+.note-add-open .actions li {
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    height: var(--btnSml);
+    width: var(--btnSml);
+    cursor: pointer;
+
+}
+
+
+
+.note-add-open .tack{
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+}

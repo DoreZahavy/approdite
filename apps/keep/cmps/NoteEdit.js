@@ -4,13 +4,7 @@ export default {
     
     template: `
         <article class="note-edit"  v-if="noteToEdit">
-            noteToEdit
-            <Component 
-               
-                
-                :is="noteToEdit.type"  
-                :note="noteToEdit" 
-                @set-val="setAns($event, idx)" />
+        
            <pre>{{noteToEdit}}</pre>
            <button>Save</button>
            <div class="edit-screen" @click="onExitModal"></div>
@@ -23,7 +17,7 @@ export default {
     },
      created() {
         const { noteId } = this.$route.params
-        if (!noteId) return
+        if (!noteId) return noteService.get
         noteService.get(noteId)
             .then(note => {
                 this.noteToEdit = note

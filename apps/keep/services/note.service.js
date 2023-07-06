@@ -4,12 +4,13 @@ const gNoteList = [
         createdAt: 1112222,
         type: 'NoteTxt',
         isPinned: true,
-        style: {
-            backgroundColor: '#00d'
-        },
+
         info: {
             title: 'Title11',
             txt: 'Fullstack Me Baby!'
+        },
+        style: {
+            backgroundColor: '#23523f'
         }
     },
     {
@@ -31,20 +32,23 @@ const gNoteList = [
         info: {
             title: 'Title123',
             txt: 'Get my stuff together'
+        },
+        style: {
+            backgroundColor: '#eb346a'
+        }
+    },
+    {
+        id: 'n1076',
+        type: 'NoteImg',
+        isPinned: false,
+        info: {
+            url: 'https://images.freeimages.com/images/large-previews/55f/note-1196890.jpg',
+            title: 'Bobi and Me'
+        },
+        style: {
+            backgroundColor: '#00d'
         }
     }
-    // {
-    //     id: 'n102',
-    //     type: 'NoteImg',
-    //     isPinned: false,
-    //     info: {
-    //         url: 'http://some-img/me',
-    //         title: 'Bobi and Me'
-    //     },
-    //     style: {
-    //         backgroundColor: '#00d'
-    //     }
-    // },
     // {
     //     id: 'n103',
     //     type: 'NoteTodos',
@@ -72,8 +76,7 @@ export const noteService = {
     get,
     remove,
     save,
-    // getEmptyBook,
-    // addGoogleBook
+    getEmptyNote
 }
 
 function query() {
@@ -94,6 +97,25 @@ function save(note) {
     } else {
         return storageService.post(NOTE_KEY, note)
     }
+}
+
+function getEmptyNote(type) {
+    let emptyNote =  {
+        id: '',
+        createdAt: 0,
+        type,
+        isPinned: false,
+        style: {
+            backgroundColor: '#ffffff'
+        },
+        info: {
+            title: 'Title',
+        }
+    }
+    if(type === 'NoteEditTxt') emptyNote.info.txt = 'Take a note...'
+    if(type === 'NoteEditImg') emptyNote.info.url = 'Enter image url'
+    if(type === 'NoteEditTodos') emptyNote.info.todos = [{ txt: 'task1', doneAt: null }]
+    return emptyNote
 }
 
 

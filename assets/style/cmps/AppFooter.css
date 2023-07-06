@@ -1,13 +1,16 @@
 .app-footer {
-    /* align-self: end; */
-    /* outline: 1px solid black; */
+    background-color: aquamarine;
     border-block-start: 1px solid var(--silver);
     width: 100%;
     text-align: center;
     height: 80px;
+    
+    
+    /* align-self: end; */
     position: fixed;
-    bottom:0px;
+    bottom: 0px;
 }
-.app-footer p{
+
+.app-footer p {
     margin-block-start: calc(40px - 1rem);
 }

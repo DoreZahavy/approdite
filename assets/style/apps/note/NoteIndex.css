@@ -9,6 +9,7 @@
 
     font-size: 14px;
     color: rgb(32, 33, 36);
+    background-color: white;
 }
 
 .note-index .notes-columns{
@@ -21,10 +22,20 @@
     
 }
 
+.note-index .notes-columns .pin-title{
+    font-family: roboto;
+    font-size: 0.6875em;
+    text-transform: uppercase;
+}
+
 .note-index h2{
-    font-size: 16px;
+    font-size: 1.142857em;
     font-family: roboto, sans-serif;
     color: rgb(32, 33, 36);
     letter-spacing: 0.1px;
+}
+
+.note-index .add-cmps{
+   /* margin-block-end: 20px; */
 }
 

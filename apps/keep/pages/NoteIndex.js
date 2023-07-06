@@ -6,7 +6,7 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import NotePreview from '../cmps/NotePreview.js'
 import NoteFilter from '../cmps/NoteFilter.js'
 import NoteAdd from '../cmps/NoteAdd.js'
-import NoteAddTxt from '../cmps/NoteAddTxt.js'
+import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
 import Sidebar from '../cmps/Sidebar.js'
 
@@ -18,18 +18,31 @@ export default {
 
        <Sidebar />
 
-       <section class="add-cmps">
-           <NoteAdd />
-           <NoteAddTxt />
-        </section>
+       <!-- <section class="add-cmps"> -->
+           <NoteAdd @type="setType" v-if="noteAddType === 'unfocused'"/>
+            <NoteAddOpen v-else :type="noteAddType" 
+                @type="setType" 
+                @add="addNote" />
+        <!-- </section> -->
 
-        <section class="notes-columns">
-
-            <div v-for="(note, idx) in notes"  v-if="notes">
+        <section class="notes-columns" >
+            <span class="pin-title" v-if="pinnedNotes">pinned</span>
+            <div v-for="(note, idx) in pinnedNotes"  v-if="notes">
                 <NotePreview  
                 :note="note" 
                 @remove="removeNote"
                 @copy="copyNote"
+                @save="saveNote"
+                
+                 />
+            </div>
+            <span class="pin-title" v-if="unpinnedNotes">others</span>
+            <div v-for="(note, idx) in unpinnedNotes"  v-if="notes">
+                <NotePreview  
+                :note="note" 
+                @remove="removeNote"
+                @copy="copyNote"
+                @save="saveNote"
                  />
             </div>
         </section>
@@ -40,6 +53,7 @@ export default {
       data() {
         return {
             notes: null,
+            noteAddType: 'unfocused'
             
         }
     },
@@ -50,6 +64,14 @@ export default {
                
             })
 
+    },
+    computed: {
+        pinnedNotes(){
+           return  this.notes.filter(note=>note.isPinned)
+        },
+        unpinnedNotes(){
+           return  this.notes.filter(note=>!note.isPinned)
+        }
     },
     methods: {
         removeNote(noteId){
@@ -74,12 +96,32 @@ export default {
                     showSuccessMsg('Note copied')
                 })
                 .catch(()=>{showErrorMsg('Cannot copy note')})
+        },
+        saveNote(newNote){
+            noteService.save(newNote)
+                .then(note=>{
+                    const idx = this.notes.findIndex(note=> note.id===newNote.id)
+                    if(idx) this.notes.splice(idx,1,newNote)
+                    else this.notes.push(newNote)
+                })
+            },
+            addNote(newNote) {
+                noteService.save(newNote)
+                .then(note => {
+                    console.log('note after save:', note)
+                    this.notes.push(newNote)
+
+                })
+        },
+        setType(type){
+            console.log('type:', type)
+            this.noteAddType = type 
         }
     },
     components:{
         NotePreview,
         NoteAdd,
-        NoteAddTxt,
+        NoteAddOpen,
         NoteFilter,
         NoteEdit,
         Sidebar
