@@ -22,7 +22,7 @@ export default {
                     v-model="noteToEdit.style.backgroundColor" 
                     :id="note-add-color" 
                     style="display:none;"
-                    @input="onSetBgColor"/>
+                    />
             </li>
             <li @click="onAddNote" class="fa-regular"></li> 
             <li @click="setAddMode" class="fa-regular"></li>
@@ -34,9 +34,7 @@ export default {
             noteToEdit: noteService.getEmptyNote(this.type),
         }
     },
-    created() {
-        console.log(this.NoteToEdit);
-    },
+  
     methods: {
         setAddMode() {
             this.$emit('type', 'unfocused')
@@ -47,14 +45,11 @@ export default {
             if (type === 'NoteEditImg') this.noteToEdit.type = 'NoteImg'
             if (type === 'NoteEditVideo') this.noteToEdit.type = 'NoteVideo'
             if (type === 'NoteEditTodos') this.noteToEdit.type = 'NoteTodos'
-            // this.noteToEdit.id = ''
             this.$emit('add', this.noteToEdit)
             this.noteToEdit = noteService.getEmptyNote(this.type)
             this.$emit('type', 'unfocused')
         },
-        onSetBgColor(){
-           console.log('hi color');
-        },
+     
         onChangeVal(newVal){
             this.noteToEdit.info[newVal.key] = newVal.value
         }
@@ -63,12 +58,7 @@ export default {
         isValid() {
             this.noteToEdit.info.title.length > 0
         },
-        prepareToShow(type){
-            if (type === 'NoteEditTxt') return 'NoteTxt'
-            if (type === 'NoteEditImg') return 'NoteImg'
-            if (type === 'NoteEditVideo') return 'NoteVideo'
-            if (type === 'NoteEditTodos') return 'NoteTodos'
-        }
+     
     },
     components: {
         NoteEditTxt,

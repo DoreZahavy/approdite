@@ -24,106 +24,127 @@ export default {
                 @type="setType" 
                 @add="addNote" />
         <!-- </section> -->
-
-        <section class="notes-columns" v-if="notes" >
-            <div class="pin-title" v-if="pinnedNotes">
-                <span >pinned</span>
-            </div>
-            <div v-for="(note, idx) in pinnedNotes" class="notes-grp" v-if="pinnedNotes">
+    <section class="note-container" v-if="notes">
+        <div class="pin-title" v-show="pinnedNotes !== null">
+            <span >pinned</span>
+        </div>
+        <section class="notes-columns" v-if="pinnedNotes" >
+            <div v-for="(note, idx) in pinnedNotes" class="notes-grp" >
                 <NotePreview  
                 :note="note" 
                 @remove="removeNote"
                 @copy="copyNote"
                 @save="saveNote"
-                
-                 />
-            </div>
-            <div  class="pin-title" v-if="unpinnedNotes">
-
-                <span >others</span>
-            </div>
-            <div v-for="(note, idx) in unpinnedNotes" class="notes-grp" v-if="unpinnedNotes">
-                <NotePreview  
-                :note="note" 
-                @remove="removeNote"
-                @copy="copyNote"
-                @save="saveNote"
-                 />
+                @tack="updatePin" />
             </div>
         </section>
-
+        <div  class="pin-title" v-show="pinnedNotes !== null">
+            <span >others</span>
+        </div>
+        <section class="notes-columns" v-if="unpinnedNotes" >
+            <div v-for="(note, idx) in unpinnedNotes" class="notes-grp">
+                <NotePreview  
+                :note="note" 
+                @remove="removeNote"
+                @copy="copyNote"
+                @save="saveNote"
+                @tack="updatePin"
+                />
+            </div>
+        </section>
+    </section>
+            
         <NoteEdit />
     </section>
     `,
-      data() {
+    data() {
         return {
             notes: null,
             noteAddType: 'unfocused'
-            
+
         }
     },
     created() {
         noteService.query()
             .then(notes => {
                 this.notes = notes
-               
+
             })
 
     },
     computed: {
-        pinnedNotes(){
-           return  this.notes.filter(note=>note.isPinned)
+        pinnedNotes() {
+            let pinnedNotes = this.notes.filter(note => note.isPinned)
+            if (pinnedNotes) return pinnedNotes
         },
-        unpinnedNotes(){
-           return  this.notes.filter(note=>!note.isPinned)
+        unpinnedNotes() {
+            let unpinnedNotes = this.notes.filter(note => !note.isPinned)
+            if (unpinnedNotes) return unpinnedNotes
+        },
+        isPinned() {
+            if (this.pinnedNotes > 0) return true
+            return false
         }
     },
     methods: {
-        removeNote(noteId){
+        removeNote(noteId) {
             noteService.remove(noteId)
-            .then(() => {
-                const idx = this.notes.findIndex(note => noteId === note.id)
-                this.notes.splice(idx, 1)
-                showSuccessMsg('Note removed')
-            })
-            .catch(err => {
-                showErrorMsg('Cannot remove note')
-            })
+                .then(() => {
+                    const idx = this.notes.findIndex(note => noteId === note.id)
+                    this.notes.splice(idx, 1)
+                    showSuccessMsg('Note removed')
+                })
+                .catch(err => {
+                    showErrorMsg('Cannot remove note')
+                })
         },
-        copyNote(note){
+        copyNote(note) {
             // const duplicateNote = utilService.deepCopy(this.note)
-            
+
             const duplicateNote = utilService.deepCopy(note)
             duplicateNote.id = ''
             noteService.save(duplicateNote)
-                .then(()=>{
+                .then(() => {
                     this.notes.push(duplicateNote)
                     showSuccessMsg('Note copied')
                 })
-                .catch(()=>{showErrorMsg('Cannot copy note')})
+                .catch(() => { showErrorMsg('Cannot copy note') })
         },
-        saveNote(newNote){
-            noteService.save(newNote)
-                .then(note=>{
-                    const idx = this.notes.findIndex(note=> note.id===newNote.id)
-                    if(idx) this.notes.splice(idx,1,newNote)
-                    else this.notes.push(newNote)
+        saveNote(updatedNote) {
+            noteService.save(updatedNote)
+                .then(newNote => {
+                    // console.log('newNote:', newNote)
+                    // console.log('this.notes:', this.notes)
+                    // const idx = this.notes.findIndex(note => note.id === newNote.id)
+
+                    // this.notes.splice(idx, 1, newNote)
+                    noteService.query()
+                        .then(notes => {
+                            this.notes = notes
+
+                        })
+                    // else this.notes.push(newNote)
                 })
-            },
-            addNote(newNote) {
-                noteService.save(newNote)
+        },
+        updatePin(noteId) {
+            const idx = this.notes.findIndex(note => note.id === newNote.id)
+            noteService.get(noteId)
                 .then(note => {
-                    console.log('note after save:', note)
+
+                })
+        },
+        addNote(newNote) {
+            noteService.save(newNote)
+                .then(note => {
                     this.notes.push(newNote)
 
                 })
         },
-        setType(type){
-            console.log('type:', type)
-            this.noteAddType = type 
+        setType(type) {
+            this.noteAddType = type
         }
     },
-    components:{
+    components: {
         NotePreview,
         NoteAdd,
         NoteAddOpen,

@@ -5,11 +5,10 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-            <span class="tack fa-regular" @click="onSetPin"></span>
+            <span class="tack fa-regular" @click="onSetPin(note.id)"></span>
             <Component 
                 :is="note.type"  
-                :note="note" 
-                @set-val="setAns($event, idx)" />
+                :note="note"  />
             <ul class="actions clean-list flex">
                 <li @click="onCopyNote" class="fa-regular" title="Duplicate Note"></li>
                 <li @click="onRemoveNote" class="fa-regular" title="Delete Note"></li>
@@ -17,10 +16,11 @@ export default {
                     <label :for="inputId" class="fa-regular"></label>
                     <input type="color" 
                         title="Change Background"
-                        v-model="note.style.backgroundColor" 
+                        v-model="currNote.style.backgroundColor" 
                         :id="inputId" 
                         style="display:none;"
-                        @input="onSetBgColor"/>
+                        @input="onUpdateNote()"
+                      />
                 </li>
                 <li><Router-link :to="'/note/' + note.id" title="Edit Note" class="fa-regular"></Router-link></li>
             </ul>
@@ -28,7 +28,7 @@ export default {
     `,
     data() {
         return {
-            
+            currNote : this.note
         }
     },
     methods: {
@@ -39,11 +39,15 @@ export default {
             this.$emit('remove', this.note.id)
         },
         onUpdateNote() {
-            this.$emit('save',  this.note)
+            this.$emit('save',  this.currNote)
         },
-        onSetPin(){
-            this.note.isPinned = !this.note.isPinned
-            this.$emit('save',  this.note)
+        onSetPin(noteId){
+            console.log('noteId:', noteId)
+            this.currNote.isPinned = !this.currNote.isPinned
+            // console.log('preview set pin');
+            console.log('this.currNote:', this.currNote)
+            this.$emit('save',  this.currNote)
+            // this.$emit('tack',  noteId)
         }
 
     },

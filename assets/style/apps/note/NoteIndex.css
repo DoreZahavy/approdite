@@ -7,27 +7,29 @@
     "sidebar notes"
     ;
 
-    font-size: 14px;
+    font-size: 16px;
     color: rgb(32, 33, 36);
     background-color: white;
 }
+.note-container{
+    grid-area: notes;
 
+}
 .note-index .notes-columns{
    
     columns: 1;
     place-items: center;
     margin-block-start: var(--noteGap);
     margin-inline: var(--noteGap);
-    grid-area: notes;
     
 }
 
-.note-index .notes-columns .pin-title{
+.note-index .note-container .pin-title span{
     font-family: roboto;
     font-size: 0.6875em;
     text-transform: uppercase;
     margin-block-end: var(--noteGap);
-    
+    margin-inline-start: var(--noteGap);
 }
 
 .note-index h2{

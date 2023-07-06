@@ -3,7 +3,7 @@ const gNoteList = [
         id: 'n101',
         createdAt: 1112222,
         type: 'NoteTxt',
-        isPinned: true,
+        isPinned: false,
 
         info: {
             title: 'Title11',
