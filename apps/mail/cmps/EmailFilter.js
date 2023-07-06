@@ -5,7 +5,7 @@ export default {
             <button @click="search" class="fa-solid">
             
             </button>
-            <input type="text" placeholder="Search Mail">
+            <input type="text" placeholder="Search Mail" @keydown.enter="search" v-model="searchParams">
         </div>
         <select>
             <option>show all</option>
@@ -14,9 +14,15 @@ export default {
         </select>
     </div>
     `,
+    data(){
+        return{
+            searchParams:'' 
+        }
+    },
     methods:{
         search(){
-            console.log('searching :DDD')
+            console.log(this.searchParams)
+            this.$emit('search', this.searchParams)
         }
     }
 }

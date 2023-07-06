@@ -13,7 +13,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
-    props: ['email','criteria'],
+    props: ['email'],
     template: `
         <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
             <RouterLink :to="'/mail/' + email.id">
@@ -33,17 +33,17 @@ export default {
         const folder = this.$route.params
         // console.log(criteria)
     },
-    data() {
-        return {
-            criteria: {
-                status: 'inbox/sent/trash/draft',
-                txt: '', // no need to support complex text search
-                isRead: null, // (optional property, if missing: show all)
-                isStared: null, // (optional property, if missing: show all)
-                lables: ['important', 'romantic'] // has any of the labels
-            }
-        }
-    },
+    // data() {
+    //     // return {
+    //     //     criteria: {
+    //     //         status: 'inbox/sent/trash/draft',
+    //     //         txt: '', // no need to support complex text search
+    //     //         isRead: null, // (optional property, if missing: show all)
+    //     //         isStared: null, // (optional property, if missing: show all)
+    //     //         lables: ['important', 'romantic'] // has any of the labels
+    //     //     }
+    //     // }
+    // },
     computed: {
         formattedTime() {
 

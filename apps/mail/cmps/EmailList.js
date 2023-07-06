@@ -6,7 +6,7 @@ export default {
         <section class="email-list"   v-if="emails">
             <ul>
                 <li v-for="email in emails">
-                    <EmailPreview :email="email" @remove="onRemove" :criteria="criteria"/>
+                    <EmailPreview :email="email" @remove="onRemove"/>
                 </li>
             </ul>
         </section>
