@@ -30,7 +30,6 @@ function query(criteria = { status: 'inbox' }) {
                 case 'inbox':
                     console.log('inbox')
                     emails = emails.filter(email => { if (email.to === loggedinUser.email && !email.removedAt) return email })
-                    console.log(emails)
                     break;
                 case 'outgoing':
                     console.log('outgoing')

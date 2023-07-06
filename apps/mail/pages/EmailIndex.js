@@ -13,11 +13,12 @@ export default {
         <ComposeEmail 
             v-show="viewCompose"
             @close="viewCompose = false"/>
-        <EmailFilter/>
+        <EmailFilter 
+            @search="onSearch(params)"/>
         <EmailFolderList
             :emails="emails"
         />
-       <RouterView :emails="emails" @remove="spliceRemoved" :criteria="criteria" />
+       <RouterView :emails="emails" @remove="spliceRemoved"/>
     </section>
     `,
     data() {
@@ -54,6 +55,10 @@ export default {
             })
             this.emails.splice(idx, 1)
         },
+        onSearch(params){
+            console.log('on search')
+            console.log(params)
+        }
 
     },
     computed: {
