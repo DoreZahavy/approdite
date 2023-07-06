@@ -38,6 +38,7 @@ export default {
                 @tack="updatePin" />
             </div>
         </section>
+        <hr />
         <div  class="pin-title" v-show="pinnedNotes !== null">
             <span >others</span>
         </div>
@@ -50,19 +51,23 @@ export default {
                 @save="saveNote"
                 @tack="updatePin"
                 />
-            </div>
-        </section>
-    </section class="edit-area">
-    <RouterView />
-    <div class="edit-screen"
-        @click="exitModal"  
-         >
+                </div>
+            </section>
+        </section >
+        <div  class="edit-area" :class="isScreen">
+
+            <!-- <div class="edit-screen"
+            @click="exitModal"  
+            > -->
+            <RouterView @add="saveNote"/>
+        </div>
     </section>
     `,
     data() {
         return {
             notes: null,
-            noteAddType: 'unfocused'
+            noteAddType: 'unfocused',
+            screen : false
 
         }
     },
@@ -86,6 +91,11 @@ export default {
         params() {
             return this.$route.params.noteId
         },
+        isScreen(){
+            return {
+                'screen-open':this.screen
+            }
+        }
 
     },
     methods: {
@@ -114,6 +124,10 @@ export default {
         },
         saveNote(updatedNote) {
             noteService.save(updatedNote)
+                .then(returnedNote=>{
+                    const idx = this.notes.findIndex(note=>note.id===returnedNote.id)
+                    this.notes.splice(idx,1,returnedNote)
+                })
 
 
         },
@@ -146,9 +160,10 @@ export default {
         }
     },
     watch: {
-        // params() {
-        //     this.loadNotes()
-        // }
+        params() {
+            if(this.$route.params.noteId) this.screen = true
+            else this.screen = false
+        }
     },
     components: {
         NotePreview,

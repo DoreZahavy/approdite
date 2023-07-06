@@ -1,14 +1,20 @@
 
 export default {
+    props: ['note'],
     template: `
         <article class="note-info">
-           <h2 contenteditable @input="onSetTitle">Title</h2>
-           <p contenteditable @input="onSetTxt">Take a note...</p>
+           <h2 contenteditable ref="title" @input="onSetTitle">Title</h2>
+           <p contenteditable ref="txt" @input="onSetTxt">Take a note...</p>
 
          
         </article>
     `,
- 
+    mounted(){
+        if(this.note) {
+            this.$refs.title.innerText = this.note.info.title
+            this.$refs.txt.innerText = this.note.info.txt
+        }
+    },
     
     methods: {
         onSetTitle(x){
