@@ -1,0 +1,13 @@
+.email-details {
+    padding: 1rem;
+}
+
+.email-details div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.email-details button {
+    border: none;
+    color: var(--clr4);
+}

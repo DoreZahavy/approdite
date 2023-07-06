@@ -16,7 +16,7 @@ export default {
     props: ['email'],
     template: `
         <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
-            <RouterLink :to="'/mail/' + email.id">
+            <RouterLink :to="'/mail/' + email.id" :email="email">
                 <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
             </RouterLink>
                 <span class="preview-buttons">
@@ -32,29 +32,25 @@ export default {
                 </span>
         </article>
     `,
+    data(){
+        return{
+            currEmail:this.email
+        }
+    },
     created() {
         const folder = this.$route.params
+        // this.currEmail = this.email
         // console.log(criteria)
     },
     computed: {
         formattedTime() {
-
-
-            let epoch = new Date(0).setUTCSeconds(this.email.sentAt)
+            let epoch = new Date(0).setUTCSeconds(this.currEmail.sentAt)
             // formattedDate = this.email.sentAt
             const year = new Date(epoch).getFullYear()
             const month = new Date(epoch).getMonth() + 1
             const day = new Date(epoch).getDate()
-            // const diff = Math.abs(epoch - Date.now())
-            // const timeDiffs = {
-            //     year: 31556952,
-            //     month: 2678411,
-            //     week: 604800,
-            //     day: 86400,
-            // }
-            // if (diff > timeDiffs.year) {
+            const hour = new Date(epoch).getHours()
             return `${day}/${month}/${year}`
-            // }
 
         },
         isRead() {

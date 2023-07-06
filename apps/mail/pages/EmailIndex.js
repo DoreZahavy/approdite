@@ -48,11 +48,11 @@ export default {
             console.log('loading emails')
             const params = this.$route.params
             this.criteria.status = params.folder ? params.folder : 'inbox'
-            console.log(this.criteria)
             emailService.query(this.criteria)
                 .then(emails => {
                     this.emails = emails
                 })
+                .catch(err=>console.log(err))
         },
         spliceRemoved(emailId) {
             console.log('splicing..')
