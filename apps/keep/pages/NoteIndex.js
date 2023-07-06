@@ -52,9 +52,11 @@ export default {
                 />
             </div>
         </section>
-    </section>
-            
-        <NoteEdit />
+    </section class="edit-area">
+    <RouterView />
+    <div class="edit-screen"
+        @click="exitModal"  
+         >
     </section>
     `,
     data() {
@@ -65,11 +67,7 @@ export default {
         }
     },
     created() {
-        noteService.query()
-            .then(notes => {
-                this.notes = notes
-
-            })
+        this.loadNotes()
 
     },
     computed: {
@@ -84,7 +82,11 @@ export default {
         isPinned() {
             if (this.pinnedNotes > 0) return true
             return false
-        }
+        },
+        params() {
+            return this.$route.params.noteId
+        },
+
     },
     methods: {
         removeNote(noteId) {
@@ -112,19 +114,8 @@ export default {
         },
         saveNote(updatedNote) {
             noteService.save(updatedNote)
-                .then(newNote => {
-                    // console.log('newNote:', newNote)
-                    // console.log('this.notes:', this.notes)
-                    // const idx = this.notes.findIndex(note => note.id === newNote.id)
 
-                    // this.notes.splice(idx, 1, newNote)
-                    noteService.query()
-                        .then(notes => {
-                            this.notes = notes
 
-                        })
-                    // else this.notes.push(newNote)
-                })
         },
         updatePin(noteId) {
             const idx = this.notes.findIndex(note => note.id === newNote.id)
@@ -142,7 +133,22 @@ export default {
         },
         setType(type) {
             this.noteAddType = type
+        },
+        loadNotes() {
+            noteService.query()
+                .then(notes => {
+                    this.notes = notes
+
+                })
+        },
+        exitModal() {
+            this.$router.push('/note')
         }
+    },
+    watch: {
+        // params() {
+        //     this.loadNotes()
+        // }
     },
     components: {
         NotePreview,
@@ -153,3 +159,6 @@ export default {
         Sidebar
     }
 }
+
+
+

@@ -47,6 +47,7 @@ export default {
             // console.log('preview set pin');
             console.log('this.currNote:', this.currNote)
             this.$emit('save',  this.currNote)
+            // this.currNote = null 
             // this.$emit('tack',  noteId)
         }
 
