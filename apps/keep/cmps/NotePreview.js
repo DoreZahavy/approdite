@@ -58,7 +58,7 @@ export default {
                 body: this.currNote.info.txt,
                 isRead: false,
                 isStarred: false,
-                sentAt: "1658014307",
+                sentAt: null,
                 removedAt: null,
                 from: 'myuser@approdite.com',
                 to: ''
