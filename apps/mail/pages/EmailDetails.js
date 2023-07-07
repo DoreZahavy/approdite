@@ -3,7 +3,7 @@ import { emailService } from "../services/email.service.js"
 export default {
     // props: ['email'],
     template: `
-    <section class="email-details">
+    <section class="email-details" v-if="email">
         <nav class="fa-solid">
             <router-link to="/mail/list"> </router-link>
             <button @click="onTrash" class="fa-solid">
