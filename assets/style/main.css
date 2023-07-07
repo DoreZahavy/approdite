@@ -38,6 +38,8 @@
 @import 'apps/note/TrashPreview.css';
 @import 'apps/note/NoteList.css';
 @import 'apps/note/ColorPicker.css';
+@import 'apps/note/LabelEditor.css';
+@import 'apps/note/LabelPicker.css';
 
 /* missBooks */
 @import 'apps/book/app.css';

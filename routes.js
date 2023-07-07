@@ -12,6 +12,7 @@ import NoteIndex from './apps/keep/pages/NoteIndex.js'
 import NoteEdit from './apps/keep/cmps/NoteEdit.js'
 import NoteTrash from './apps/keep/pages/NoteTrash.js'
 import NoteList from './apps/keep/cmps/NoteList.js'
+import LabelEditor from './apps/keep/cmps/LabelEditor.js'
 
 //misterEmail
 import MailIndex from './apps/mail/pages/EmailIndex.js'
@@ -69,7 +70,14 @@ const routerOptions = {
                 {
 
                     path: 'trash',
-                    component: NoteTrash
+                    component: NoteTrash,
+                    name: 'trash'
+                },
+                {
+
+                    path: 'label',
+                    component: LabelEditor,
+                    name: 'label'
                 }
                 
 

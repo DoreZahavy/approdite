@@ -10,7 +10,7 @@ import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
 
 export default {
-    props: ['filter'],
+    props: ['filter','label'],
     template: `
     <section class="note-list">
         <NoteAdd @type="setType" v-if="noteAddType === 'unfocused'"/>
@@ -86,7 +86,10 @@ export default {
             const regex = new RegExp(this.filter, 'i')
             let pinnedNotes = this.notes.filter(note => {
 
-                return note.isPinned && !note.isTrashed && regex.test(note.info.title)
+                return note.isPinned && 
+                !note.isTrashed && 
+                regex.test(note.info.title) &&
+                (note.labels.includes(this.label) || !this.label)
             })
             if (pinnedNotes) return pinnedNotes
         },
@@ -95,7 +98,10 @@ export default {
 
 
             let unpinnedNotes = this.notes.filter(note => {
-                return !note.isPinned && !note.isTrashed && regex.test(note.info.title)
+                return !note.isPinned && 
+                !note.isTrashed && 
+                regex.test(note.info.title) &&
+                (note.labels.includes(this.label) || !this.label)
 
             })
 
@@ -160,6 +166,7 @@ export default {
                     console.log('returnedNote:', returnedNote)
                     const idx = this.notes.findIndex(note => note.id === returnedNote.id)
                     this.notes.splice(idx, 1, returnedNote)
+                   
                 })
 
 

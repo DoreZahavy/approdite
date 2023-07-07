@@ -51,6 +51,17 @@
     margin-inline-end: 0.3em;
 } */
 
+.note-edit-todos .todo-item.done{
+
+    text-decoration: line-through;
+    color: gray;
+}
+
+.note-edit-todos .todo-item span{
+    cursor: pointer;
+}
+
+
 .note-edit-todos .todo-item span{
     margin-inline-end: 0.3em;
 

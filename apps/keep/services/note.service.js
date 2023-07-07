@@ -5,7 +5,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isTrashed: false,
         isPinned: false,
-
+        labels:['fun','work'],
         info: {
             title: 'Title11',
             txt: 'Fullstack Me Baby!'
@@ -19,6 +19,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isTrashed: false,
         isPinned: false,
+        labels:['important'],
         info: {
             title: 'Title1',
             txt: 'Bobi and Me'
@@ -31,6 +32,7 @@ const gNoteList = [
         id: 'n103',
         type: 'NoteTxt',
         isTrashed: false,
+        labels:[],
         isPinned: false,
         info: {
             title: 'Title123',
@@ -45,6 +47,7 @@ const gNoteList = [
         type: 'NoteImg',
         isTrashed: false,
         isPinned: false,
+        labels:[],
         info: {
             url: '../../../assets/img/sample-meme.jpg',
             title: 'Bobi and Me'
@@ -56,6 +59,7 @@ const gNoteList = [
     {
         id: 'n200',
         isTrashed: true,
+        labels:[],
         createdAt: 1112222,
         type: 'NoteTxt',
         isPinned: false,
@@ -71,6 +75,7 @@ const gNoteList = [
     {
         id: 'n300',
         type: 'NoteTxt',
+        labels:[],
         isTrashed: true,
         isPinned: false,
         info: {
@@ -85,6 +90,7 @@ const gNoteList = [
         id: 'n10sd3',
         type: 'NoteTodos',
         isTrashed: false,
+        labels:[],
         isPinned: false,
         info: {
             title: 'Get my stuff together',
@@ -99,65 +105,33 @@ const gNoteList = [
     }
 ]
 
-const gNoteTrash = [
-    {
-        id: 'n200',
-        createdAt: 1112222,
-        type: 'NoteTxt',
-        isPinned: false,
-
-        info: {
-            title: 'Title1 trash',
-            txt: 'Fullstack Me Baby! in the trash'
-        },
-        style: {
-            backgroundColor: '#23523f'
-        }
-    },
-    {
-        id: 'n300',
-        type: 'NoteTxt',
-        isPinned: false,
-        info: {
-            title: 'Title2 trash',
-            txt: 'Bobi and Me in the trash'
-        },
-        style: {
-            backgroundColor: '#00d'
-        }
-    },
-]
+const gLabels = ['Important','fun','work']
 
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 
 const NOTE_KEY = 'noteDB'
-// const TRASH_KEY = 'trashDB'
+const LABEL_KEY = 'labelDB'
 
 _createNotes()
-// _createTrash()
+_loadLabels()
+
 
 export const noteService = {
     query,
     get,
     remove,
     save,
-    // queryTrash,
-    // removeToTrash,
-    // removeFromTrash,
-    // saveToTrash,
-    // restoreFromTrash,
-    getEmptyNote
+    getEmptyNote,
+    getLabels
 }
 
 function query() {
     return storageService.query(NOTE_KEY)
 }
 
-// function queryTrash() {
-//     return storageService.query(TRASH_KEY)
-// }
+
 
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
@@ -167,23 +141,7 @@ function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
-// function removeToTrash(note){
-//     return storageService.post(TRASH_KEY,note)
-//         .then(storageService.remove(NOTE_KEY,note.id))
-// }
 
-// function saveToTrash(note){
-//     return storageService.post(TRASH_KEY,note)
-// }
-
-// function removeFromTrash(noteId){
-//     return storageService.remove(TRASH_KEY,note.id)
-// }
-
-// function restoreFromTrash(note){
-//     return storageService.post(NOTE_KEY,note)
-//         .then(storageService.remove(TRASH_KEY,note.id))
-// }
 
 function save(note) {
     if (note.id) {
@@ -212,6 +170,10 @@ function getEmptyNote(type) {
     return emptyNote
 }
 
+function getLabels(){
+    return storageService.query(LABEL_KEY)
+}
+
 
 
 function _createNotes() {
@@ -223,11 +185,11 @@ function _createNotes() {
     }
 }
 
-// function _createTrash() {
-//     let notes = utilService.loadFromStorage(TRASH_KEY)
-//     if (!notes || !notes.length) {
-//         notes = gNoteTrash
-//         console.log('notes:', notes)
-//         utilService.saveToStorage(TRASH_KEY, notes)
-//     }
-// }
+function _loadLabels() {
+    let labels = utilService.loadFromStorage(LABEL_KEY)
+    if (!labels || !labels.length) {
+        labels = gLabels
+        console.log('labels:', labels)
+        utilService.saveToStorage(LABEL_KEY, labels)
+    }
+}

@@ -7,18 +7,19 @@ export default {
            <!-- <p contenteditable ref="txt" @input="onSetTxt">Take a note...</p> -->
            <ul class="clean-list">
                <li v-for="(todo,idx) in note.info.todos" 
-               contenteditable ref="'txt'+idx"
+             
                :class="{done: todo.isDone}"
-               class="todo-item"
-               >
+               class="todo-item" 
+               @input="onSetTodo($event,idx)">
                <!-- @input="onSetTxt(idx)" -->
                <!-- @click=toggleTodo(idx,todo) -->
-                <span v-if="todo.isDone" class="fa-regular"></span>
-                <span v-else class="fa-regular"></span>
-                   {{todo.txt}}
+                    <span @click="onToggle(idx)" v-if="todo.isDone" class="fa-regular"></span>
+                    <span @click="onToggle(idx)" v-else class="fa-regular"></span>
+                    <!-- {{todo.txt}} -->
+                    <span   contenteditable ref="'txt'+idx">{{todo.txt}}</span>
              
                 </li>
-                <li class="fa-solid" @click="addItem">+</li>
+                <li class="fa-solid" @click="onAddItem">+</li>
             </ul>
          
         </article>
@@ -27,7 +28,7 @@ export default {
         if(this.note) {
             this.$refs.title.innerText = this.note.info.title
             for (var i = 0; i < length; i++) {
-                this.$refs.txt.innerText = this.note.info.txt
+                this.$refs['txt'+i].innerText = this.note.info.todos[i].txt
 
             }
         }
@@ -53,18 +54,29 @@ export default {
     },
     
     methods: {
-        onSetTitle(x){
-            this.$emit('newval',{key:'title',value: x.target.innerText} )
+        onSetTitle(ev){
+            this.$emit('newval',{key:'title',value: ev.target.innerText} )
             console.log('title');
         },
-        onSetTxt(x){
-            this.$emit('newval',{key:'txt',value: x.target.innerText} )
-            console.log('txt');
+        onSetTodo(ev,idx){
+            // console.log('txt:',ev.target.innerText);
+            // console.log('ev:',ev);
+            // console.log('idx:',idx);
+            this.currNote.info.todos[idx].txt = ev.target.innerText
+            // var newTodos = [...this.note.info.todos]
+            // newTodos[idx].txt = ev.target.innerText
+            this.$emit('newval',{key:'todos',value: this.currNote.info.todos})
+            // console.log('value:', value)
+            // this.$emit('newtodo',{idx,value: ev.target.innerText} )
         },
-        addItem(){
+        onAddItem(){
             const num = this.currNote.info.todos.length
             const newTodos = [...this.currNote.info.todos,{ txt: `List item ${num+1}`, doneAt: null , isDone:false}]
-            this.$emit('newval',{key:'todos',value:newTodos})
+            this.$emit('newval',{key:'todos',value: newTodos})
+        },
+        onToggle(idx){
+            this.currNote.info.todos[idx].isDone = !this.currNote.info.todos[idx].isDone
+            this.$emit('newval',{key:'todos',value: this.currNote.info.todos})
         }
     }
  

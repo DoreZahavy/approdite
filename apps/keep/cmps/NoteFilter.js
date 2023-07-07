@@ -6,7 +6,7 @@ export default {
             <button @click="search" class="fa-solid">
             
             </button>
-            <input type="text" placeholder="Search Notes" @keydown.enter="search" v-model="value">
+            <input type="text" placeholder="Search Notes" @input="search" @keydown.enter="search" v-model="value">
         </div>
       
     </div>

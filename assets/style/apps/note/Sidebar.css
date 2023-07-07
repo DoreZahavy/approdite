@@ -21,10 +21,7 @@
     /* translate: -20px; */
     background-color: lightgray;
 }
-.sidebar li:active{
-    border-radius: 0 25px 25px 0;
-    background-color: var(--barActive);
-}
+
 
 .sidebar:hover {
     width: 280px;
@@ -42,4 +39,9 @@
 .sidebar:hover li>span:nth-child(2){
     opacity: 1;
     transition-delay: 350ms;
+}
+
+.sidebar li.active{
+    border-radius: 0 25px 25px 0;
+    background-color: var(--barActive);
 }

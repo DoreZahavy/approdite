@@ -16,7 +16,8 @@ export default {
             v-if="noteToEdit"
             :is="type"  
             :note="noteToEdit" 
-            @newval="onChangeVal"/>
+            @newval="onChangeVal"
+            @newtodo="setTodo"/>
         <ul class="actions clean-list flex align-center">
             <!-- <li>
                 <label  title="Change Background" :for="note-add-color" class="fa-regular"></label>
@@ -60,6 +61,11 @@ export default {
         setColor(color){
             this.noteToEdit.style.backgroundColor = color
             // this.$emit('save', this.currNote)
+        },
+        setTodo(data){
+            console.log('data.idx:', data.idx)
+            console.log('data.value:', data.value)
+            this.noteToEdit.info.todos[data.idx] = data.value
         }
     },
     computed: {

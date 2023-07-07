@@ -1,7 +1,10 @@
+import { noteService } from '../services/note.service.js'
+
 import NoteTxt from '../cmps/NoteTxt.js'
 import NoteImg from '../cmps/NoteImg.js'
 import NoteTodos from '../cmps/NoteTodos.js'
 import ColorPicker from '../cmps/ColorPicker.js'
+import LabelPicker from '../cmps/LabelPicker.js'
 
 export default {
     props: ['note'],
@@ -12,22 +15,18 @@ export default {
                 :is="note.type"  
                 :note="note" 
                 @toggle=toggleLine />
+            <ul class="prev-labels clean-list flex">
+                <li v-for="label in note.labels">
+                    {{label}}
+                </li>
+            </ul>
             <ul class="actions clean-list flex">
                 <li @click="onCopyNote" class="fa-regular" title="Duplicate Note"></li>
                 <li @click="onSendNote" class="fa-regular" title="Send Note as Mail"></li>
                 <li @click="onRemoveNote" class="fa-solid" title="Delete Note"></li>
-                <!-- <li>
-                    <label :for="inputId" class="fa-regular"></label>
-                    <input type="color" 
-                        title="Change Background"
-                        v-model="currNote.style.backgroundColor" 
-                        :id="inputId" 
-                        style="display:none;"
-                        @input="onUpdateNote()"
-                      />
-                      
-                     
-                    </li> -->
+                <li class="fa-regular label-icon" title="Delete Note"><LabelPicker :labels="labels" @label="onToggleLabel"/></li>
+               
+            
                     <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
                 <li><Router-link :to="'/note/' + note.id" title="Edit Note" class="fa-regular"></Router-link></li>
             </ul>
@@ -35,10 +34,20 @@ export default {
     `,
     data() {
         return {
-            currNote: this.note
+            currNote: this.note,
+            labels: null
         }
     },
+    created() {
+        this.loadLabels()
+    },
     methods: {
+        loadLabels() {
+            noteService.getLabels()
+                .then(labels => {
+                    this.labels = labels
+                })
+        },
         onCopyNote() {
             this.$emit('copy', this.note)
         },
@@ -49,13 +58,21 @@ export default {
             this.$emit('save', this.currNote)
         },
         onSetPin(noteId) {
-            console.log('noteId:', noteId)
             this.currNote.isPinned = !this.currNote.isPinned
             // console.log('preview set pin');
-            console.log('this.currNote:', this.currNote)
             this.$emit('save', this.currNote)
             // this.currNote = null 
+           
             // this.$emit('tack',  noteId)
+        },
+        onToggleLabel(label){
+            const labelIdx = this.currNote.labels.indexOf(label)
+
+            if(labelIdx===-1)this.currNote.labels.push(label)
+            else this.currNote.labels.splice(labelIdx,1)
+            
+            this.$emit('save', this.currNote)
+           
         },
         onSendNote() {
             const noteToMail = {
@@ -103,7 +120,8 @@ export default {
         NoteTxt,
         NoteImg,
         NoteTodos,
-        ColorPicker
+        ColorPicker,
+        LabelPicker
     }
 }
 

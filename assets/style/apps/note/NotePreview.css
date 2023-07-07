@@ -14,7 +14,7 @@
     box-shadow: 0 3px 3px 0 rgba(60,64,67,0.302),0 2px 3px 2px rgba(60,64,67,0.149);
 }
 
-.note-preview .actions li{
+.note-preview .actions>li{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,4 +56,15 @@
     content: '';
     font-family: fa-regular;
     margin-inline-end: 0.3em;
+}
+
+.note-preview .prev-labels li{
+    font-size: 14px;
+    background-color: var(--clrHover);
+    padding: 3px 5px;
+    border-radius: 1em;
+    margin-inline-end: .3em;
+}
+.note-preview .prev-labels{
+    margin-block-end: .2em;
 }
