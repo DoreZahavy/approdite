@@ -10,6 +10,8 @@ import BookAdd from './apps/book/cmps/BookAdd.js'
 //missKeep
 import NoteIndex from './apps/keep/pages/NoteIndex.js'
 import NoteEdit from './apps/keep/cmps/NoteEdit.js'
+import NoteTrash from './apps/keep/pages/NoteTrash.js'
+import NoteList from './apps/keep/cmps/NoteList.js'
 
 //misterEmail
 import MailIndex from './apps/mail/pages/EmailIndex.js'
@@ -53,11 +55,29 @@ const routerOptions = {
             component: NoteIndex,
             children: [
                 {
-                    path: ':noteId',
-                    component: NoteEdit,
+                    path: '',
+                    name: 'note',
+                    component: NoteList,
+                    children: [
+                        {
+                            path: ':noteId',
+                            component: NoteEdit,
+                        }
+                        
+                    ]
+                },
+                {
+
+                    path: 'trash',
+                    component: NoteTrash
                 }
+                
 
             ]
+        },
+        {
+            path: '/note/trash',
+            component: NoteTrash
         },
 
         // misterEmail
@@ -68,7 +88,7 @@ const routerOptions = {
                 {
                     path: 'list/:folder?',
                     component: MailList
-                }, 
+                },
                 {
                     path: ':emailId?',
                     component: EmailDetails

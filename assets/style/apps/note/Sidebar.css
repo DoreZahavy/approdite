@@ -10,9 +10,20 @@
 .sidebar li{
     display: flex;
     align-items: center;
-    margin-inline-start: 25px;
+    padding-inline-start: 25px;
     height: var(--btnSize);
     cursor: pointer;
+    font-size: 1.125em;
+}
+
+.sidebar li:hover{
+    border-radius: 0 25px 25px 0;
+    /* translate: -20px; */
+    background-color: lightgray;
+}
+.sidebar li:active{
+    border-radius: 0 25px 25px 0;
+    background-color: var(--barActive);
 }
 
 .sidebar:hover {

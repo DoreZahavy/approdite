@@ -63,24 +63,63 @@ const gNoteList = [
     // }
 ]
 
+const gNoteTrash = [
+    {
+        id: 'n200',
+        createdAt: 1112222,
+        type: 'NoteTxt',
+        isPinned: false,
+
+        info: {
+            title: 'Title1 trash',
+            txt: 'Fullstack Me Baby! in the trash'
+        },
+        style: {
+            backgroundColor: '#23523f'
+        }
+    },
+    {
+        id: 'n300',
+        type: 'NoteTxt',
+        isPinned: false,
+        info: {
+            title: 'Title2 trash',
+            txt: 'Bobi and Me in the trash'
+        },
+        style: {
+            backgroundColor: '#00d'
+        }
+    },
+]
+
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
 
 
 const NOTE_KEY = 'noteDB'
+const TRASH_KEY = 'trashDB'
 
 _createNotes()
+_createTrash()
 
 export const noteService = {
     query,
     get,
     remove,
     save,
+    queryTrash,
+    removeToTrash,
+    removeFromTrash,
+    restoreFromTrash,
     getEmptyNote
 }
 
 function query() {
     return storageService.query(NOTE_KEY)
+}
+
+function queryTrash() {
+    return storageService.query(TRASH_KEY)
 }
 
 function get(noteId) {
@@ -89,6 +128,25 @@ function get(noteId) {
 
 function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
+}
+
+function removeToTrash(note){
+    return storageService.post(TRASH_KEY,note)
+        .then(note=>{
+            return storageService.remove(NOTE_KEY,note.id)
+
+        })
+}
+
+function removeFromTrash(noteId){
+    return storageService.remove(TRASH_KEY,note.id)
+}
+
+function restoreFromTrash(){
+    return storageService.post(NOTE_KEY,note)
+        .then(note=>{
+            return storageService.remove(TRASH_KEY,note.id)
+        })
 }
 
 function save(note) {
@@ -126,5 +184,14 @@ function _createNotes() {
         notes = gNoteList
         console.log('notes:', notes)
         utilService.saveToStorage(NOTE_KEY, notes)
+    }
+}
+
+function _createTrash() {
+    let notes = utilService.loadFromStorage(TRASH_KEY)
+    if (!notes || !notes.length) {
+        notes = gNoteTrash
+        console.log('notes:', notes)
+        utilService.saveToStorage(TRASH_KEY, notes)
     }
 }

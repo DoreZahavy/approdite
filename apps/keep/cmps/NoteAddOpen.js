@@ -7,7 +7,7 @@ import NoteEditImg from '../cmps/NoteEditImg.js'
 export default {
     props: ['type'],
     template: `
-        <article class="note-add note-add-open" :style="noteToEdit.style">
+        <article class="note-add-open" :style="noteToEdit.style">
   
         <span class="tack fa-regular"></span>
         <Component 

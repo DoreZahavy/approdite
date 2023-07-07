@@ -1,3 +1,40 @@
-.note-filter{
+
+
+.note-filter {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-block: 1rem;
     grid-area: filter;
+    max-height: var(--btnSize);
+    margin-block-end:1.8em ;
+}
+
+.note-filter input[type="text"] {
+    border-radius: 99999px;
+    min-width: 30vw;
+    padding-inline-start: 2.2rem;
+}
+
+
+.note-filter button {
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    font-size: 1.2rem;
+    height: 48px;
+    width: 48px;
+}
+
+.note-filter div {
+    opacity: .5;
+    transition: 300ms;
+}
+
+.note-filter div:hover {
+    opacity: 1;
+}
+
+.note-filter div:focus-within {
+    opacity: 1;
 }

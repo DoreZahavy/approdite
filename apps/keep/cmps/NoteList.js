@@ -1,34 +1,65 @@
-
 import { noteService } from '../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import NotePreview from '../cmps/NotePreview.js'
-import NoteFilter from '../cmps/NoteFilter.js'
+
 import NoteAdd from '../cmps/NoteAdd.js'
 import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
-import NoteList from '../cmps/NoteList.js'
-import Sidebar from '../cmps/Sidebar.js'
 
 export default {
+    // props: ['notes'],
     template: `
-    <section class="note-index">
-       <!-- <h1>notes here</h1> -->
-      
-       <NoteFilter />
-
-       <Sidebar @trash="toTrash"/>
-
-       <RouterView />
-      
+    <section class="note-list">
+        <NoteAdd @type="setType" v-if="noteAddType === 'unfocused'"/>
+            <NoteAddOpen v-else :type="noteAddType" 
+                @type="setType" 
+                @add="addNote" />
+        <!-- </section> -->
+        <section class="note-container" v-if="notes">
+            <div class="pin-title" v-show="pinnedNotes !== null">
+                <span >pinned</span>
+            </div>
+            <section class="notes-columns" v-if="pinnedNotes" >
+                <div v-for="(note, idx) in pinnedNotes" class="notes-grp" >
+                    <NotePreview  
+                        :note="note" 
+                        @remove="removeNote"
+                        @copy="copyNote"
+                        @save="saveNote"
+                        />
+                </div>
+            </section>
+            <hr />
+            <div  class="pin-title" v-show="pinnedNotes !== null">
+                <span >others</span>
+            </div>
+            <section class="notes-columns" v-if="unpinnedNotes" >
+                <div v-for="(note, idx) in unpinnedNotes" class="notes-grp">
+                    <NotePreview  
+                        :note="note" 
+                        @remove="removeNote"
+                        @copy="copyNote"
+                        @save="saveNote"
+                        />
+                </div>
+            </section>
+        </section >
+        <div  class="edit-area" :class="isScreen">
+                <!-- <div class="edit-screen"
+                @click="exitModal" ></div> -->
+                <RouterView @add="saveNote"/>
+            </div>
+         
     </section>
     `,
+
     data() {
         return {
             notes: null,
             noteAddType: 'unfocused',
-            screen : false
+            screen: false
 
         }
     },
@@ -52,9 +83,9 @@ export default {
         params() {
             return this.$route.params.noteId
         },
-        isScreen(){
+        isScreen() {
             return {
-                'screen-open':this.screen
+                'screen-open': this.screen
             }
         }
 
@@ -69,6 +100,9 @@ export default {
                 })
                 .catch(err => {
                     showErrorMsg('Cannot remove note')
+                })
+                .then(note => {
+                    noteService.saveToTrash(note)
                 })
         },
         copyNote(note) {
@@ -85,9 +119,9 @@ export default {
         },
         saveNote(updatedNote) {
             noteService.save(updatedNote)
-                .then(returnedNote=>{
-                    const idx = this.notes.findIndex(note=>note.id===returnedNote.id)
-                    this.notes.splice(idx,1,returnedNote)
+                .then(returnedNote => {
+                    const idx = this.notes.findIndex(note => note.id === returnedNote.id)
+                    this.notes.splice(idx, 1, returnedNote)
                 })
 
 
@@ -118,14 +152,11 @@ export default {
         },
         exitModal() {
             this.$router.push('/note')
-        },
-        toTrash(){
-            this.$router.push('/note/trash')
         }
     },
     watch: {
         params() {
-            if(this.$route.params.noteId) this.screen = true
+            if (this.$route.params.noteId) this.screen = true
             else this.screen = false
         }
     },
@@ -133,12 +164,17 @@ export default {
         NotePreview,
         NoteAdd,
         NoteAddOpen,
-        NoteFilter,
+        
         NoteEdit,
-        Sidebar,
-        NoteList
+       
     }
 }
+
+ 
+   
+
+
+
 
 
 

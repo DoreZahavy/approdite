@@ -8,7 +8,7 @@ export default {
     template: `
         <article class="note-edit" :class="isScreen"  :style="noteToEdit.style" v-if="noteToEdit">
         
-           <pre>{{noteToEdit}}</pre>
+           <!-- <pre>{{noteToEdit}}</pre> -->
            <Component 
             v-if="noteToEdit"
             :is="noteToEdit.type"  

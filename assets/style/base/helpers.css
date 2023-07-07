@@ -46,10 +46,11 @@
 
 .fa-solid {
     font-family: fa-solid;
+
 }
 
 .fa-regular {
-    font-family: fa-regular;
+    font-family: fa-regular; 
 }
 
 .fa.fa-facebook::before {

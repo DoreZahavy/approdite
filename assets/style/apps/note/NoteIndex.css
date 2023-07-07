@@ -1,50 +1,20 @@
 .note-index{
     display: grid;
     grid-template-columns: 80px auto;
+    grid-template-rows: max-content auto;
     grid-template-areas: 
     "filter filter"
-    "sidebar add"
-    "sidebar notes"
+    /* "sidebar add" */
+    "sidebar main"
+    /* "sidebar notes" */
     ;
+
+    min-height: calc(100vh - 220px);
 
     font-size: 16px;
     color: rgb(32, 33, 36);
     background-color: white;
 }
-.note-container{
-    grid-area: notes;
 
-}
-.note-index .notes-columns{
-   
-    columns: 1;
-    place-items: center;
-    margin-block-start: var(--noteGap);
-    margin-inline: var(--noteGap);
-    
-}
 
-.note-index .note-container .pin-title span{
-    font-family: roboto;
-    font-size: 0.6875em;
-    text-transform: uppercase;
-    margin-block-end: var(--noteGap);
-    margin-inline-start: var(--noteGap);
-}
-
-.note-index h2{
-    font-size: 1.142857em;
-    font-family: roboto, sans-serif;
-    color: rgb(32, 33, 36);
-    letter-spacing: 0.1px;
-}
-
-.note-index .add-cmps{
-    margin-block-end: 50px;
-}
-
-.note-index .notes-grp{
-    /* margin-block-start: 30px; */
-    
-}
 

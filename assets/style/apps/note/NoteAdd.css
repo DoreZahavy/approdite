@@ -1,8 +1,9 @@
 .note-add{
-    grid-area: add;
+    /* grid-area: add; */
     justify-self: center;
     width: calc(100% - var(--noteGap)*2);
     max-width: 600px;
+    max-height: var(--btnSize);
     margin-block: var(--noteGap);
     /* margin-inline: var(--noteGap); */
     padding-inline: 12px;
@@ -26,4 +27,5 @@
 
 .note-add .note-types{
     margin-inline-end: var(--noteGap);
+    font-size: 1.125em;
 }
