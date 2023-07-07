@@ -13,7 +13,8 @@ export const emailService = {
     get,
     update,
     add,
-    getEmptyEmail
+    getEmptyEmail,
+    doesEmailExist
 }
 function query(criteria = { status: 'inbox' }) {
     //TODO: add filtering
@@ -97,6 +98,10 @@ function update(email) {
 function add(email) {
     storageService.post(EMAIL_KEY, email)
 }
+function doesEmailExist(emailId){
+    const ans = storageService.get(EMAIL_KEY, emailId)
+    console.log(ans)
+}
 function getEmptyEmail() {
     return {
         id: utilService.makeId(),
@@ -119,6 +124,7 @@ function _createEmails() {
             })
             .then(res => {
                 utilService.saveToStorage(EMAIL_KEY, res)
+                window.location.reload()// not very proud of this but could not figure out how to make vue responsive
             })
 
     }

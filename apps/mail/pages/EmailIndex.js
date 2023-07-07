@@ -120,8 +120,8 @@ export default {
         params() {
             return this.$route.params.folder
         },
-        filtered() {
-
+        emailCount() {
+            return this.emails.length
         }
     },
     watch: {
@@ -129,6 +129,8 @@ export default {
             console.log('params changed - loading emails')
             console.log(this.$route.params.folder)
             this.loadEmails()
+        },
+        emailCount(){
         }
     },
     components: {
