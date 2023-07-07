@@ -35,15 +35,21 @@ export default {
                 removedAt: null,
                 from: 'myuser@approdite.com',
                 to: ''
-            }
+            },
+            draftInterval: null
         }
     },
     created() {
         if (!this.isDraft) this.email = emailService.getEmptyEmail()
         this.email.from = 'myuser@approdite.com'
+        // emailService.add(this.email)
+        // this.draftInterval = setInterval(() => {
+        //     this.saveDraft()
+        // }, 3000);
     },
     methods: {
         onClose() {
+            window.clearInterval(this.draftInterval)
             this.$emit('close')
         },
         onSend() {
@@ -66,6 +72,18 @@ export default {
         fromDraft() {
             console.log(this.draft)
             this.email = this.draft
+        },
+        saveDraft() {//this one's for the interval, needed a comment because of bad naming schemes
+            
+            // emailService.update(this.email)
+            //     if (!emailService.doesEmailExist()) {
+            //         emailService.add(this.email)
+            //     }
+            //     emailService.get(this.email.id)
+            //         .then(() => {
+            //             console.log('draft updated')
+            //         })
+            //         .catch()
         }
     },
     computed: {
