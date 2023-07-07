@@ -34,9 +34,10 @@
 @import 'apps/note/NoteAddOpen.css';
 @import 'apps/note/Sidebar.css';
 @import 'apps/note/EditScreen.css';
-/* @import 'apps/note/NoteTrash.css'; */
-/* @import 'apps/note/TrashPreview.css'; */
+@import 'apps/note/NoteTrash.css';
+@import 'apps/note/TrashPreview.css';
 @import 'apps/note/NoteList.css';
+@import 'apps/note/ColorPicker.css';
 
 /* missBooks */
 @import 'apps/book/app.css';

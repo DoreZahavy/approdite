@@ -1,19 +1,22 @@
 import NoteTxt from '../cmps/NoteTxt.js'
 import NoteImg from '../cmps/NoteImg.js'
+import NoteTodos from '../cmps/NoteTodos.js'
+import ColorPicker from '../cmps/ColorPicker.js'
 
 export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-            <span class="tack fa-regular" @click="onSetPin(note.id)"></span>
+            <span class="tack " :class="isPinned" @click="onSetPin(note.id)"></span>
             <Component 
                 :is="note.type"  
-                :note="note"  />
+                :note="note" 
+                @toggle=toggleLine />
             <ul class="actions clean-list flex">
                 <li @click="onCopyNote" class="fa-regular" title="Duplicate Note"></li>
                 <li @click="onSendNote" class="fa-regular" title="Send Note as Mail"></li>
                 <li @click="onRemoveNote" class="fa-solid" title="Delete Note"></li>
-                <li>
+                <!-- <li>
                     <label :for="inputId" class="fa-regular"></label>
                     <input type="color" 
                         title="Change Background"
@@ -22,7 +25,10 @@ export default {
                         style="display:none;"
                         @input="onUpdateNote()"
                       />
-                </li>
+                      
+                     
+                    </li> -->
+                    <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
                 <li><Router-link :to="'/note/' + note.id" title="Edit Note" class="fa-regular"></Router-link></li>
             </ul>
         </article>
@@ -64,6 +70,18 @@ export default {
                 to: ''
             }
             this.$emit('mail', noteToMail)
+        },
+        setColor(color){
+            this.currNote.style.backgroundColor = color
+            this.$emit('save', this.currNote)
+        },
+        toggleLine(idx){
+            console.log('this.currNote.info.todos[idx].doneAt:', this.currNote.info.todos[idx].doneAt)
+            const todo = this.currNote.info.todos[idx]
+            todo.doneAt = (todo.doneAt)? null : Date.now()
+            todo.isDone= !todo.isDone
+            this.$emit('save', this.currNote)
+            console.log('this.currNote.info.todos[idx].doneAt:', this.currNote.info.todos[idx].doneAt)
         }
 
     },
@@ -73,11 +91,19 @@ export default {
         },
         inputId() {
             return `color-input ${this.note.id}`
+        },
+        isPinned(){
+            return {
+                'fa-regular': !this.currNote.isPinned,
+                'fa-solid': this.currNote.isPinned
+            }
         }
     },
     components: {
         NoteTxt,
-        NoteImg
+        NoteImg,
+        NoteTodos,
+        ColorPicker
     }
 }
 

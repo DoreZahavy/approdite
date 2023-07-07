@@ -11,7 +11,7 @@ const gNoteList = [
             txt: 'Fullstack Me Baby!'
         },
         style: {
-            backgroundColor: '#23523f'
+            backgroundColor: '#fff475'
         }
     },
     {
@@ -24,7 +24,7 @@ const gNoteList = [
             txt: 'Bobi and Me'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#fdcfe8'
         }
     },
     {
@@ -37,7 +37,7 @@ const gNoteList = [
             txt: 'Get my stuff together'
         },
         style: {
-            backgroundColor: '#eb346a'
+            backgroundColor: '#a7ffeb'
         }
     },
     {
@@ -46,11 +46,11 @@ const gNoteList = [
         isTrashed: false,
         isPinned: false,
         info: {
-            url: 'https://images.freeimages.com/images/large-previews/55f/note-1196890.jpg',
+            url: '../../../assets/img/sample-meme.jpg',
             title: 'Bobi and Me'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#f28b82'
         }
     },
     {
@@ -65,7 +65,7 @@ const gNoteList = [
             txt: 'Fullstack Me Baby! in the trash'
         },
         style: {
-            backgroundColor: '#23523f'
+            backgroundColor: '#d7aefb'
         }
     },
     {
@@ -78,21 +78,25 @@ const gNoteList = [
             txt: 'Bobi and Me in the trash'
         },
         style: {
-            backgroundColor: '#00d'
+            backgroundColor: '#e6c9a8'
         }
+    },
+    {
+        id: 'n10sd3',
+        type: 'NoteTodos',
+        isTrashed: false,
+        isPinned: false,
+        info: {
+            title: 'Get my stuff together',
+            todos: [
+                { txt: 'Driving license', doneAt: null,isDone:false },
+                { txt: 'Coding power', doneAt: 187111111,isDone:true }
+            ]
+        },
+    style: {
+        backgroundColor: '#e6c9a8'
     }
-    // {
-    //     id: 'n103',
-    //     type: 'NoteTodos',
-    //     isPinned: false,
-    //     info: {
-    //         title: 'Get my stuff together',
-    //         todos: [
-    //             { txt: 'Driving license', doneAt: null },
-    //             { txt: 'Coding power', doneAt: 187111111 }
-    //         ]
-    //     }
-    // }
+    }
 ]
 
 const gNoteTrash = [

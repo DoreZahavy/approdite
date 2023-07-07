@@ -2,6 +2,7 @@ import { noteService } from '../services/note.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 import NoteEditTxt from './NoteEditTxt.js'
 import NoteEditImg from './NoteEditImg.js'
+import NoteEditTodos from './NoteEditTodos.js'
 
 export default {
 
@@ -79,7 +80,8 @@ export default {
     name: 'NoteEdit',
     components: {
         NoteEditImg,
-        NoteEditTxt
+        NoteEditTxt,
+        NoteEditTodos
     }
     //     loadNote() {
     //         const { noteId } = this.$route.params

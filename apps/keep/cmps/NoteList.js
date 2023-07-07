@@ -19,7 +19,7 @@ export default {
                 @add="addNote" />
         <!-- </section> -->
         <section class="note-container" v-if="notes">
-            <div class="pin-title" v-show="pinnedNotes !== null">
+            <div class="pin-title" v-show="showTag">
                 <span >pinned</span>
             </div>
             <section class="notes-columns" v-if="pinnedNotes" >
@@ -33,8 +33,8 @@ export default {
                         />
                 </div>
             </section>
-            <hr />
-            <div  class="pin-title" v-show="pinnedNotes !== null">
+            <hr v-show="showTag"/>
+            <div  class="pin-title" v-show="showTag">
                 <span >others</span>
             </div>
             <section class="notes-columns" v-if="unpinnedNotes" >
@@ -71,6 +71,16 @@ export default {
 
     },
     computed: {
+        showTag : function() {
+
+            const regex = new RegExp(this.filter, 'i')
+            let pinnedNotes = this.notes.filter(note => {
+
+                return note.isPinned && !note.isTrashed && regex.test(note.info.title)
+            })
+        
+            if (pinnedNotes.length!==0) return true
+        },
         pinnedNotes() {
 
             const regex = new RegExp(this.filter, 'i')
@@ -147,6 +157,7 @@ export default {
         saveNote(updatedNote) {
             noteService.save(updatedNote)
                 .then(returnedNote => {
+                    console.log('returnedNote:', returnedNote)
                     const idx = this.notes.findIndex(note => note.id === returnedNote.id)
                     this.notes.splice(idx, 1, returnedNote)
                 })
@@ -168,8 +179,14 @@ export default {
                 })
         },
 
-        sendMail(note){
+        sendMail(note) {
             emailService.add(note)
+                .then(() => {
+                    showSuccessMsg('Note Saved as draft mail')
+                })
+                .catch(() => {
+                    showErrorMsg('Cannot send note as mail')
+                })
         },
         setType(type) {
             this.noteAddType = type

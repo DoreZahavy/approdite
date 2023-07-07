@@ -37,3 +37,8 @@
 .note-preview:hover .actions , .note-preview:hover .tack{
     opacity: 1;
 }
+
+.note-preview .note-todos .done{
+    text-decoration: line-through;
+    color: gray;
+}
