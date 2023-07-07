@@ -3,10 +3,11 @@ export default {
     template: `
         <article class="note-todos">
            <h2>{{note.info.title}}</h2>
-           <ul>
+           <ul class="clean-list">
                <li v-for="(todo,idx) in note.info.todos" 
                @click=toggleTodo(idx,todo)
                :class="{done: todo.isDone}"
+               class="todo-item"
                >
               
                    {{todo.txt}}

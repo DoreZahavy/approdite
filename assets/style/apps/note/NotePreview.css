@@ -38,7 +38,22 @@
     opacity: 1;
 }
 
+.note-preview .note-todos{
+    cursor: pointer;
+}
+
 .note-preview .note-todos .done{
     text-decoration: line-through;
     color: gray;
+}
+
+.note-preview .todo-item::before{
+    content: '';
+    font-family: fa-regular;
+    margin-inline-end: 0.3em;
+}
+.note-preview .todo-item.done::before{
+    content: '';
+    font-family: fa-regular;
+    margin-inline-end: 0.3em;
 }

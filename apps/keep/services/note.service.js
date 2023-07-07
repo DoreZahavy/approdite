@@ -208,7 +208,7 @@ function getEmptyNote(type) {
     }
     if(type === 'NoteEditTxt') emptyNote.info.txt = 'Take a note...'
     if(type === 'NoteEditImg') emptyNote.info.url = 'Enter image url'
-    if(type === 'NoteEditTodos') emptyNote.info.todos = [{ txt: 'task1', doneAt: null }]
+    if(type === 'NoteEditTodos') emptyNote.info.todos = [{ txt: 'List item 1', doneAt: null , isDone:false}]
     return emptyNote
 }
 
