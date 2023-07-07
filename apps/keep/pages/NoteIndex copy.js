@@ -8,6 +8,7 @@ import NoteFilter from '../cmps/NoteFilter.js'
 import NoteAdd from '../cmps/NoteAdd.js'
 import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
+import NoteList from '../cmps/NoteList.js'
 import Sidebar from '../cmps/Sidebar.js'
 
 export default {
@@ -24,43 +25,41 @@ export default {
                 @type="setType" 
                 @add="addNote" />
         <!-- </section> -->
-    <section class="note-container" v-if="notes">
-        <div class="pin-title" v-show="pinnedNotes !== null">
-            <span >pinned</span>
-        </div>
-        <section class="notes-columns" v-if="pinnedNotes" >
-            <div v-for="(note, idx) in pinnedNotes" class="notes-grp" >
-                <NotePreview  
-                :note="note" 
-                @remove="removeNote"
-                @copy="copyNote"
-                @save="saveNote"
-                @tack="updatePin" />
+        <section class="note-container" v-if="notes">
+            <div class="pin-title" v-show="pinnedNotes !== null">
+                <span >pinned</span>
             </div>
-        </section>
-        <hr />
-        <div  class="pin-title" v-show="pinnedNotes !== null">
-            <span >others</span>
-        </div>
-        <section class="notes-columns" v-if="unpinnedNotes" >
-            <div v-for="(note, idx) in unpinnedNotes" class="notes-grp">
-                <NotePreview  
-                :note="note" 
-                @remove="removeNote"
-                @copy="copyNote"
-                @save="saveNote"
-                @tack="updatePin"
-                />
+            <section class="notes-columns" v-if="pinnedNotes" >
+                <div v-for="(note, idx) in pinnedNotes" class="notes-grp" >
+                    <NotePreview  
+                        :note="note" 
+                        @remove="removeNote"
+                        @copy="copyNote"
+                        @save="saveNote"
+                        @tack="updatePin" />
+                </div>
+            </section>
+            <hr />
+            <div  class="pin-title" v-show="pinnedNotes !== null">
+                <span >others</span>
+            </div>
+            <section class="notes-columns" v-if="unpinnedNotes" >
+                <div v-for="(note, idx) in unpinnedNotes" class="notes-grp">
+                    <NotePreview  
+                        :note="note" 
+                        @remove="removeNote"
+                        @copy="copyNote"
+                        @save="saveNote"
+                        @tack="updatePin"
+                        />
                 </div>
             </section>
         </section >
-        <div  class="edit-area" :class="isScreen">
-
-            <div class="edit-screen"
-            @click="exitModal"  
-            >
-            <RouterView @add="saveNote"/>
-        </div>
+            <div  class="edit-area" :class="isScreen">
+                <div class="edit-screen"
+                @click="exitModal" ></div>
+                <RouterView @add="saveNote"/>
+            </div>
     </section>
     `,
     data() {
@@ -171,7 +170,8 @@ export default {
         NoteAddOpen,
         NoteFilter,
         NoteEdit,
-        Sidebar
+        Sidebar,
+        NoteList
     }
 }
 

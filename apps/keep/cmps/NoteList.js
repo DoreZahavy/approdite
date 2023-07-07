@@ -1,5 +1,6 @@
 import { noteService } from '../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
+import { emailService } from '../../mail/services/email.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import NotePreview from '../cmps/NotePreview.js'
@@ -9,7 +10,7 @@ import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
 
 export default {
-    // props: ['notes'],
+    props: ['filter'],
     template: `
     <section class="note-list">
         <NoteAdd @type="setType" v-if="noteAddType === 'unfocused'"/>
@@ -28,6 +29,7 @@ export default {
                         @remove="removeNote"
                         @copy="copyNote"
                         @save="saveNote"
+                        @mail="sendMail"
                         />
                 </div>
             </section>
@@ -42,6 +44,7 @@ export default {
                         @remove="removeNote"
                         @copy="copyNote"
                         @save="saveNote"
+                        @mail="sendMail"
                         />
                 </div>
             </section>
@@ -69,11 +72,26 @@ export default {
     },
     computed: {
         pinnedNotes() {
-            let pinnedNotes = this.notes.filter(note => note.isPinned)
+
+            const regex = new RegExp(this.filter, 'i')
+            let pinnedNotes = this.notes.filter(note => {
+
+                return note.isPinned && !note.isTrashed && regex.test(note.info.title)
+            })
             if (pinnedNotes) return pinnedNotes
         },
         unpinnedNotes() {
-            let unpinnedNotes = this.notes.filter(note => !note.isPinned)
+            const regex = new RegExp(this.filter, 'i')
+
+
+            let unpinnedNotes = this.notes.filter(note => {
+                return !note.isPinned && !note.isTrashed && regex.test(note.info.title)
+
+            })
+
+
+
+
             if (unpinnedNotes) return unpinnedNotes
         },
         isPinned() {
@@ -91,22 +109,31 @@ export default {
 
     },
     methods: {
-        removeNote(noteId) {
-            noteService.remove(noteId)
+        removeNote(note) {
+
+            var updatedNote = utilService.deepCopy(note)
+            updatedNote.isTrashed = true
+            noteService.save(updatedNote)
                 .then(() => {
-                    const idx = this.notes.findIndex(note => noteId === note.id)
-                    this.notes.splice(idx, 1)
-                    showSuccessMsg('Note removed')
+                    const idx = this.notes.findIndex(note => updatedNote.id === note.id)
+                    this.notes.splice(idx, 1, updatedNote)
+                    showSuccessMsg('Removed to trash')
                 })
                 .catch(err => {
                     showErrorMsg('Cannot remove note')
                 })
-                .then(note => {
-                    noteService.saveToTrash(note)
-                })
+            // noteService.remove(noteId)
+            //     .then(() => {
+            //         const idx = this.notes.findIndex(note => noteId === note.id)
+            //         this.notes.splice(idx, 1)
+            //         showSuccessMsg('Note removed')
+            //     })
+            //     .catch(err => {
+            //         showErrorMsg('Cannot remove note')
+            //     })
+
         },
         copyNote(note) {
-            // const duplicateNote = utilService.deepCopy(this.note)
 
             const duplicateNote = utilService.deepCopy(note)
             duplicateNote.id = ''
@@ -140,6 +167,10 @@ export default {
 
                 })
         },
+
+        sendMail(note){
+            emailService.add(note)
+        },
         setType(type) {
             this.noteAddType = type
         },
@@ -164,14 +195,14 @@ export default {
         NotePreview,
         NoteAdd,
         NoteAddOpen,
-        
+
         NoteEdit,
-       
+
     }
 }
 
- 
-   
+
+
 
 
 

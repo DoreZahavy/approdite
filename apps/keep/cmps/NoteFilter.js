@@ -21,10 +21,6 @@ export default {
         search(){
             console.log(this.value)
             this.$emit('search', this.value)
-        },
-        filter(val){
-            const res = val.target.value.split(' ')
-            this.$emit('filter',res[1])
         }
     }
 }

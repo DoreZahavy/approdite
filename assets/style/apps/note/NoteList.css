@@ -7,7 +7,8 @@
 
 .note-index .note-list .notes-columns{
    
-    columns: 1;
+    column-count: auto;
+    column-width: 238px;
     place-items: center;
     /* margin-block-start: var(--noteGap); */
     /* margin-inline: var(--noteGap); */

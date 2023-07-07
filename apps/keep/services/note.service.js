@@ -3,6 +3,7 @@ const gNoteList = [
         id: 'n101',
         createdAt: 1112222,
         type: 'NoteTxt',
+        isTrashed: false,
         isPinned: false,
 
         info: {
@@ -16,6 +17,7 @@ const gNoteList = [
     {
         id: 'n102',
         type: 'NoteTxt',
+        isTrashed: false,
         isPinned: false,
         info: {
             title: 'Title1',
@@ -28,6 +30,7 @@ const gNoteList = [
     {
         id: 'n103',
         type: 'NoteTxt',
+        isTrashed: false,
         isPinned: false,
         info: {
             title: 'Title123',
@@ -40,10 +43,39 @@ const gNoteList = [
     {
         id: 'n1076',
         type: 'NoteImg',
+        isTrashed: false,
         isPinned: false,
         info: {
             url: 'https://images.freeimages.com/images/large-previews/55f/note-1196890.jpg',
             title: 'Bobi and Me'
+        },
+        style: {
+            backgroundColor: '#00d'
+        }
+    },
+    {
+        id: 'n200',
+        isTrashed: true,
+        createdAt: 1112222,
+        type: 'NoteTxt',
+        isPinned: false,
+
+        info: {
+            title: 'Title1 trash',
+            txt: 'Fullstack Me Baby! in the trash'
+        },
+        style: {
+            backgroundColor: '#23523f'
+        }
+    },
+    {
+        id: 'n300',
+        type: 'NoteTxt',
+        isTrashed: true,
+        isPinned: false,
+        info: {
+            title: 'Title2 trash',
+            txt: 'Bobi and Me in the trash'
         },
         style: {
             backgroundColor: '#00d'
@@ -97,20 +129,21 @@ import { storageService } from '../../../services/async-storage.service.js'
 
 
 const NOTE_KEY = 'noteDB'
-const TRASH_KEY = 'trashDB'
+// const TRASH_KEY = 'trashDB'
 
 _createNotes()
-_createTrash()
+// _createTrash()
 
 export const noteService = {
     query,
     get,
     remove,
     save,
-    queryTrash,
-    removeToTrash,
-    removeFromTrash,
-    restoreFromTrash,
+    // queryTrash,
+    // removeToTrash,
+    // removeFromTrash,
+    // saveToTrash,
+    // restoreFromTrash,
     getEmptyNote
 }
 
@@ -118,9 +151,9 @@ function query() {
     return storageService.query(NOTE_KEY)
 }
 
-function queryTrash() {
-    return storageService.query(TRASH_KEY)
-}
+// function queryTrash() {
+//     return storageService.query(TRASH_KEY)
+// }
 
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
@@ -130,24 +163,23 @@ function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
 
-function removeToTrash(note){
-    return storageService.post(TRASH_KEY,note)
-        .then(note=>{
-            return storageService.remove(NOTE_KEY,note.id)
+// function removeToTrash(note){
+//     return storageService.post(TRASH_KEY,note)
+//         .then(storageService.remove(NOTE_KEY,note.id))
+// }
 
-        })
-}
+// function saveToTrash(note){
+//     return storageService.post(TRASH_KEY,note)
+// }
 
-function removeFromTrash(noteId){
-    return storageService.remove(TRASH_KEY,note.id)
-}
+// function removeFromTrash(noteId){
+//     return storageService.remove(TRASH_KEY,note.id)
+// }
 
-function restoreFromTrash(){
-    return storageService.post(NOTE_KEY,note)
-        .then(note=>{
-            return storageService.remove(TRASH_KEY,note.id)
-        })
-}
+// function restoreFromTrash(note){
+//     return storageService.post(NOTE_KEY,note)
+//         .then(storageService.remove(TRASH_KEY,note.id))
+// }
 
 function save(note) {
     if (note.id) {
@@ -187,11 +219,11 @@ function _createNotes() {
     }
 }
 
-function _createTrash() {
-    let notes = utilService.loadFromStorage(TRASH_KEY)
-    if (!notes || !notes.length) {
-        notes = gNoteTrash
-        console.log('notes:', notes)
-        utilService.saveToStorage(TRASH_KEY, notes)
-    }
-}
+// function _createTrash() {
+//     let notes = utilService.loadFromStorage(TRASH_KEY)
+//     if (!notes || !notes.length) {
+//         notes = gNoteTrash
+//         console.log('notes:', notes)
+//         utilService.saveToStorage(TRASH_KEY, notes)
+//     }
+// }

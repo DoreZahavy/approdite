@@ -16,16 +16,17 @@ export default {
     <section class="note-index">
        <!-- <h1>notes here</h1> -->
       
-       <NoteFilter />
+       <NoteFilter @search="setFilter"/>
 
        <Sidebar @trash="toTrash"/>
 
-       <RouterView />
+       <RouterView :filter="filter" />
       
     </section>
     `,
     data() {
         return {
+            filter:'',
             notes: null,
             noteAddType: 'unfocused',
             screen : false
@@ -33,89 +34,94 @@ export default {
         }
     },
     created() {
-        this.loadNotes()
+        // this.loadNotes()
 
     },
     computed: {
-        pinnedNotes() {
-            let pinnedNotes = this.notes.filter(note => note.isPinned)
-            if (pinnedNotes) return pinnedNotes
-        },
-        unpinnedNotes() {
-            let unpinnedNotes = this.notes.filter(note => !note.isPinned)
-            if (unpinnedNotes) return unpinnedNotes
-        },
-        isPinned() {
-            if (this.pinnedNotes > 0) return true
-            return false
-        },
-        params() {
-            return this.$route.params.noteId
-        },
-        isScreen(){
-            return {
-                'screen-open':this.screen
-            }
-        }
+        // pinnedNotes() {
+        //     let pinnedNotes = this.notes.filter(note => note.isPinned)
+        //     if (pinnedNotes) return pinnedNotes
+        // },
+        // unpinnedNotes() {
+        //     let unpinnedNotes = this.notes.filter(note => !note.isPinned)
+        //     if (unpinnedNotes) return unpinnedNotes
+        // },
+        // isPinned() {
+        //     if (this.pinnedNotes > 0) return true
+        //     return false
+        // },
+        // params() {
+        //     return this.$route.params.noteId
+        // },
+        // isScreen(){
+        //     return {
+        //         'screen-open':this.screen
+        //     }
+        // }
 
     },
     methods: {
-        removeNote(noteId) {
-            noteService.remove(noteId)
-                .then(() => {
-                    const idx = this.notes.findIndex(note => noteId === note.id)
-                    this.notes.splice(idx, 1)
-                    showSuccessMsg('Note removed')
-                })
-                .catch(err => {
-                    showErrorMsg('Cannot remove note')
-                })
+        setFilter(filter){
+            console.log('this.filter:', this.filter)
+            this.filter = filter
+            console.log('this.filter:', this.filter)
         },
-        copyNote(note) {
-            // const duplicateNote = utilService.deepCopy(this.note)
+        // removeNote(noteId) {
+        //     noteService.remove(noteId)
+        //         .then(() => {
+        //             const idx = this.notes.findIndex(note => noteId === note.id)
+        //             this.notes.splice(idx, 1)
+        //             showSuccessMsg('Note removed')
+        //         })
+        //         .catch(err => {
+        //             showErrorMsg('Cannot remove note')
+        //         })
+        // },
+        // copyNote(note) {
+        //     // const duplicateNote = utilService.deepCopy(this.note)
 
-            const duplicateNote = utilService.deepCopy(note)
-            duplicateNote.id = ''
-            noteService.save(duplicateNote)
-                .then(() => {
-                    this.notes.push(duplicateNote)
-                    showSuccessMsg('Note copied')
-                })
-                .catch(() => { showErrorMsg('Cannot copy note') })
-        },
-        saveNote(updatedNote) {
-            noteService.save(updatedNote)
-                .then(returnedNote=>{
-                    const idx = this.notes.findIndex(note=>note.id===returnedNote.id)
-                    this.notes.splice(idx,1,returnedNote)
-                })
+        //     const duplicateNote = utilService.deepCopy(note)
+        //     duplicateNote.id = ''
+        //     noteService.save(duplicateNote)
+        //         .then(() => {
+        //             this.notes.push(duplicateNote)
+        //             showSuccessMsg('Note copied')
+        //         })
+        //         .catch(() => { showErrorMsg('Cannot copy note') })
+        // },
+        // saveNote(updatedNote) {
+        //     noteService.save(updatedNote)
+        //         .then(returnedNote=>{
+        //             const idx = this.notes.findIndex(note=>note.id===returnedNote.id)
+        //             this.notes.splice(idx,1,returnedNote)
+        //         })
 
 
-        },
-        updatePin(noteId) {
-            const idx = this.notes.findIndex(note => note.id === newNote.id)
-            noteService.get(noteId)
-                .then(note => {
+        // },
+        // updatePin(noteId) {
+        //     const idx = this.notes.findIndex(note => note.id === newNote.id)
+        //     noteService.get(noteId)
+        //         .then(note => {
 
-                })
-        },
-        addNote(newNote) {
-            noteService.save(newNote)
-                .then(note => {
-                    this.notes.push(newNote)
+        //         })
+        // },
+        // addNote(newNote) {
+        //     noteService.save(newNote)
+        //         .then(note => {
+        //             this.notes.push(newNote)
 
-                })
-        },
-        setType(type) {
-            this.noteAddType = type
-        },
-        loadNotes() {
-            noteService.query()
-                .then(notes => {
-                    this.notes = notes
+        //         })
+        // },
+        // setType(type) {
+        //     this.noteAddType = type
+        // },
+        // loadNotes() {
+        //     noteService.query()
+        //         .then(notes => {
+        //             this.notes = notes
 
-                })
-        },
+        //         })
+        // },
         exitModal() {
             this.$router.push('/note')
         },

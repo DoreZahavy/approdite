@@ -1,3 +1,14 @@
 .note-trash{
     grid-area: main;
 }
+
+.note-trash .trash-columns{
+   
+    column-count: auto;
+    column-width: 238px;
+    place-items: center;
+    /* margin-block-start: var(--noteGap); */
+    /* margin-inline: var(--noteGap); */
+    margin: var(--noteGap);
+    
+}

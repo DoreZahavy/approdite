@@ -11,7 +11,8 @@ export default {
                 :note="note"  />
             <ul class="actions clean-list flex">
                 <li @click="onCopyNote" class="fa-regular" title="Duplicate Note"></li>
-                <li @click="onRemoveNote" class="fa-regular" title="Delete Note"></li>
+                <li @click="onSendNote" class="fa-regular" title="Send Note as Mail"></li>
+                <li @click="onRemoveNote" class="fa-solid" title="Delete Note"></li>
                 <li>
                     <label :for="inputId" class="fa-regular"></label>
                     <input type="color" 
@@ -28,7 +29,7 @@ export default {
     `,
     data() {
         return {
-            currNote : this.note
+            currNote: this.note
         }
     },
     methods: {
@@ -36,19 +37,33 @@ export default {
             this.$emit('copy', this.note)
         },
         onRemoveNote() {
-            this.$emit('remove', this.note.id)
+            this.$emit('remove', this.currNote)
         },
         onUpdateNote() {
-            this.$emit('save',  this.currNote)
+            this.$emit('save', this.currNote)
         },
-        onSetPin(noteId){
+        onSetPin(noteId) {
             console.log('noteId:', noteId)
             this.currNote.isPinned = !this.currNote.isPinned
             // console.log('preview set pin');
             console.log('this.currNote:', this.currNote)
-            this.$emit('save',  this.currNote)
+            this.$emit('save', this.currNote)
             // this.currNote = null 
             // this.$emit('tack',  noteId)
+        },
+        onSendNote() {
+            const noteToMail = {
+                id: '',
+                subject: this.currNote.info.title,
+                body: this.currNote.info.txt,
+                isRead: false,
+                isStarred: false,
+                sentAt: "1658014307",
+                removedAt: null,
+                from: 'myuser@approdite.com',
+                to: ''
+            }
+            this.$emit('mail', noteToMail)
         }
 
     },
@@ -56,7 +71,7 @@ export default {
         bgColor() {
             return `display: `
         },
-        inputId(){
+        inputId() {
             return `color-input ${this.note.id}`
         }
     },
@@ -65,3 +80,5 @@ export default {
         NoteImg
     }
 }
+
+
