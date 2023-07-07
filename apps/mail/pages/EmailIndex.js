@@ -20,9 +20,11 @@ export default {
             />
         <EmailFolderList
             :emails="emails"
+            :folder="criteria.status"
         />
-       <RouterView :emails="emails" 
+       <RouterView v-if:"emails" :emails="emails" 
        @remove="spliceRemoved"
+       @starred="loadEmails"
        @toggleRead="loadEmails"
        />
     </section>
@@ -37,7 +39,7 @@ export default {
                 isStarred: null, // (optional property, if missing: show all)
                 // lables: ['important', 'romantic'] // has any of the labels
             },
-            viewCompose:false,
+            viewCompose: false,
         }
     },
     created() {
@@ -50,9 +52,10 @@ export default {
             this.criteria.status = params.folder ? params.folder : 'inbox'
             emailService.query(this.criteria)
                 .then(emails => {
+                    if (emails.length <= 0) this.loadEmails()
                     this.emails = emails
                 })
-                .catch(err=>console.log(err))
+                .catch(err => console.log(err))
         },
         spliceRemoved(emailId) {
             console.log('splicing..')
@@ -61,14 +64,14 @@ export default {
                 return email.id === emailId
             })
             this.emails.splice(idx, 1)
-            this.loadEmails()
+            // this.loadEmails()
         },
-        onSearch(params){
+        onSearch(params) {
             this.criteria.txt = params
             this.loadEmails()
         },
-        onFilter(val){
-            switch (val){
+        onFilter(val) {
+            switch (val) {
                 case 'read':
                     this.criteria.isRead = true
                     break;

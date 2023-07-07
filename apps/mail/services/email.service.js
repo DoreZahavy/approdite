@@ -20,7 +20,7 @@ function query(criteria = { status: 'inbox' }) {
     //     status: 'inbox/sent/trash/draft',
     //     txt: 'puki', // no need to support complex text search
     //     isRead: true, // (optional property, if missing: show all)
-    //     isStared: true, // (optional property, if missing: show all)
+    //     isStarred: true, // (optional property, if missing: show all)
     //     lables: ['important', 'romantic'] // has any of the labels
     //     }
     _createEmails()
@@ -36,6 +36,16 @@ function query(criteria = { status: 'inbox' }) {
                 case 'trash':
                     emails = emails.filter(email => { if (email.removedAt !== null) return email })
                     break;
+                case 'starred':
+                    emails = emails.filter(email => {
+                        if (email.isStarred === true) {
+                            return email
+                        }
+                    })
+                    break;
+                case 'drafts':
+                    emails = emails.filter(email => { if (email.sentAt === null) return email })
+                    break;
                 default:
                     emails = emails.filter(email => { if (email.to === loggedinUser.email) return email })
                     break;
@@ -48,17 +58,21 @@ function query(criteria = { status: 'inbox' }) {
                 if (email.body.includes(criteria.txt)) return email
             })
         }
-        if(criteria.isRead && criteria.isRead!=null){
+        if (criteria.isRead && criteria.isRead != null) {
             console.log('show read only')
-            emails = emails.filter(email=>{
-                if(email.isRead)return email
+            emails = emails.filter(email => {
+                if (email.isRead) return email
             })
-        }else if(!criteria.isRead && criteria.isRead!=null){
+        } else if (!criteria.isRead && criteria.isRead != null) {
             console.log('show unread only')
-            emails = emails.filter(email=>{
-                if(email.isRead===false)return email
+            emails = emails.filter(email => {
+                if (email.isRead === false) return email
             })
         }
+        emails.sort((a, b) => {
+            return parseFloat(b.sentAt) - parseFloat(a.sentAt)
+        })
+
         return emails
     })
 }
