@@ -4,6 +4,7 @@
 //     "subject": "Synchronised responsive analyzer",
 //     "body": "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt. Nulla mollis molestie lorem. Quisque ut erat.",
 //     "isRead": false,
+//     "isStarred":false,
 //     "sentAt": "1551052800",
 //     "removedAt": null,
 //     "from": "dprozescky2@livejournal.com",
@@ -16,6 +17,13 @@ export default {
     props: ['email'],
     template: `
         <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
+            <button class="fa-solid star" v-if="currEmail.isStarred" @click="onToggleStarred(email.id)">
+            
+            </button>
+            <button class="fa-regular star" v-if="!currEmail.isStarred" @click="onToggleStarred(email.id)">
+            
+            </button>
+            {{currEmail.isStarred}}
             <RouterLink :to="'/mail/' + email.id" :email="email">
                 <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
             </RouterLink>
@@ -32,15 +40,12 @@ export default {
                 </span>
         </article>
     `,
-    data(){
-        return{
-            currEmail:this.email
+    data() {
+        return {
+            currEmail: this.email
         }
     },
     created() {
-        const folder = this.$route.params
-        // this.currEmail = this.email
-        // console.log(criteria)
     },
     computed: {
         formattedTime() {
@@ -59,6 +64,9 @@ export default {
                 read: this.email.isRead,
                 unread: !this.email.isRead
             }
+        },
+        isStarred() {
+            return this.email.isStarred ? true : false
         }
     },
     methods: {
@@ -76,6 +84,20 @@ export default {
         onToggleRead() {
             this.email.isRead = !this.email.isRead
             emailService.update(this.email)
+        },
+        onToggleStarred(emailId) {
+            // this.email.isStarred = !this.email.isStarred
+            // emailService.update(this.email)
+            // email.isStarred = !email.isStarred
+            emailService.get(emailId)
+                .then(email => {
+                    email.isStarred = !email.isStarred
+                    emailService.update(email)
+                    console.log(email)
+                    this.currEmail = email
+                    this.$emit('starred')
+                })
+
         }
     }
 }

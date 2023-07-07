@@ -9,6 +9,7 @@ export default {
                     <EmailPreview 
                     :email="email" 
                     @remove="onRemove"
+                    @starred="onStarred"
                     @toggleRead="onToggleRead"
                     />
                 </li>
@@ -18,6 +19,9 @@ export default {
     methods:{
         onRemove(emailId){
             this.$emit('remove',emailId)
+        },
+        onStarred(emailId){
+            this.$emit('starred')
         },
         onToggleRead(emailId){
             this.$emit('toggleRead', emailId)
