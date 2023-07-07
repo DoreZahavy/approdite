@@ -1,7 +1,7 @@
 import { emailService } from "../services/email.service.js"
 
 export default {
-    props: ['email'],
+    // props: ['email'],
     template: `
     <section class="email-details">
         <nav class="fa-solid">
@@ -24,7 +24,6 @@ export default {
     },
     created() {
         this.loadEmail()
-        console.log(this.email)
     },
     methods: {
         loadEmail() {
@@ -36,9 +35,9 @@ export default {
                     this.email.isRead = true
                     emailService.update(this.email)
                 })
-            // .catch(err => {
-            //     console.log(err)
-            // })
+            .catch(err => {
+                console.log(err)
+            })
         },
         onTrash() {
             this.email.removedAt = Date.now() + ''
