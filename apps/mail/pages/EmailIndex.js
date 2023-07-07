@@ -13,7 +13,8 @@ export default {
             </button>
         <ComposeEmail 
             v-show="viewCompose"
-            @close="viewCompose = false"/>
+            @close="viewCompose = false"
+            :draft="draftToEmail"/>
         <EmailFilter 
             @search="onSearch"
             @filter="onFilter"
@@ -22,10 +23,14 @@ export default {
             :emails="emails"
             :folder="criteria.status"
         />
-       <RouterView v-if:"emails" :emails="emails" 
+       <RouterView 
+       v-if="emails" 
+       :emails="emails" 
+       :folder = "criteria.status"
        @remove="spliceRemoved"
-       @starred="loadEmails"
+       @starred="onStarred"
        @toggleRead="loadEmails"
+       @draftCompose="openDraft"
        />
     </section>
     `,
@@ -40,6 +45,7 @@ export default {
                 // lables: ['important', 'romantic'] // has any of the labels
             },
             viewCompose: false,
+            draftToEmail: null
         }
     },
     created() {
@@ -47,42 +53,66 @@ export default {
     },
     methods: {
         loadEmails() {
-            console.log('loading emails')
+
+            console.log(this.emails)
             const params = this.$route.params
             this.criteria.status = params.folder ? params.folder : 'inbox'
+            this.emails = []
             emailService.query(this.criteria)
                 .then(emails => {
-                    if (emails.length <= 0) this.loadEmails()
+                    // if (emails.length <= 0) this.loadEmails()
                     this.emails = emails
                 })
                 .catch(err => console.log(err))
         },
         spliceRemoved(emailId) {
-            console.log('splicing..')
-            console.log(emailId)
             const idx = this.emails.findIndex(email => {
                 return email.id === emailId
             })
             this.emails.splice(idx, 1)
-            // this.loadEmails()
+            this.loadEmails()
         },
         onSearch(params) {
             this.criteria.txt = params
             this.loadEmails()
         },
         onFilter(val) {
+            this.emaills = []
             switch (val) {
                 case 'read':
                     this.criteria.isRead = true
+                    this.criteria.isStarred = null
                     break;
                 case 'unread':
                     this.criteria.isRead = false
+                    this.criteria.isStarred = null
                     break;
+                case 'starred':
+                    this.criteria.isStarred = true
+                    this.criteria.isRead = null
+                    break
                 case 'all':
                     this.criteria.isRead = null
+                    this.criteria.isStarred = null
                     break;
             }
             this.loadEmails()
+        },
+        openDraft(emailId) {
+            this.viewCompose = true
+            emailService.get(emailId)
+                .then(email => this.draftToEmail = email)
+        },
+        onStarred(emailId) {
+            // this.loadEmails()
+            const idx = this.emails.findIndex(x => x.id === emailId)
+            
+            if (this.criteria.isStarred && !this.emails[idx].isStarred) {
+                console.log('unstarred in starred criteria')
+                this.emails.splice(idx, 1)
+            }
+            // this.loadEmails()
+            console.log(this.emails)
         }
 
     },
@@ -90,9 +120,14 @@ export default {
         params() {
             return this.$route.params.folder
         },
+        filtered() {
+
+        }
     },
     watch: {
         params() {
+            console.log('params changed - loading emails')
+            console.log(this.$route.params.folder)
             this.loadEmails()
         }
     },

@@ -11,6 +11,7 @@ export default {
             <option>show all</option>
             <option>show read</option>
             <option>show unread</option>
+            <option>show starred</option>
         </select>
     </div>
     `,
