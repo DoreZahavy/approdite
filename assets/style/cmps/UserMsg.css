@@ -1,17 +1,22 @@
 .user-msg {
     position: fixed;
-    top: 40px;
+    bottom: 60px;
     right: 20px;
-
-    width: 290px;
+    width: calc(fit-content + 1rem);
+    text-transform: capitalize;
     background-color: rgb(208, 206, 139);
-    padding: 10px;
-    border-radius: 5px;
+    padding: .6rem;
+    padding-inline: 1.5rem;
+    border-radius: 99999vh;
+    color: var(--licorice);
+    font-family: roboto;
+    font-size: 1.2rem;
+    z-index: 20;
     /* transition: opacity 1s; */
 }
 .user-msg.success {
-    background-color: rgb(88, 130, 88);
+    background-color: var(--darkgreen);
 }
 .user-msg.error {
-    background-color: rgb(187, 104, 104);
+    background-color: var(--secondary-clr2);
 }

@@ -1,7 +1,28 @@
-.email-folder-list{
-    grid-area:folder-list;
-    border-inline-end: 2px solid ;
+.email-folder-list {
+    grid-area: folder-list;
+    border-inline-end: 2px solid;
     list-style: none;
-    padding-inline: 1rem;
+    padding: 0;
+    /* padding-inline-start: .5rem; */
     font-weight: bold;
+    color: var(--licorice);
+
+}
+
+.email-folder-list span {
+    font-weight: normal;
+    font-family: roboto;
+}
+
+.email-folder-list li:hover {
+    background-color: var(--darkgreen);
+    border-radius: 0 999px 999px 0;
+}
+
+.email-folder-list li {
+    /* width: calc(fit-content + .5rem); */
+    width: fit-content;
+    padding-inline: 1rem;
+    padding-block: .2rem;
+    transition: 200ms;
 }

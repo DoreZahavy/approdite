@@ -1,17 +1,43 @@
 .email-compose {
     /* grid-area: compose; */
     position: fixed;
-    left: 500px;
+    left: 45vw;
     bottom: 0px;
     background-color: var(--gmail-li);
     z-index: 10;
+    outline: solid 3px var(--gmail-li-read);
+    /* padding-block: 1rem; */
+    padding-inline: .5rem;
 }
-.email-compose textarea{
+.email-compose nav{
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+.email-compose>* {
+    color: var(--licorice);
+    font-size: 1.4rem;
+}
+
+.email-compose button {
+    color: var(--licorice);
+    background-color: transparent;
+    border: none;
+    padding-block: 3px;
+}
+.email-compose button:hover{
+    text-decoration: underline;
+}
+
+.email-compose textarea {
     resize: none;
 }
+
 .email-compose form {
     display: flex;
     flex-direction: column;
+    min-width: 50vw;
+    min-height: 50vh;
 }
 
 .compose-btn {
@@ -22,11 +48,12 @@
     padding: 1rem;
     justify-self: center;
     align-self: center;
-    border:none;
+    border: none;
     border-radius: 2rem;
     font-size: 1.1rem;
-    color:var(--clr3);
+    color: var(--clr3);
 }
-.compose-btn i{
+
+.compose-btn i {
     padding-inline-end: .5rem;
 }

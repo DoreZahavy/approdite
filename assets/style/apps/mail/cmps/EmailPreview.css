@@ -9,12 +9,12 @@
     justify-content: space-between;
     overflow: hidden;
     color: var(--licorice);
-
+    transition: 50ms;
 }
 
 .email-preview:hover {
     box-shadow: 0px 2px 3px 0px var(--licorice);
-    z-index: 10;
+    z-index: 9;
     position: sticky;
 }
 

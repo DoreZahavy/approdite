@@ -12,21 +12,21 @@
 // }
 
 import { emailService } from "../services/email.service.js"
+import { showErrorMsg,showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export default {
-    props: ['email'],
+    props: ['email', 'folder'],
     template: `
         <article class="email-preview" :class="isRead" @click="openDetails(email.id)">
-            <button class="fa-solid star" v-if="currEmail.isStarred" @click="onToggleStarred(email.id)">
+            <button class="star" :class="isStarred" @click="onToggleStarred(email.id)">
             
             </button>
-            <button class="fa-regular star" v-if="!currEmail.isStarred" @click="onToggleStarred(email.id)">
-            
-            </button>
-            {{currEmail.isStarred}}
-            <RouterLink :to="'/mail/' + email.id" :email="email">
+            <RouterLink v-if="folder!=='drafts'" :to="'/mail/' + email.id" :email="email">
                 <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
             </RouterLink>
+            <a v-if="folder==='drafts'" @click="toCompose(email.id)">
+                <span>{{email.from}}</span><span>{{email.subject}}</span><span>{{formattedTime}}</span>
+            </a>
                 <span class="preview-buttons">
                     <button @click="onTrash(email.id)" class="fa-solid" title="move to trash">
                     
@@ -46,6 +46,7 @@ export default {
         }
     },
     created() {
+        this.currEmail = this.email
     },
     computed: {
         formattedTime() {
@@ -61,13 +62,19 @@ export default {
         isRead() {
             // return email.isRead? 'email-read': 'email-unread'
             return {
-                read: this.email.isRead,
-                unread: !this.email.isRead
+                read: this.currEmail.isRead,
+                unread: !this.currEmail.isRead
             }
         },
         isStarred() {
-            return this.email.isStarred ? true : false
+            return {
+                'fa-solid': this.currEmail.isStarred,
+                'fa-regular': !this.currEmail.isStarred
+            }
         }
+    },
+    watch: {
+
     },
     methods: {
         openDetails(emailId) {
@@ -79,11 +86,13 @@ export default {
                     email.removedAt = Date.now() + ''
                     emailService.update(email)
                     this.$emit('remove', emailId)
+                    showErrorMsg('moved to trash')
                 })
         },
         onToggleRead() {
-            this.email.isRead = !this.email.isRead
-            emailService.update(this.email)
+            // this.email.isRead = !this.email.isRead
+            this.currEmail.isRead = !this.currEmail.isRead
+            emailService.update(this.currEmail)
         },
         onToggleStarred(emailId) {
             // this.email.isStarred = !this.email.isStarred
@@ -91,13 +100,17 @@ export default {
             // email.isStarred = !email.isStarred
             emailService.get(emailId)
                 .then(email => {
+                    console.log(email.isStarred)
                     email.isStarred = !email.isStarred
+                    console.log(email.isStarred)
                     emailService.update(email)
-                    console.log(email)
                     this.currEmail = email
-                    this.$emit('starred')
+                    this.$emit('starred', this.currEmail.id)
                 })
 
+        },
+        toCompose(emailId) {
+            this.$emit('draftCompose', emailId)
         }
     }
 }

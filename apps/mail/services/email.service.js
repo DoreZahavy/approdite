@@ -12,7 +12,8 @@ export const emailService = {
     query,
     get,
     update,
-    add
+    add,
+    getEmptyEmail
 }
 function query(criteria = { status: 'inbox' }) {
     //TODO: add filtering
@@ -36,13 +37,13 @@ function query(criteria = { status: 'inbox' }) {
                 case 'trash':
                     emails = emails.filter(email => { if (email.removedAt !== null) return email })
                     break;
-                case 'starred':
-                    emails = emails.filter(email => {
-                        if (email.isStarred === true) {
-                            return email
-                        }
-                    })
-                    break;
+                // case 'starred':
+                //     emails = emails.filter(email => {
+                //         if (email.isStarred === true) {
+                //             return email
+                //         }
+                //     })
+                //     break;
                 case 'drafts':
                     emails = emails.filter(email => { if (email.sentAt === null) return email })
                     break;
@@ -58,7 +59,15 @@ function query(criteria = { status: 'inbox' }) {
                 if (email.body.includes(criteria.txt)) return email
             })
         }
-        if (criteria.isRead && criteria.isRead != null) {
+        if (criteria.isStarred) {
+            emails = emails.filter(email => {
+                if (email.isStarred === true) {
+                    console.log('show starred')
+                    return email
+                }
+            })
+        }
+        else if (criteria.isRead && criteria.isRead != null) {
             console.log('show read only')
             emails = emails.filter(email => {
                 if (email.isRead) return email
@@ -87,6 +96,19 @@ function update(email) {
 }
 function add(email) {
     storageService.post(EMAIL_KEY, email)
+}
+function getEmptyEmail() {
+    return {
+        id: utilService.makeId(),
+        subject: '',
+        body: '',
+        isRead: false,
+        sentAt: null,
+        isStarred: false,
+        removedAt: null,
+        from: '',
+        to: ''
+    }
 }
 function _createEmails() {
     let emails = utilService.loadFromStorage(EMAIL_KEY)
