@@ -1,37 +1,45 @@
-
-.about-page{
-    max-height: calc(100vh - 150px);
+.about-page {
+    max-height: calc(100vh - 15vh);
     overflow: hidden;
+    /* height: fit-content; */
 }
-
-.about-page img{
+.about-page p{
+    background-color: var(--gmail-li);
+    padding: .5rem;
+    break-inside: avoid;
+}
+.about-page img {
     width: 200px;
 }
 
-.yona-img{
+.yona-img {
     float: right;
     shape-outside: polygon(-1px 201px, -6px 167px, 33px 130px, 31px 78px, 50px 32px, 97px 11px, 145px 26px);
-    top: 35vh;
-    right: 20vw;
+    /* top: 35vh; */
+    /* right: 20vw; */
 }
 
-.dore-img{
+.dore-img {
     float: left;
-    shape-outside: polygon(124px 101px, 162px 122px, 180px 200px, 21px 192px, 64px 37px, 93px 19px, 130px 48px); 
+    shape-outside: polygon(124px 101px, 162px 122px, 180px 200px, 21px 192px, 64px 37px, 93px 19px, 130px 48px);
 
 }
 
-.lorem-columns{
-    display: grid;
+.lorem-columns {
+    /* display: grid;
     grid-template-columns: 1fr 1fr;
-    text-align: justify;
+    text-align: justify; */
+    column-count: 3;
+    column-rule: 1px black;
+    column-gap: 20px;
 }
 
-.left-column{
+.left-column {
     grid-column: 1;
     margin-inline: 1em;
-} 
-.right-column{
+}
+
+.right-column {
     grid-column: 2;
     margin-inline: 1em;
 }
