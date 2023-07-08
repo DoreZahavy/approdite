@@ -14,12 +14,12 @@ export default {
         }
     },
     methods: {
-        onSetTitle(x) {
-            this.$emit('newval', { key: 'title', value: x.target.innerText })
+        onSetTitle(ev) {
+            this.$emit('newval', { key: 'title', value: ev.target.innerText })
             console.log('title');
         },
-        onSetTxt(x) {
-            this.$emit('newval', { key: 'txt', value: x.target.innerText })
+        onSetTxt(ev) {
+            this.$emit('newval', { key: 'txt', value: ev.target.innerText })
             console.log('txt');
         }
     }

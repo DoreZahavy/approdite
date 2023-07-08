@@ -35,13 +35,11 @@ export default {
         noteService.get(noteId)
             .then(note => {
                 this.noteToEdit = note
-                console.log('note:', note)
                 const type = this.noteToEdit.type
                 if (type === 'NoteTxt') this.noteToEdit.type = 'NoteEditTxt'
                 if (type === 'NoteImg') this.noteToEdit.type = 'NoteEditImg'
                 if (type === 'NoteVideo') this.noteToEdit.type = 'NoteEditVideo'
                 if (type === 'NoteTodos') this.noteToEdit.type = 'NoteEditTodos'
-                console.log('note:', this.noteToEdit.type)
 
                 this.screen = true
             })
