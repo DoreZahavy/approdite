@@ -7,7 +7,6 @@
     margin-block-end: 1em;
 }
 .add-review input{
-    /* max-height: 34px; */
     border-radius: 99999px;
     max-width: 400px;
     padding-inline-start: 1rem;
