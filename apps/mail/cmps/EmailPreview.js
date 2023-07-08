@@ -100,9 +100,7 @@ export default {
             // email.isStarred = !email.isStarred
             emailService.get(emailId)
                 .then(email => {
-                    console.log(email.isStarred)
                     email.isStarred = !email.isStarred
-                    console.log(email.isStarred)
                     emailService.update(email)
                     this.currEmail = email
                     this.$emit('starred', this.currEmail.id)

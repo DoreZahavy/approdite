@@ -63,10 +63,8 @@ export default {
             showSuccessMsg('email sent')
         },
         toDraft() {
-            console.log('draft...')
             this.email.sentAt = null
             emailService.add(this.email)
-            showSuccessMsg('saved as draft')
             this.onClose()
         },
         fromDraft() {

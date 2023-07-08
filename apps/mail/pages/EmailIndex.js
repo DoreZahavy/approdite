@@ -57,7 +57,6 @@ export default {
     methods: {
         loadEmails() {
 
-            console.log(this.emails)
             const params = this.$route.params
             this.criteria.status = params.folder ? params.folder : 'inbox'
             emailService.query(this.criteria)
@@ -116,7 +115,6 @@ export default {
                 vue.delete(this.emails, idx)
             }
             // this.loadEmails()
-            console.log(this.emails)
         }
 
     },
@@ -130,8 +128,6 @@ export default {
     },
     watch: {
         params() {
-            console.log('params changed - loading emails')
-            console.log(this.$route.params.folder)
             this.loadEmails()
         },
         emailCount() {

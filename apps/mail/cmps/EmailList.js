@@ -29,7 +29,6 @@ export default {
             this.$emit('toggleRead', emailId)
         },
         onDraftCompose(emailId){
-            console.log('on draft compose')
             this.$emit('draftCompose',emailId)
         }
     },

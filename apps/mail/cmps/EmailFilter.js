@@ -23,7 +23,6 @@ export default {
     },
     methods:{
         search(){
-            console.log(this.searchParams)
             this.$emit('search', this.searchParams)
         },
         filter(val){
