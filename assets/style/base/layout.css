@@ -1,18 +1,10 @@
 .main-layout {
   height: 100%;
-  /* display: grid; */
-  /* align-items: start; */
-  /* margin: 0 auto;
-  padding-left: 1.6rem;
-  padding-right: 1.6rem; */
   display: flex;
   flex-direction: column;
-  /* min-height: 100vh; */
   background-color: var(--background);
 }
 
-.main-layout .main-route{
-  /* align-self: start; */
+.main-layout .main-route {
   flex: 1 1 auto;
 }
-

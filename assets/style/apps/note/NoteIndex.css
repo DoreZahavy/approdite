@@ -1,23 +1,17 @@
-.note-index{
+.note-index {
     display: grid;
     grid-template-columns: 80px auto;
     grid-template-rows: max-content auto;
-    grid-template-areas: 
-    "filter filter"
-    /* "sidebar add" */
-    "sidebar main"
-    /* "sidebar notes" */
+    grid-template-areas:
+        "filter filter"
+        "sidebar main"
     ;
-
     min-height: calc(100vh - 100px);
-
     font-size: 16px;
     color: rgb(32, 33, 36);
     background-color: white;
 }
 
-img{
+img {
     width: 100%;
 }
-
-

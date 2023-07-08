@@ -3,14 +3,11 @@
     justify-items: start;
     gap: 5px;
     padding: 10px;
-    /* background-color: var(--rich-black); */
-    /* color: whitesmoke; */
 }
 
 .book-edit .edit-btns{
     margin-block-start: 1em;
     font-size: 18px; 
-    /* outline: 1px solid var(--clrHover); */
 }
 
 .book-edit .edit-btns>*{
@@ -24,8 +21,6 @@
     border-style: none;
     background-color: transparent;
     font-family: fa-solid;
-    /* font-size: 18px;
-    font-weight: 400; */
 }
 
 .book-edit input {

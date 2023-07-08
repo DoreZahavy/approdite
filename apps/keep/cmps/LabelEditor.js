@@ -5,13 +5,13 @@ export default {
         <section class="label-editor">
             <h2>Edit labels</h2>
             <div class="input-line">
-                <span @click="clearInput" class="fa-solid">X</span>
+                <span @click="clearInput" title="Cancel" class="fa-solid">X</span>
                 <input ref="input" type="text" placeholder="Create new label" />
-                <span @click="addLabel" class="fa-solid"></span>
+                <span @click="addLabel" title="Create Label" class="fa-solid"></span>
             </div>
             <ul class="clean-list" v-if="labels">
                 <li v-for="(label,idx) in labels">
-                    <span @click="removeLabel(idx)" class="fa-regular"></span>
+                    <span @click="removeLabel(idx)" title="Delete Label" class="fa-regular"></span>
                     <p>{{label}}</p>
                 </li>
             </ul>

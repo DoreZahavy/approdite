@@ -10,7 +10,7 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-            <span class="tack" :class="isPinned" @click="onSetPin(note.id)"></span>
+            <span class="tack" title="Pin Note" :class="isPinned" @click="onSetPin(note.id)"></span>
             <Component 
                 :is="note.type"  
                 :note="note" 
@@ -24,8 +24,8 @@ export default {
                 <li @click="onCopyNote" class="fa-regular" title="Duplicate Note"></li>
                 <li @click="onSendNote" class="fa-regular" title="Send Note as Mail"></li>
                 <li @click="onRemoveNote" class="fa-solid" title="Delete Note"></li>
-                <li class="fa-regular label-icon" title="Delete Note"><LabelPicker :labels="labels" @label="onToggleLabel"/></li>
-                <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
+                <li class="fa-regular label-icon" ><LabelPicker :labels="labels" @label="onToggleLabel"/></li>
+                <li  class="color-icon fa-regular" ><ColorPicker @color="setColor"/></li>
                 <li><Router-link :to="'/note/' + note.id" title="Edit Note" class="fa-regular"></Router-link></li>
             </ul>
         </article>

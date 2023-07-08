@@ -55,7 +55,8 @@ export default {
                 createdAt: Date.now(),
                 type: 'NoteTxt',
                 isPinned: false,
-
+                isTrashed: false,
+                labels:[],
                 info: {
                     title: this.email.subject,
                     txt: this.email.body

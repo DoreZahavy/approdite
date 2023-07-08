@@ -1,32 +1,29 @@
-.label-editor{
-    /* margin-inline: auto; */
-padding: 1.4em;
-margin-inline-start: 10px;
-    /* text-align: center; */
+.label-editor {
+    padding: 1.4em;
+    margin-inline-start: 10px;
 }
 
-.label-editor input{
+.label-editor input {
     border-style: none;
     margin-inline: .5em;
     margin-block-end: 1em;
 }
 
-.label-editor li{
+.label-editor li {
     display: flex;
     opacity: 0.9;
-    /* align-items: center; */
 }
 
-.label-editor li span:first-of-type{
+.label-editor li span:first-of-type {
     margin-inline-end: .3em;
     translate: 0 1px;
     cursor: pointer;
 }
 
-.label-editor li span:first-of-type:hover{
+.label-editor li span:first-of-type:hover {
     background-color: var(--clrHover);
 }
 
-.label-editor .input-line span{
+.label-editor .input-line span {
     cursor: pointer;
 }

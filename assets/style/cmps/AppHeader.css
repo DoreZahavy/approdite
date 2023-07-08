@@ -32,15 +32,3 @@
   display: flex;
   padding-inline-end: 1rem;
 }
-/* .app-header h1 {
-  margin:0;
-  font-family: mythical;
-  font-size: 5rem;
-} */
-
-/* @media(max-width: 720px) {
-  .app-header {
-    background-color: var(--clr3);
-    color: var(--secondary-clr2);
-  }
-} */

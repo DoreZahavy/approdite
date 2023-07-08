@@ -9,7 +9,7 @@ import ColorPicker from '../cmps/ColorPicker.js'
 export default {
     props: ['type'],
     template: `
-        <article class="note-add-open" :style="noteToEdit.style">
+        <article class="note-add-open" title="Pin Note" :style="noteToEdit.style">
             <span class="tack fa-regular"></span>
             <Component 
                 v-if="noteToEdit"
@@ -18,7 +18,7 @@ export default {
                 @newval="onChangeVal"
                 @newtodo="setTodo"/>
             <ul class="actions clean-list flex align-center">
-                <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
+                <li  class="color-icon fa-regular"><ColorPicker @color="setColor"/></li>
                 <li @click="onAddNote" title="Add Note" class="fa-regular"></li> 
                 <li @click="setAddMode" title="Cancel" class="fa-regular"></li>
             </ul>    

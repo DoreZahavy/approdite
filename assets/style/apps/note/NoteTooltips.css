@@ -1,0 +1,44 @@
+[title="Pin note"], 
+[title="Add Note"], 
+[title="Cancel"], 
+[title="Duplicate Note"], 
+[title="Send Note as Mail"], 
+[title="Delete Note"], 
+[title="Edit Note"], 
+[title="Save Note"], 
+[title="Delete Forever"], 
+[title="Delete Label"], 
+[title="Create Label"], 
+[title="Restore"]{
+    position: relative;
+  }
+
+  [title="Pin note"]:hover::after,
+  [title="Add Note"]:hover::after,
+  [title="Cancel"]:hover::after,
+  [title="Duplicate Note"]:hover::after,
+  [title="Send Note as Mail"]:hover::after,
+  [title="Delete Note"]:hover::after,
+  [title="Edit Note"]:hover::after,
+  [title="Save Note"]:hover::after,
+  [title="Delete Forever"]:hover::after,
+  [title="Delete Label"]:hover::after,
+  [title="Create Label"]:hover::after,
+  [title="Restore"]:hover::after{
+    font-family: roboto;
+    background-color: rgb(32, 33, 36);
+    color: rgb(0, 0, 0);
+    /* letter-spacing: 0.1px; */
+    content: attr(title);
+    position: absolute;
+    font-size: 12px;
+    background: var(--clr1);
+    padding: 0.2em 0.3em;
+    /* border: 1px solid var(--clr3); */
+    border-radius: 0.3em;
+    text-transform: capitalize;
+    bottom: -25px;
+    width: max-content;
+    left: 12px;
+    z-index: 4;
+  }

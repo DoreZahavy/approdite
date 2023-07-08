@@ -17,11 +17,10 @@ export default {
                 @newval="onChangeVal"/>
            
             <ul class="actions clean-list flex align-center">
-                <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
-                <li @click="onUpdateNote" class="fa-regular"></li> 
-                <li @click="exitModal" class="fa-regular"></li>
+                <li  class="color-icon fa-regular" ><ColorPicker @color="setColor"/></li>
+                <li @click="onUpdateNote" title="Save Note" class="fa-regular"></li> 
+                <li @click="exitModal" title="Cancel" class="fa-regular"></li>
             </ul> 
-       
         </article>
     `,
     data() {
