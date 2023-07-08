@@ -7,11 +7,25 @@ const gNoteList = [
         isPinned: false,
         labels:['fun','work'],
         info: {
-            title: 'Title11',
+            title: 'A note..',
             txt: 'Fullstack Me Baby!'
         },
         style: {
             backgroundColor: '#fff475'
+        },
+    },
+    {
+        id: 'n1sdf4',
+        type: 'NoteImg',
+        isTrashed: false,
+        isPinned: false,
+        labels:['fun'],
+        info: {
+            url: '../../../assets/img/flower-cat.jpg',
+            title: 'Life'
+        },
+        style: {
+            backgroundColor: '#d7aefb'
         }
     },
     {
@@ -21,8 +35,8 @@ const gNoteList = [
         isPinned: false,
         labels:['important'],
         info: {
-            title: 'Title1',
-            txt: 'Bobi and Me'
+            title: 'Me and Bobi?',
+            txt: 'Bobi and me'
         },
         style: {
             backgroundColor: '#fdcfe8'
@@ -35,7 +49,7 @@ const gNoteList = [
         labels:[],
         isPinned: false,
         info: {
-            title: 'Title123',
+            title: 'My note',
             txt: 'Get my stuff together'
         },
         style: {
@@ -47,10 +61,10 @@ const gNoteList = [
         type: 'NoteImg',
         isTrashed: false,
         isPinned: false,
-        labels:[],
+        labels:['work'],
         info: {
             url: '../../../assets/img/sample-meme.jpg',
-            title: 'Bobi and Me'
+            title: 'Remember'
         },
         style: {
             backgroundColor: '#f28b82'
@@ -59,14 +73,17 @@ const gNoteList = [
     {
         id: 'n200',
         isTrashed: true,
-        labels:[],
+        labels:['work'],
         createdAt: 1112222,
-        type: 'NoteTxt',
+        type: 'NoteTodos',
         isPinned: false,
 
         info: {
-            title: 'Title1 trash',
-            txt: 'Fullstack Me Baby! in the trash'
+            title: 'done!',
+            todos: [
+                { txt: 'Vanilla js', doneAt: null,isDone:true },
+                { txt: 'Canvas', doneAt: 187111111,isDone:true }
+            ]
         },
         style: {
             backgroundColor: '#d7aefb'
@@ -79,7 +96,7 @@ const gNoteList = [
         isTrashed: true,
         isPinned: false,
         info: {
-            title: 'Title2 trash',
+            title: 'my trash',
             txt: 'Bobi and Me in the trash'
         },
         style: {
@@ -90,13 +107,13 @@ const gNoteList = [
         id: 'n10sd3',
         type: 'NoteTodos',
         isTrashed: false,
-        labels:[],
+        labels:['important'],
         isPinned: false,
         info: {
             title: 'Get my stuff together',
             todos: [
-                { txt: 'Driving license', doneAt: null,isDone:false },
-                { txt: 'Coding power', doneAt: 187111111,isDone:true }
+                { txt: 'Driving license', doneAt: null,isDone:true },
+                { txt: 'Coding power', doneAt: 187111111,isDone:false }
             ]
         },
     style: {
@@ -105,7 +122,7 @@ const gNoteList = [
     }
 ]
 
-const gLabels = ['Important','fun','work']
+const gLabels = ['important','fun','work']
 
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'

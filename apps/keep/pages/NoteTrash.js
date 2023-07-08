@@ -14,9 +14,7 @@ export default {
                     <TrashPreview  
                         :note="note" 
                         @remove="removeNote"
-                        @restore="restoreNote"
-                 
-                        />
+                        @restore="restoreNote"/>
                 </div>
            </section>
            

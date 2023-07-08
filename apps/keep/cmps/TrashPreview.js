@@ -1,5 +1,6 @@
 import NoteTxt from '../cmps/NoteTxt.js'
 import NoteImg from '../cmps/NoteImg.js'
+import NoteTodos from '../cmps/NoteTodos.js'
 
 export default {
     props: ['note'],
@@ -37,7 +38,8 @@ export default {
     },
     components: {
         NoteTxt,
-        NoteImg
+        NoteImg,
+        NoteTodos
     }
 }
 
