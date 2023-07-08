@@ -9,11 +9,11 @@
   color: var(--licorice);
   padding: 1em;
   width: 100%;
-  height: 140px;
+  height: 15vh;
 }
 /* https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element technique used for changing svg color, includes tool to generate filter*/
 .app-header img{
-  /* max-width:550px; */
+  max-width:550px;
   filter: invert(5%) sepia(64%) saturate(1844%) hue-rotate(331deg) brightness(90%) contrast(106%);
 }
 .app-header i{
@@ -30,6 +30,7 @@
 }
 .app-header nav{
   display: flex;
+  padding-inline-end: 1rem;
 }
 /* .app-header h1 {
   margin:0;

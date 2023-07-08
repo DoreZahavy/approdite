@@ -11,9 +11,9 @@ const options = {
         <section>
             <main class="main-layout">
                 <AppHeader />
-                <div class="main-route">
+                <section class="main-route">
                     <RouterView />
-                </div>
+                </section>
                 <AppFooter />
             </main>
             <UserMsg />

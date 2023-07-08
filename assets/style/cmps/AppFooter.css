@@ -1,18 +1,24 @@
 .app-footer {
     background-color: var(--header-background);
-    border-block-start: 1px solid var(--silver);
+    /* border-block-start: 1px solid var(--silver); */
     width: 100%;
     text-align: center;
-    height: 80px;
-    
-    
-    /* align-self: end; */
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* align-self: c; */
     /* position: fixed; */
     bottom: 0px;
 }
-
+.app-footer a{
+    text-decoration: underline;
+}
 .app-footer p {
-    margin-block-start: calc(40px - 1rem);
+    /* margin-block-start: 2vh; */
+    margin: 0;
+    /* align-self: center; */
 }
 
 

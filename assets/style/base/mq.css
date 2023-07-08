@@ -14,7 +14,7 @@
 
     .app-header {
         padding: 0;
-        height: 70px;
+        height: 6vh;
     }
 
     .app-header i {
@@ -24,6 +24,12 @@
 
     .app-header a {
         font-size: 1rem;
+    }
+    .app-header .full-logo{
+        display: none;
+    }
+    .app-header .laurel{
+        display: inline;
     }
 
     :root {
@@ -63,11 +69,12 @@
     .email-preview .preview-buttons {
         opacity: 1;
         border-radius: 0;
-        translate: 1rem;
+        translate: 0px;
     }
     .email-preview:hover .preview-buttons{
-        translate:1rem;
-        
+        /* translate:1rem; */
+        translate: 0px;
+
     }
     .email-compose {
         left: 0;
@@ -83,12 +90,17 @@
     /* header */
     .app-header img {
         display: flex;
-        max-width: 100px;
+        max-width: 200px;
     }
-
+    .app-header .full-logo{
+        display: inline;
+    }
+    .app-header .laurel{
+        display: none;
+    }
     .app-header {
         padding: 1em;
-        height: 140px;
+        height: 10vh;
     }
 
     .app-header i {
@@ -96,7 +108,7 @@
     }
 
     .app-header a {
-        font-size: 2rem;
+        font-size: 1rem;
     }
 
     /*notes*/
@@ -152,19 +164,31 @@
     }
 }
 
-@media (min-width: 900px) {
-
+@media (min-width:1100px) {
+    :root{
+        font-size: 18px;
+    }
     /* html {
         font-size: 18px;
     } */
     /* header */
     .app-header img {
-        max-width: 550px;
+        max-width: 400px;
+    }
+    .app-header .full-logo{
+        display: inline;
+    }
+    .app-header .laurel{
+        display: none;
     }
 }
 
 /* MEDIUM */
-@media (min-width: 900px) {}
+@media (min-width: 1100px) {}
 
 /* LARGE  */
-@media (min-width: 1050px) {}
+@media (min-width: 1200px) {
+    .app-header img{
+        max-width: 600px;
+    }
+}

@@ -17,7 +17,9 @@
     z-index: 9;
     position: sticky;
 }
-
+.email-preview span{
+    padding-inline: 1rem;
+}
 .email-preview .star {
     grid-row-start: -1;
 }
