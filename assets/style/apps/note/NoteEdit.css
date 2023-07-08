@@ -66,3 +66,12 @@
     margin-inline-end: 0.3em;
 
 }
+
+.note-edit-todos .add-line-btn{
+    margin-block-start: .7em;
+    /* font-size: 23px; */
+}
+.note-edit-todos .trash-line-btn{
+    margin-inline-end: .7em;
+    font-size: 0.95em;
+}

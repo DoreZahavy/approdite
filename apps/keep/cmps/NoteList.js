@@ -17,7 +17,6 @@ export default {
             <NoteAddOpen v-else :type="noteAddType" 
                 @type="setType" 
                 @add="addNote" />
-        <!-- </section> -->
         <section class="note-container" v-if="notes">
             <div class="pin-title" v-show="showTag">
                 <span >pinned</span>
@@ -50,10 +49,11 @@ export default {
             </section>
         </section >
         <div  class="edit-area" :class="isScreen">
-                <!-- <div class="edit-screen"
-                @click="exitModal" ></div> -->
-                <RouterView @add="saveNote"/>
+            <div class="edit-screen"
+                @click="exitModal">
             </div>
+            <RouterView @add="saveNote"/>
+        </div>
          
     </section>
     `,
@@ -68,6 +68,8 @@ export default {
     },
     created() {
         this.loadNotes()
+        if(this.$route.params.noteId) this.screen = true
+        // console.log('this.$route.params:', this.$route.params.noteId)
 
     },
     computed: {
@@ -96,7 +98,6 @@ export default {
         unpinnedNotes() {
             const regex = new RegExp(this.filter, 'i')
 
-
             let unpinnedNotes = this.notes.filter(note => {
                 return !note.isPinned && 
                 !note.isTrashed && 
@@ -104,9 +105,6 @@ export default {
                 (note.labels.includes(this.label) || !this.label)
 
             })
-
-
-
 
             if (unpinnedNotes) return unpinnedNotes
         },
@@ -137,16 +135,7 @@ export default {
                 })
                 .catch(err => {
                     showErrorMsg('Cannot remove note')
-                })
-            // noteService.remove(noteId)
-            //     .then(() => {
-            //         const idx = this.notes.findIndex(note => noteId === note.id)
-            //         this.notes.splice(idx, 1)
-            //         showSuccessMsg('Note removed')
-            //     })
-            //     .catch(err => {
-            //         showErrorMsg('Cannot remove note')
-            //     })
+                })       
 
         },
         copyNote(note) {

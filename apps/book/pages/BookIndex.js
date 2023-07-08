@@ -9,16 +9,18 @@ export default {
     name: 'BookIndex',
     template: `
     <section class="book-index">
-        <RouterLink to="/book/edit" class="add-btn">Add Custom Book</RouterLink>
-        <span>  |  </span>
-        <RouterLink to="/book/add" class="add-btn">Add Google Book</RouterLink>
+        <div class="add-btns">
+            <RouterLink to="/book/edit" class="add-btn">Add Custom Book</RouterLink>
+            <span>  |  </span>
+            <RouterLink to="/book/add" class="add-btn">Add Google Book</RouterLink>
+        </div>
        
         <BookFilter @filter="setFilterBy"/>
-       <BookList 
+        <BookList 
                 v-if="books" 
                 :books="filteredBooks"
                 @remove="removeBook"/>
-       </section>
+        </section>
     `,
     data() {
         return {

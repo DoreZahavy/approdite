@@ -7,7 +7,31 @@
     /* color: whitesmoke; */
 }
 
-.book-edit button {
-    justify-self: end;
+.book-edit .edit-btns{
+    margin-block-start: 1em;
+    font-size: 18px; 
+    /* outline: 1px solid var(--clrHover); */
 }
 
+.book-edit .edit-btns>*{
+    margin-inline-start: .6em;
+}
+
+.book-edit .save-btn {
+    font-size: 1.125rem;
+    margin-inline-end: .5em;
+    color: rgb(96, 96, 96);
+    border-style: none;
+    background-color: transparent;
+    font-family: fa-solid;
+    /* font-size: 18px;
+    font-weight: 400; */
+}
+
+.book-edit input {
+    max-height: 34px;
+    border-radius: 99999px;
+    min-width: 26vw;
+    padding-inline-start: 2.2rem;
+    margin-inline-end: 1em;
+}

@@ -13,13 +13,14 @@ export default {
                @input="onSetTodo($event,idx)">
                <!-- @input="onSetTxt(idx)" -->
                <!-- @click=toggleTodo(idx,todo) -->
+                    <span @click="onRemoveLine(idx)" class="trash-line-btn fa-regular"></span>
                     <span @click="onToggle(idx)" v-if="todo.isDone" class="fa-regular"></span>
                     <span @click="onToggle(idx)" v-else class="fa-regular"></span>
                     <!-- {{todo.txt}} -->
                     <span   contenteditable ref="'txt'+idx">{{todo.txt}}</span>
              
                 </li>
-                <li class="fa-solid" @click="onAddItem">+</li>
+                <li class="fa-solid add-line-btn" @click="onAddItem">+</li>
             </ul>
          
         </article>
@@ -77,6 +78,11 @@ export default {
         onToggle(idx){
             this.currNote.info.todos[idx].isDone = !this.currNote.info.todos[idx].isDone
             this.$emit('newval',{key:'todos',value: this.currNote.info.todos})
+        },
+        onRemoveLine(idx){
+            this.currNote.info.todos.splice(idx,1)
+            this.$emit('newval',{key:'todos',value: this.currNote.info.todos})
+
         }
     }
  

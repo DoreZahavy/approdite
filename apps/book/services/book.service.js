@@ -9,14 +9,29 @@ var gSortBy = { vendor: 1 }
 var gPageIdx
 var gBookList = null
 
-// fetch("../data/books.json")
-// .then(response => {
-//    return response.json();
-// })
-// .then(data => {
-//     gBookList = data
-//     _createBooks()
-// });
+fetch("apps/book/data/books.json")
+.then(response => {
+   return response.json();
+})
+.then(data => {
+    gBookList = data
+    _createBooks()
+});
+
+// function _createEmails() {
+//     let emails = utilService.loadFromStorage(EMAIL_KEY)
+//     if (!emails || !emails.length) {
+//         fetch('apps/mail/data/email_demo_data.json')
+//             .then(res => {
+//                 return res.json()
+//             })
+//             .then(res => {
+//                 utilService.saveToStorage(EMAIL_KEY, res)
+//                 window.location.reload()// not very proud of this but could not figure out how to make vue responsive
+//             })
+
+//     }
+// }
 
 
 

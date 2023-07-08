@@ -33,11 +33,13 @@ margin-block: 2px;
 }
 
 .note-preview .actions .color-icon,
-.note-add-open .actions .color-icon{
+.note-add-open .actions .color-icon,
+.note-edit .actions .color-icon{
     position: relative;
 }
 
 .note-preview .actions .color-icon:hover .color-picker,
-.note-add-open .actions .color-icon:hover .color-picker{
+.note-add-open .actions .color-icon:hover .color-picker,
+.note-edit .actions .color-icon:hover .color-picker{
     display: block;
 }

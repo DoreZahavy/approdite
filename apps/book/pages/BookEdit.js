@@ -15,12 +15,13 @@ export default {
             price
             <input v-model.number="bookToEdit.listPrice.amount" type="number">
             <div class="on-sale-input">
-                <input type="checkbox" v-model="bookToEdit.listPrice.isOnSale" value="true"/>
                 <span>On Sale?</span>
+                <input type="checkbox" v-model="bookToEdit.listPrice.isOnSale" value="true"/>
             </div>
-
-            <RouterLink to="/book">Cancel</RouterLink> 
-            <button :disabled="!isValid">save</button>
+            <div class="edit-btns flex">
+                <button class="save-btn fa-solid" :disabled="!isValid"></button>
+                <RouterLink to="/book" class="fa-solid"></RouterLink>
+            </div>
         </form>
     `,
     data() {

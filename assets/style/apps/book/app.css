@@ -1,3 +1,8 @@
 .main-route {
     /* min-height: calc(90vh - 20px); */
 }
+
+.book-index .add-btns{
+    margin-block-start: 1em;
+    margin-inline-start: 1em;
+}

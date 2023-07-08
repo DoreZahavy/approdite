@@ -1,17 +1,17 @@
 export default {
     // props: ['book'],
     template: `
-        <form @submit.prevent="save" class="add-review">
-            <h1>Add Book Review</h1>
+        <form @submit.prevent="save" class="add-review flex flex-column">
+            <h2>Add Book Review</h2>
             <label For="name-input"></label>
             <input type="text" v-model="review.fullname" placeholder="your name"
-            name="name-input" id="name-input"/>
+                name="name-input" id="name-input"/>
             <label htmlFor="rating-input"></label>
             <input type="number" min="0" max="10" v-model="review.rating" 
-            placeholder="rating" name="rating-input" id="rating-input"/>
+                placeholder="rating" name="rating-input" id="rating-input"/>
             <label htmlFor="date-input"></label>  
             <input type="date" v-model="review.readAt" name="date-input" id="date-input"/>  
-            <button :disabled="!isValid">save</button>
+            <button :disabled="!isValid" class="save-btn">Save</button>
         </form>
     `,
     data(){
@@ -28,7 +28,9 @@ export default {
             return this.book.thumbnail
         },
         isValid(){
-            return this.review.fullname.length>0 && this.review.readAt !==''
+            return this.review.fullname.length>0 && 
+            this.review.readAt !=='' &&
+            this.review.rating>0
         }
     },
     methods: {

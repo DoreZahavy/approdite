@@ -2,11 +2,11 @@ import { noteService } from "../services/note.service.js"
 import { utilService } from "../../../services/util.service.js"
 
 export default {
- 
+    // props:['labels'],
     template: `
         <section class="label-editor">
             <h2>Edit labels</h2>
-            <div>
+            <div class="input-line">
                 <span @click="clearInput" class="fa-solid">X</span>
                 <input ref="input" type="text" placeholder="Create new label" />
                 <span @click="addLabel" class="fa-solid"></span>
@@ -44,12 +44,14 @@ export default {
        addLabel(){
         const val = this.$refs.input.value
         this.labels.push(val)
-        utilService.saveToStorage('labelDB',this.labels)
+        // utilService.saveToStorage('labelDB',this.labels)
+        this.$emit('addlabel',val)
        },
        removeLabel(idx){
-            
-            this.labels.splice(idx , 1)
-            utilService.saveToStorage('labelDB',this.labels)
+           this.labels.splice(idx , 1)
+        //    const val = this.$refs.input.value
+           this.$emit('removelabel',idx)
+            // utilService.saveToStorage('labelDB',this.labels)
        }
     }
    

@@ -10,7 +10,7 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-            <span class="tack " :class="isPinned" @click="onSetPin(note.id)"></span>
+            <span class="tack" :class="isPinned" @click="onSetPin(note.id)"></span>
             <Component 
                 :is="note.type"  
                 :note="note" 

@@ -6,8 +6,24 @@
     background-color: var(--columbia-blue);
 }
 .book-list ul li {
-    padding: 10px;
+    padding: .8em;
     background-color: var(--clr2);
-    border: 1px solid black;
-    border-radius: 1em;
+    /* border: 1px solid black; */
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+    border-top-left-radius: .2em;
+    border-top-left-radius: .2em;
+    outline: 1px solid rgba(60,64,67,0.302);
+    transition: box-shadow 0.2s;
+}
+
+.book-list ul li:hover{
+    box-shadow: 0 3px 3px 0 rgba(60,64,67,0.302),0 2px 3px 2px rgba(60,64,67,0.149);
+
+}
+
+.book-list .trash-btn{
+    color: black;
+    border-style: none;
+    background-color: transparent;
 }

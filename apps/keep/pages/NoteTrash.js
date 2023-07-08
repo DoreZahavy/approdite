@@ -5,9 +5,11 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import TrashPreview from '../cmps/TrashPreview.js'
 
 export default {
+    props:['filter'],
     template: `
         <section class="note-trash">
            <section class="trash-columns" v-if="notes">
+            <!-- <button @click="removeTrash" class="empty-btn">Empty Trash</button> -->
            <div v-for="(note, idx) in trashedNotes" class="notes-grp" >
                     <TrashPreview  
                         :note="note" 
@@ -59,12 +61,27 @@ export default {
                 .catch(err => {
                     showErrorMsg('Cannot delete note')
                 })
+        },
+        removeTrash(){
+            const trashedNotes = this.notes.filter(note=>note.isTrashed)
+
+            console.log('trashedNotes:', trashedNotes)
+            for (var i = 0; i < trashedNotes.length; i++) {
+            const idx = this.notes.findIndex(note => trashedNotes[i].id === note.id)
+            this.notes.splice(idx, 1)
+        }
+         noteService.remove(trashedNotes[0].id)
+       noteService.remove(trashedNotes[1].id)
+       
         }
     },
    
     computed: { 
         trashedNotes(){
-            return this.notes.filter(note=> note.isTrashed)
+            return this.notes.filter(note=> {
+                const regex = new RegExp(this.filter, 'i')
+                return regex.test(note.info.title) && note.isTrashed
+            })
         }
     },
     components: {

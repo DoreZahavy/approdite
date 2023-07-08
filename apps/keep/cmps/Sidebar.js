@@ -1,18 +1,19 @@
 import { noteService } from "../services/note.service.js"
 
 export default {
+    props : ['labels'],
     template: `
     <div class="sidebar">
-<ul class="clean-list">
+<ul class="clean-list" v-if="labels">
     <li :class="{active: active==='note'}" @click="activateNotes">
         <span class="fa-regular"></span><span>Notes</span>
     </li>
     <li v-if="labels" v-for="label in labels" @click=setLabel(label)
-    :class="{active: active===label}">
+        :class="{active: active===label}">
         <span class="fa-regular"></span><span>{{label}}</span>
     </li>
     <li :class="{active:active==='label'}" @click="activateLabels">
-        <span class="fa-regular"></span><span>Edit Labes</span>
+        <span class="fa-regular"></span><span>Edit Labels</span>
     </li>
     <li :class="{active:active==='trash'}" @click="activateTrash">
         <span class="fa-regular"></span><span>Trash</span>
@@ -25,12 +26,10 @@ export default {
     data() {
         return {
             active:'',
-            labels: null
         }
     },
     created() {
         this.active = this.$route.name
-        this.loadLabels()
     },
     methods: {
         loadLabels() {

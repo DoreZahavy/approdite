@@ -23,12 +23,18 @@
     width: var(--btnSml);
 }
 
+.note-preview .actions>li:hover{
+    background-color: var(--clrHover);
+    border-radius: 50%;
+}
+
 .note-preview .tack{
     position: absolute;
     top: 1em;
     right: 1em;
     cursor: pointer;
 }
+
 
 .note-preview .actions , .note-preview .tack{
     transition:  opacity 0.5s;
@@ -68,3 +74,4 @@
 .note-preview .prev-labels{
     margin-block-end: .2em;
 }
+

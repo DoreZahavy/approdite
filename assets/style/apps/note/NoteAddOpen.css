@@ -31,6 +31,11 @@
 
 }
 
+.note-add-open .actions li:hover{
+    background-color: var(--clrHover);
+    border-radius: 50%;
+}
+
 
 
 .note-add-open .tack{

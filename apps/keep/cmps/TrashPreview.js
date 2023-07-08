@@ -5,7 +5,7 @@ export default {
     props: ['note'],
     template: `
         <article class="note-preview" :style="note.style">
-            <span class="tack fa-regular" @click="onSetPin(note.id)"></span>
+            <!-- <span class="tack fa-regular" @click="onSetPin(note.id)"></span> -->
             <Component 
                 :is="note.type"  
                 :note="note"  />

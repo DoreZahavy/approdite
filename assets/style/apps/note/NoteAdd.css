@@ -21,6 +21,11 @@
 
 }
 
+.note-add .note-types li:hover{
+    background-color: var(--clrHover);
+    border-radius: 50%;
+}
+
 .note-add p{
     margin: 0;
 }

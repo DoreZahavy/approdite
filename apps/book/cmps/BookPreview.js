@@ -2,7 +2,7 @@ export default {
     props: ['book'],
     template: `
         <article class="book-preview">
-            <img :src="bookThumbnail" alt="" />
+            <img :src="bookThumbnail" alt="Image" />
             <h2>{{ book.title }}</h2>
             <h3>{{ book.subtitle }}</h3>
             <RouterLink :to="'/book/' + book.id">Details</RouterLink> |

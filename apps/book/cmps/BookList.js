@@ -9,7 +9,10 @@ export default {
                     <BookPreview :book="book"/>
                     <section class="actions">
                         <!-- <button @click="onShowDetails(book.id)">Details</button> -->
-                        <button @click="onRemoveBook(book.id)">x</button>
+                        <button title="Delete Book" 
+                            class="trash-btn" 
+                            @click="onRemoveBook(book.id)" 
+                            class="fa-solid"></button>
                     </section>
                 </li>
             </ul>

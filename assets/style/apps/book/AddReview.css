@@ -1,0 +1,16 @@
+.add-review .save-btn{
+    width: 80px;
+    border-style: none;
+    color: rgb(0,0,0,.8);
+    font-size: 1.125rem;
+    background-color: transparent;
+    margin-block-end: 1em;
+}
+.add-review input{
+    /* max-height: 34px; */
+    border-radius: 99999px;
+    max-width: 400px;
+    padding-inline-start: 1rem;
+    margin-inline-start: 1em;
+    margin-block-end: 1em;
+}

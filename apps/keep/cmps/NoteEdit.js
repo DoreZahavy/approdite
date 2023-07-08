@@ -3,31 +3,24 @@ import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.servic
 import NoteEditTxt from './NoteEditTxt.js'
 import NoteEditImg from './NoteEditImg.js'
 import NoteEditTodos from './NoteEditTodos.js'
+import ColorPicker from './ColorPicker.js'
 
 export default {
 
     template: `
         <article class="note-edit" :class="isScreen"  :style="noteToEdit.style" v-if="noteToEdit">
         
-           <!-- <pre>{{noteToEdit}}</pre> -->
            <Component 
-            v-if="noteToEdit"
-            :is="noteToEdit.type"  
-            :note="noteToEdit" 
-            @newval="onChangeVal"/>
+                v-if="noteToEdit"
+                :is="noteToEdit.type"  
+                :note="noteToEdit" 
+                @newval="onChangeVal"/>
            
-        <ul class="actions clean-list flex align-center">
-            <li>
-                <label  title="Change Background" :for="note-add-color" class="fa-regular"></label>
-                <input type="color" 
-                    v-model="noteToEdit.style.backgroundColor" 
-                    :id="note-add-color" 
-                    style="display:none;"
-                    />
-            </li>
-            <li @click="onUpdateNote" class="fa-regular"></li> 
-            <li @click="exitModal" class="fa-regular"></li>
-        </ul> 
+            <ul class="actions clean-list flex align-center">
+                <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
+                <li @click="onUpdateNote" class="fa-regular"></li> 
+                <li @click="exitModal" class="fa-regular"></li>
+            </ul> 
        
         </article>
     `,
@@ -63,6 +56,9 @@ export default {
         exitModal() {
             this.$router.push('/note')
         },
+        setColor(color){
+            this.noteToEdit.style.backgroundColor = color
+        },
         onUpdateNote() {
             const type = this.noteToEdit.type 
             if (type === 'NoteEditTxt') this.noteToEdit.type = 'NoteTxt'
@@ -81,33 +77,9 @@ export default {
     components: {
         NoteEditImg,
         NoteEditTxt,
-        NoteEditTodos
+        NoteEditTodos,
+        ColorPicker
     }
-    //     loadNote() {
-    //         const { noteId } = this.$route.params
-    //         noteService
-    //             .get(noteId)
-    //             .then(note => {
-    //                 this.noteToEdit = note
-    //                 this.$router.push(`/note/${noteId}`)
-    //             })
-    //             .catch(err => {
-    //                 alert('Cannot load note')
-    //                 this.$router.push('/note')
-    //             })
-    //     }
-
-    // },
-    // watch: {
-    //     noteId() {
-    //         this.loadNote()
-
-    //     }
-    // },
-    // computed: {
-    //     carId() {
-    //         return this.$route.params.noteId
-    //     }
-    // }
+  
 
 }
