@@ -9,7 +9,7 @@ import ColorPicker from '../cmps/ColorPicker.js'
 export default {
     props: ['type'],
     template: `
-        <article class="note-add-open" title="Pin Note" :style="noteToEdit.style">
+        <article class="note-add-open" :style="noteToEdit.style">
             <span class="tack fa-regular"></span>
             <Component 
                 v-if="noteToEdit"
