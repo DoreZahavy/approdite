@@ -2,10 +2,8 @@
     z-index: 3;
     position: absolute;
     font-family: roboto;
-    /* font-size: 0.8em; */
     display: none;
     top: 30px;
-    /* left: -90px; */
     background-color: white;
     padding: 0.8em;
     border-radius: 0.5em;

@@ -1,5 +1,8 @@
 import { emailService } from "../services/email.service.js"
 import { noteService } from "../../keep/services/note.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
+
+
 export default {
     // props: ['email'],
     template: `
@@ -54,7 +57,8 @@ export default {
                 createdAt: Date.now(),
                 type: 'NoteTxt',
                 isPinned: false,
-
+                isTrashed: false,
+                labels:[],
                 info: {
                     title: this.email.subject,
                     txt: this.email.body
@@ -63,7 +67,13 @@ export default {
                     backgroundColor: '#bababa'
                 }
             }
-            noteService.save(note).then(console.log('email saved as note'))
+            noteService.save(note).then(()=>{
+                showSuccessMsg('Email saved as note')
+                console.log('email saved as note')
+            })
+            .catch(err=>{
+                showErrorMsg('Cannot save as note')
+            })
         }
     },
     computed: {

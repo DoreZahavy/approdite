@@ -37,11 +37,11 @@
 @import 'apps/note/Sidebar.css';
 @import 'apps/note/EditScreen.css';
 @import 'apps/note/NoteTrash.css';
-@import 'apps/note/TrashPreview.css';
 @import 'apps/note/NoteList.css';
 @import 'apps/note/ColorPicker.css';
 @import 'apps/note/LabelEditor.css';
 @import 'apps/note/LabelPicker.css';
+@import 'apps/note/NoteTooltips.css';
 
 /* missBooks */
 @import 'apps/book/app.css';
@@ -49,7 +49,6 @@
 @import 'apps/book/BookEdit.css';
 @import 'apps/book/BookFilter.css';
 @import 'apps/book/BookList.css';
-@import 'apps/book/BookPreview.css';
 @import 'apps/book/AddReview.css';
 
 /* MQ */

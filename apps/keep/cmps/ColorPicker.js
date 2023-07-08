@@ -1,5 +1,4 @@
 export default {
- 
     template: `
         <div class="color-picker flex align-center justify-evenly">
            <ul class="color-list flex clean-list align-center">
@@ -22,9 +21,9 @@ export default {
         </div>
     `,
     methods: {
-        setColor(colorHash){
+        setColor(colorHash) {
             this.$emit('color', colorHash)
         }
     }
-   
+
 }

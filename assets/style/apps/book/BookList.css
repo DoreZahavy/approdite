@@ -8,7 +8,6 @@
 .book-list ul li {
     padding: .8em;
     background-color: var(--clr2);
-    /* border: 1px solid black; */
     border-bottom-left-radius: 1em;
     border-bottom-right-radius: 1em;
     border-top-left-radius: .2em;

@@ -1,5 +1,6 @@
-.main-route {
-    /* min-height: calc(90vh - 20px); */
+.book-index {
+    background-color: white;
+    min-height: calc(100vh - 100px);
 }
 
 .book-index .add-btns{

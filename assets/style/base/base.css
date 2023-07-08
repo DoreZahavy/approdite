@@ -19,7 +19,6 @@ h3,
 h4,
 h5,
 h6 {
-  /* margin: 0 0 1em; */
   margin: 0;
   font-family: roboto;
 }
@@ -31,14 +30,6 @@ p {
 a {
   text-decoration: none;
   color: unset;
-}
-
-/* Dont stretch my Media */
-img,
-embed,
-video,
-object {
-  /* max-width: 100% */
 }
 
 /* tap targets: */

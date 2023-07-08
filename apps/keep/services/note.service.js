@@ -21,7 +21,7 @@ const gNoteList = [
         isPinned: false,
         labels: ['fun'],
         info: {
-            url: '../../../assets/img/flower-cat.jpg',
+            url: 'assets/img/flower-cat.jpg',
             title: 'Life'
         },
         style: {
@@ -63,7 +63,7 @@ const gNoteList = [
         isPinned: false,
         labels: ['work'],
         info: {
-            url: '../../../assets/img/sample-meme.jpg',
+            url: 'assets/img/sample-meme.jpg',
             title: 'Remember'
         },
         style: {
