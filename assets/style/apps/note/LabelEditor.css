@@ -1,0 +1,24 @@
+.label-editor{
+    /* margin-inline: auto; */
+padding: .8em;
+margin-inline-start: 10px;
+    /* text-align: center; */
+}
+
+.label-editor input{
+    border-style: none;
+    margin-inline: .5em;
+    margin-block-end: 1em;
+}
+
+.label-editor li{
+    display: flex;
+    /* align-items: center; */
+}
+
+.label-editor li span:first-of-type{
+    margin-inline-end: .3em;
+    opacity: 0.7;
+    translate: 0 1px;
+    cursor: pointer;
+}

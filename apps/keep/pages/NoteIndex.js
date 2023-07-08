@@ -18,15 +18,16 @@ export default {
       
        <NoteFilter @search="setFilter"/>
 
-       <Sidebar @trash="toTrash"/>
+       <Sidebar @trash="toTrash" @label="toLabel" @setlabel="setLabelFilter"/>
 
-       <RouterView :filter="filter" />
+       <RouterView :filter="filter" :label="label" />
       
     </section>
     `,
     data() {
         return {
             filter:'',
+            label:'',
             notes: null,
             noteAddType: 'unfocused',
             screen : false
@@ -65,6 +66,9 @@ export default {
             console.log('this.filter:', this.filter)
             this.filter = filter
             console.log('this.filter:', this.filter)
+        },
+        setLabelFilter(label){
+            this.label = label
         },
         // removeNote(noteId) {
         //     noteService.remove(noteId)
@@ -124,6 +128,9 @@ export default {
         // },
         exitModal() {
             this.$router.push('/note')
+        },
+        toLabel() {
+            this.$router.push('/note/label')
         },
         toTrash(){
             this.$router.push('/note/trash')
