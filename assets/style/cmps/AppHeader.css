@@ -13,8 +13,11 @@
 }
 /* https://stackoverflow.com/questions/22252472/how-can-i-change-the-color-of-an-svg-element technique used for changing svg color, includes tool to generate filter*/
 .app-header img{
-  max-width:550px;
+  /* max-width:550px; */
   filter: invert(5%) sepia(64%) saturate(1844%) hue-rotate(331deg) brightness(90%) contrast(106%);
+}
+.app-header i{
+  display: none;
 }
 .app-header a{
   font-size: 2rem;
@@ -25,15 +28,18 @@
   color:var(--darkgreen);
   text-decoration: underline;
 }
+.app-header nav{
+  display: flex;
+}
 /* .app-header h1 {
   margin:0;
   font-family: mythical;
   font-size: 5rem;
 } */
 
-@media(max-width: 720px) {
+/* @media(max-width: 720px) {
   .app-header {
     background-color: var(--clr3);
     color: var(--secondary-clr2);
   }
-}
+} */
