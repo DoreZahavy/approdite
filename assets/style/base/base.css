@@ -56,6 +56,6 @@ button {
 #app{
   height: 100%;
 }
-#app section{
+.app-section{
   height: 100%;
 }

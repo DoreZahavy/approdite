@@ -10,7 +10,7 @@ export default {
                 <router-link to="/note"></router-link>
                 </section>
             </div>
-            <img src="../assets/img/aphrodite.png">
+            <img src="assets/img/aphrodite.png">
         </section>
     `,
 }
