@@ -4,13 +4,12 @@ import { emailService } from '../../mail/services/email.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import NotePreview from '../cmps/NotePreview.js'
-
 import NoteAdd from '../cmps/NoteAdd.js'
 import NoteAddOpen from '../cmps/NoteAddOpen.js'
 import NoteEdit from '../cmps/NoteEdit.js'
 
 export default {
-    props: ['filter','label'],
+    props: ['filter', 'label'],
     template: `
     <section class="note-list">
         <NoteAdd @type="setType" v-if="noteAddType === 'unfocused'"/>
@@ -57,55 +56,44 @@ export default {
          
     </section>
     `,
-
     data() {
         return {
             notes: null,
             noteAddType: 'unfocused',
             screen: false
-
         }
     },
     created() {
         this.loadNotes()
-        if(this.$route.params.noteId) this.screen = true
-        // console.log('this.$route.params:', this.$route.params.noteId)
-
+        if (this.$route.params.noteId) this.screen = true
     },
     computed: {
-        showTag : function() {
-
+        showTag: function () {
             const regex = new RegExp(this.filter, 'i')
             let pinnedNotes = this.notes.filter(note => {
-
                 return note.isPinned && !note.isTrashed && regex.test(note.info.title)
             })
-        
-            if (pinnedNotes.length!==0) return true
+            if (pinnedNotes.length !== 0) return true
         },
         pinnedNotes() {
-
             const regex = new RegExp(this.filter, 'i')
             let pinnedNotes = this.notes.filter(note => {
 
-                return note.isPinned && 
-                !note.isTrashed && 
-                regex.test(note.info.title) &&
-                (note.labels.includes(this.label) || !this.label)
+                return note.isPinned &&
+                    !note.isTrashed &&
+                    regex.test(note.info.title) &&
+                    (note.labels.includes(this.label) || !this.label)
             })
             if (pinnedNotes) return pinnedNotes
         },
         unpinnedNotes() {
             const regex = new RegExp(this.filter, 'i')
-
             let unpinnedNotes = this.notes.filter(note => {
-                return !note.isPinned && 
-                !note.isTrashed && 
-                regex.test(note.info.title) &&
-                (note.labels.includes(this.label) || !this.label)
-
+                return !note.isPinned &&
+                    !note.isTrashed &&
+                    regex.test(note.info.title) &&
+                    (note.labels.includes(this.label) || !this.label)
             })
-
             if (unpinnedNotes) return unpinnedNotes
         },
         isPinned() {
@@ -120,11 +108,9 @@ export default {
                 'screen-open': this.screen
             }
         }
-
     },
     methods: {
         removeNote(note) {
-
             var updatedNote = utilService.deepCopy(note)
             updatedNote.isTrashed = true
             noteService.save(updatedNote)
@@ -135,8 +121,7 @@ export default {
                 })
                 .catch(err => {
                     showErrorMsg('Cannot remove note')
-                })       
-
+                })
         },
         copyNote(note) {
 
@@ -155,26 +140,20 @@ export default {
                     console.log('returnedNote:', returnedNote)
                     const idx = this.notes.findIndex(note => note.id === returnedNote.id)
                     this.notes.splice(idx, 1, returnedNote)
-                   
                 })
-
-
         },
         updatePin(noteId) {
             const idx = this.notes.findIndex(note => note.id === newNote.id)
             noteService.get(noteId)
                 .then(note => {
-
                 })
         },
         addNote(newNote) {
             noteService.save(newNote)
                 .then(note => {
                     this.notes.push(newNote)
-
                 })
         },
-
         sendMail(note) {
             emailService.add(note)
                 .then(() => {
@@ -208,9 +187,7 @@ export default {
         NotePreview,
         NoteAdd,
         NoteAddOpen,
-
         NoteEdit,
-
     }
 }
 

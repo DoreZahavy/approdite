@@ -1,15 +1,9 @@
 
-var gSampleBooks
-
-
-
 export const googleBookService = {
     query,
 }
 
-
 function query(txt) {
-    // return fetch("../data/googleBooks.json")
     return fetch(`https://www.googleapis.com/books/v1/volumes?printType=books&q=${txt}`)
         .then(response => {
             return response.json();
@@ -19,7 +13,6 @@ function query(txt) {
             for (var i = 0; i < 6; i++) {
                 const bookData = data.items[i].volumeInfo
                 searchRes.push({
-
                     id: '',
                     title: bookData.title,
                     subtitle: bookData.subtitle,
@@ -29,7 +22,6 @@ function query(txt) {
                     pageCount: bookData.pageCount,
                     categories: bookData.categories,
                     thumbnail: (bookData.imageLinks)? bookData.imageLinks.thumbnail : '../assets/img/default-book.png',
-                    // thumbnail: bookData.imageLinks?.thumbnail,
                     language: bookData.language,
                     reviews: [],
                     listPrice: {
@@ -38,7 +30,6 @@ function query(txt) {
                         isOnSale: true
                     }
                 })
-
             }
             return searchRes
         })

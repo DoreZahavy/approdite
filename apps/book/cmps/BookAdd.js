@@ -3,7 +3,6 @@ import { utilService } from '../../../services/util.service.js'
 import { googleBookService } from '../services/google-book.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
-
 export default {
     props: [],
     template: `
@@ -16,9 +15,6 @@ export default {
                 <button @click=onAddBook(idx)>+{{idx}}</button>
             </li>
         </ul>
-
-
-
     </section>
     `,
     data() {
@@ -30,19 +26,14 @@ export default {
     created() {
         this.debouncedOnSearch = utilService.debounce(this.onSearch, 500)
     },
- 
     methods: {
-     
-
         onSearch() {
             googleBookService.query(this.searchValue)
                 .then(books => {
                     console.log('books:', books)
                     this.results = books
                 })
-
         },
-
         onAddBook(idx) {
             bookService.save(this.results[idx])
                 .then(book => {
@@ -51,6 +42,5 @@ export default {
                     this.$router.push('/book')
                 })
         },
- 
     }
 }

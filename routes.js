@@ -32,6 +32,7 @@ const routerOptions = {
             path: '/about',
             component: AboutUs,
         },
+        
         // missBooks
         {
             path: '/book',
@@ -68,19 +69,15 @@ const routerOptions = {
                     ]
                 },
                 {
-
                     path: 'trash',
                     component: NoteTrash,
                     name: 'trash'
                 },
                 {
-
                     path: 'label',
                     component: LabelEditor,
                     name: 'label'
                 }
-                
-
             ]
         },
         {

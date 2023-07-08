@@ -1,5 +1,4 @@
 export default {
-    // props: ['book'],
     template: `
         <form @submit.prevent="save" class="add-review flex flex-column">
             <h2>Add Book Review</h2>

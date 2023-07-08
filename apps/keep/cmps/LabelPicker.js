@@ -1,7 +1,6 @@
-import { noteService } from "../services/note.service.js"
 
 export default {
-    props:['labels'],
+    props: ['labels'],
     template: `
         <div class="label-picker">
             <ul class="label-list clean-list">
@@ -14,15 +13,9 @@ export default {
            </ul>
         </div>
     `,
-    data() {
-        return {
-           
-        }
-    },
-   
     methods: {
-        pickLabel(label){
-            this.$emit('label',label)
+        pickLabel(label) {
+            this.$emit('label', label)
         }
     }
 }

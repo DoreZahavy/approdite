@@ -3,13 +3,7 @@ export default {
     template: `
         <article class="note-info">
            <h2>{{note.info.title}}</h2>
-           <p>{{note.info.txt}}</p>
-
-           
+           <p>{{note.info.txt}}</p>  
         </article>
     `,
-   
-    computed: { 
-        
-    }
 }

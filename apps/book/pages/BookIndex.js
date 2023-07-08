@@ -1,7 +1,6 @@
 import { bookService } from '../services/book.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
-
 import BookFilter from '../cmps/BookFilter.js'
 import BookList from '../cmps/BookList.js'
 
@@ -20,7 +19,7 @@ export default {
                 v-if="books" 
                 :books="filteredBooks"
                 @remove="removeBook"/>
-        </section>
+    </section>
     `,
     data() {
         return {
@@ -59,11 +58,10 @@ export default {
             let { txt = '', minPageCount = 0,maxPageCount = 2000, minDate = 0, maxDate = 2025 , language = '' } = this.filterBy
             console.log('language:', this.filterBy.language)
             const regex = new RegExp(txt, 'i')
-            // return this.books.filter(book =>regex.test(book.title)
+
             return this.books.filter(book => 
                 regex.test(book.title) &&
                 book.language.includes(language.toLowerCase()) &&
-            
                 book.publishedDate >= minDate &&
                 book.publishedDate <= maxDate &&
                 book.pageCount >= minPageCount &&

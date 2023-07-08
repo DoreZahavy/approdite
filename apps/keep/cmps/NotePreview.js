@@ -25,9 +25,7 @@ export default {
                 <li @click="onSendNote" class="fa-regular" title="Send Note as Mail"></li>
                 <li @click="onRemoveNote" class="fa-solid" title="Delete Note"></li>
                 <li class="fa-regular label-icon" title="Delete Note"><LabelPicker :labels="labels" @label="onToggleLabel"/></li>
-               
-            
-                    <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
+                <li  class="color-icon fa-regular" title="Delete Note"><ColorPicker @color="setColor"/></li>
                 <li><Router-link :to="'/note/' + note.id" title="Edit Note" class="fa-regular"></Router-link></li>
             </ul>
         </article>

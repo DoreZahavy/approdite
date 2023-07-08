@@ -1,8 +1,6 @@
 import { noteService } from "../services/note.service.js"
-import { utilService } from "../../../services/util.service.js"
 
 export default {
-    // props:['labels'],
     template: `
         <section class="label-editor">
             <h2>Edit labels</h2>
@@ -17,42 +15,36 @@ export default {
                     <p>{{label}}</p>
                 </li>
             </ul>
-          
         </section>
     `,
-    data(){
+    data() {
         return {
             labels: null
         }
     },
-    created(){
+    created() {
         this.loadLabels()
     },
     methods: {
-       loadLabels(){
-        noteService.getLabels()
-            .then(labels=>{
-                this.labels = labels
-            })
-       },
-       clearInput(){
-            const val = 
-            this.$refs.input.value = ''
-
-
-       },
-       addLabel(){
-        const val = this.$refs.input.value
-        this.labels.push(val)
-        // utilService.saveToStorage('labelDB',this.labels)
-        this.$emit('addlabel',val)
-       },
-       removeLabel(idx){
-           this.labels.splice(idx , 1)
-        //    const val = this.$refs.input.value
-           this.$emit('removelabel',idx)
-            // utilService.saveToStorage('labelDB',this.labels)
-       }
+        loadLabels() {
+            noteService.getLabels()
+                .then(labels => {
+                    this.labels = labels
+                })
+        },
+        clearInput() {
+            const val =
+                this.$refs.input.value = ''
+        },
+        addLabel() {
+            const val = this.$refs.input.value
+            this.labels.push(val)
+            this.$emit('addlabel', val)
+        },
+        removeLabel(idx) {
+            this.labels.splice(idx, 1)
+            this.$emit('removelabel', idx)
+        }
     }
-   
+
 }

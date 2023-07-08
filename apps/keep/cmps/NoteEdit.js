@@ -1,5 +1,6 @@
 import { noteService } from '../services/note.service.js'
 import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
+
 import NoteEditTxt from './NoteEditTxt.js'
 import NoteEditImg from './NoteEditImg.js'
 import NoteEditTodos from './NoteEditTodos.js'
@@ -9,7 +10,6 @@ export default {
 
     template: `
         <article class="note-edit" :class="isScreen"  :style="noteToEdit.style" v-if="noteToEdit">
-        
            <Component 
                 v-if="noteToEdit"
                 :is="noteToEdit.type"  
@@ -27,7 +27,6 @@ export default {
     data() {
         return {
             noteToEdit: null,
-    
         }
     },
     created() {
@@ -37,7 +36,7 @@ export default {
             .then(note => {
                 this.noteToEdit = note
                 console.log('note:', note)
-                const type = this.noteToEdit.type 
+                const type = this.noteToEdit.type
                 if (type === 'NoteTxt') this.noteToEdit.type = 'NoteEditTxt'
                 if (type === 'NoteImg') this.noteToEdit.type = 'NoteEditImg'
                 if (type === 'NoteVideo') this.noteToEdit.type = 'NoteEditVideo'
@@ -51,16 +50,15 @@ export default {
                 this.$router.push('/note')
             })
     },
-
     methods: {
         exitModal() {
             this.$router.push('/note')
         },
-        setColor(color){
+        setColor(color) {
             this.noteToEdit.style.backgroundColor = color
         },
         onUpdateNote() {
-            const type = this.noteToEdit.type 
+            const type = this.noteToEdit.type
             if (type === 'NoteEditTxt') this.noteToEdit.type = 'NoteTxt'
             if (type === 'NoteEditImg') this.noteToEdit.type = 'NoteImg'
             if (type === 'NoteEditVideo') this.noteToEdit.type = 'NoteVideo'
@@ -69,7 +67,7 @@ export default {
             this.noteToEdit = noteService.getEmptyNote(this.type)
             this.$router.push('/note')
         },
-        onChangeVal(newVal){
+        onChangeVal(newVal) {
             this.noteToEdit.info[newVal.key] = newVal.value
         }
     },
@@ -80,6 +78,4 @@ export default {
         NoteEditTodos,
         ColorPicker
     }
-  
-
 }

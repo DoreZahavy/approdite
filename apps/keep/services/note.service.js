@@ -5,7 +5,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isTrashed: false,
         isPinned: false,
-        labels:['fun','work'],
+        labels: ['fun', 'work'],
         info: {
             title: 'A note..',
             txt: 'Fullstack Me Baby!'
@@ -19,7 +19,7 @@ const gNoteList = [
         type: 'NoteImg',
         isTrashed: false,
         isPinned: false,
-        labels:['fun'],
+        labels: ['fun'],
         info: {
             url: '../../../assets/img/flower-cat.jpg',
             title: 'Life'
@@ -33,7 +33,7 @@ const gNoteList = [
         type: 'NoteTxt',
         isTrashed: false,
         isPinned: false,
-        labels:['important'],
+        labels: ['important'],
         info: {
             title: 'Me and Bobi?',
             txt: 'Bobi and me'
@@ -46,7 +46,7 @@ const gNoteList = [
         id: 'n103',
         type: 'NoteTxt',
         isTrashed: false,
-        labels:[],
+        labels: [],
         isPinned: false,
         info: {
             title: 'My note',
@@ -61,7 +61,7 @@ const gNoteList = [
         type: 'NoteImg',
         isTrashed: false,
         isPinned: false,
-        labels:['work'],
+        labels: ['work'],
         info: {
             url: '../../../assets/img/sample-meme.jpg',
             title: 'Remember'
@@ -73,7 +73,7 @@ const gNoteList = [
     {
         id: 'n200',
         isTrashed: true,
-        labels:['work'],
+        labels: ['work'],
         createdAt: 1112222,
         type: 'NoteTodos',
         isPinned: false,
@@ -81,8 +81,8 @@ const gNoteList = [
         info: {
             title: 'done!',
             todos: [
-                { txt: 'Vanilla js', doneAt: null,isDone:true },
-                { txt: 'Canvas', doneAt: 187111111,isDone:true }
+                { txt: 'Vanilla js', doneAt: null, isDone: true },
+                { txt: 'Canvas', doneAt: 187111111, isDone: true }
             ]
         },
         style: {
@@ -92,7 +92,7 @@ const gNoteList = [
     {
         id: 'n300',
         type: 'NoteTxt',
-        labels:[],
+        labels: [],
         isTrashed: true,
         isPinned: false,
         info: {
@@ -107,33 +107,31 @@ const gNoteList = [
         id: 'n10sd3',
         type: 'NoteTodos',
         isTrashed: false,
-        labels:['important'],
+        labels: ['important'],
         isPinned: false,
         info: {
             title: 'Get my stuff together',
             todos: [
-                { txt: 'Driving license', doneAt: null,isDone:true },
-                { txt: 'Coding power', doneAt: 187111111,isDone:false }
+                { txt: 'Driving license', doneAt: null, isDone: true },
+                { txt: 'Coding power', doneAt: 187111111, isDone: false }
             ]
         },
-    style: {
-        backgroundColor: '#e6c9a8'
-    }
+        style: {
+            backgroundColor: '#e6c9a8'
+        }
     }
 ]
 
-const gLabels = ['important','fun','work']
+const gLabels = ['important', 'fun', 'work']
 
 import { utilService } from '../../../services/util.service.js'
 import { storageService } from '../../../services/async-storage.service.js'
-
 
 const NOTE_KEY = 'noteDB'
 const LABEL_KEY = 'labelDB'
 
 _createNotes()
 _loadLabels()
-
 
 export const noteService = {
     query,
@@ -148,8 +146,6 @@ function query() {
     return storageService.query(NOTE_KEY)
 }
 
-
-
 function get(noteId) {
     return storageService.get(NOTE_KEY, noteId)
 }
@@ -157,8 +153,6 @@ function get(noteId) {
 function remove(noteId) {
     return storageService.remove(NOTE_KEY, noteId)
 }
-
-
 
 function save(note) {
     if (note.id) {
@@ -169,7 +163,7 @@ function save(note) {
 }
 
 function getEmptyNote(type) {
-    let emptyNote =  {
+    let emptyNote = {
         id: '',
         createdAt: 0,
         type,
@@ -181,17 +175,15 @@ function getEmptyNote(type) {
             title: 'Title',
         }
     }
-    if(type === 'NoteEditTxt') emptyNote.info.txt = 'Take a note...'
-    if(type === 'NoteEditImg') emptyNote.info.url = 'Enter image url'
-    if(type === 'NoteEditTodos') emptyNote.info.todos = [{ txt: 'List item 1', doneAt: null , isDone:false}]
+    if (type === 'NoteEditTxt') emptyNote.info.txt = 'Take a note...'
+    if (type === 'NoteEditImg') emptyNote.info.url = 'Enter image url'
+    if (type === 'NoteEditTodos') emptyNote.info.todos = [{ txt: 'List item 1', doneAt: null, isDone: false }]
     return emptyNote
 }
 
-function getLabels(){
+function getLabels() {
     return storageService.query(LABEL_KEY)
 }
-
-
 
 function _createNotes() {
     let notes = utilService.loadFromStorage(NOTE_KEY)

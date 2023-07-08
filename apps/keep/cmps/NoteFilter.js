@@ -3,12 +3,9 @@ export default {
     <div class="note-filter">
     <!-- <span class="fa-solid"></span> -->
         <div>
-            <button @click="search" class="fa-solid">
-            
-            </button>
+            <button @click="search" class="fa-solid"></button>
             <input type="text" placeholder="Search Notes" @input="search" @keydown.enter="search" v-model="value">
         </div>
-      
     </div>
     `,
     data(){
