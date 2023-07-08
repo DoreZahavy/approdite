@@ -1,5 +1,5 @@
 .app-footer {
-    background-color: aquamarine;
+    background-color: var(--header-background);
     border-block-start: 1px solid var(--silver);
     width: 100%;
     text-align: center;

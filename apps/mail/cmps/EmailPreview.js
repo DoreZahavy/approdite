@@ -12,7 +12,7 @@
 // }
 
 import { emailService } from "../services/email.service.js"
-import { showErrorMsg,showSuccessMsg } from "../../../services/event-bus.service.js"
+import { showErrorMsg, showSuccessMsg } from "../../../services/event-bus.service.js"
 
 export default {
     props: ['email', 'folder'],

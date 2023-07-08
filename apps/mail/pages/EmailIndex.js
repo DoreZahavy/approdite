@@ -1,15 +1,17 @@
 import { emailService } from "../services/email.service.js"
+import Loading from "../../../cmps/Loading.js"
 import MailList from "../cmps/EmailList.js"
 import EmailFilter from "../cmps/EmailFilter.js"
 import EmailFolderList from "../cmps/EmailFolderList.js"
 import ComposeEmail from "../cmps/ComposeEmail.js"
+
 
 export default {
     template: `
     <section class="email-index" >
             <button class="compose-btn" @click="viewCompose = true">
             <i class="fa-regular"></i>
-            Compose
+            <span>Compose</span>
             </button>
         <ComposeEmail 
             v-show="viewCompose"
@@ -23,6 +25,7 @@ export default {
             :emails="emails"
             :folder="criteria.status"
         />
+        <Loading v-show="!emails"/>
        <RouterView 
        v-if="emails" 
        :emails="emails" 
@@ -57,11 +60,13 @@ export default {
             console.log(this.emails)
             const params = this.$route.params
             this.criteria.status = params.folder ? params.folder : 'inbox'
-            this.emails = []
             emailService.query(this.criteria)
                 .then(emails => {
                     // if (emails.length <= 0) this.loadEmails()
-                    this.emails = emails
+                    this.emails = []
+                    setTimeout(() => {
+                        this.emails = emails
+                    }, 0);
                 })
                 .catch(err => console.log(err))
         },
@@ -70,7 +75,7 @@ export default {
                 return email.id === emailId
             })
             this.emails.splice(idx, 1)
-            this.loadEmails()
+            // this.loadEmails()
         },
         onSearch(params) {
             this.criteria.txt = params
@@ -106,10 +111,9 @@ export default {
         onStarred(emailId) {
             // this.loadEmails()
             const idx = this.emails.findIndex(x => x.id === emailId)
-            
+
             if (this.criteria.isStarred && !this.emails[idx].isStarred) {
-                console.log('unstarred in starred criteria')
-                this.emails.splice(idx, 1)
+                vue.delete(this.emails, idx)
             }
             // this.loadEmails()
             console.log(this.emails)
@@ -130,7 +134,7 @@ export default {
             console.log(this.$route.params.folder)
             this.loadEmails()
         },
-        emailCount(){
+        emailCount() {
         }
     },
     components: {
@@ -139,7 +143,7 @@ export default {
         EmailFilter,
         EmailFolderList,
         ComposeEmail,
-
+        Loading,
     },
 
 }

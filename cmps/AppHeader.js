@@ -2,6 +2,7 @@ export default {
 	template: `
         <header class="app-header">
             <!-- <h1>Approdite</h1 -->
+            <i class="fa-solid"></i>
              <img src="assets/img/logo.svg">
             <nav>
                 <router-link to="/">Home</router-link> | 
