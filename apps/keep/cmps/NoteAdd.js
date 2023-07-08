@@ -1,5 +1,4 @@
 export default {
- 
     template: `
         <section class="note-add flex align-center justify-between">
            <p @click="setAddMode('NoteEditTxt')">Take a note...</p>
@@ -12,9 +11,8 @@ export default {
         </section>
     `,
     methods: {
-        setAddMode(noteType){
+        setAddMode(noteType) {
             this.$emit('type', noteType)
         }
     }
-   
 }

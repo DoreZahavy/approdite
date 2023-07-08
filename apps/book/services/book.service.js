@@ -18,33 +18,14 @@ fetch("apps/book/data/books.json")
     _createBooks()
 });
 
-// function _createEmails() {
-//     let emails = utilService.loadFromStorage(EMAIL_KEY)
-//     if (!emails || !emails.length) {
-//         fetch('apps/mail/data/email_demo_data.json')
-//             .then(res => {
-//                 return res.json()
-//             })
-//             .then(res => {
-//                 utilService.saveToStorage(EMAIL_KEY, res)
-//                 window.location.reload()// not very proud of this but could not figure out how to make vue responsive
-//             })
-
-//     }
-// }
-
-
-
-
 export const bookService = {
     query,
     get,
     remove,
     save,
     getEmptyBook,
-    addGoogleBook
-
 }
+
 window.bookService = bookService
 
 function query() {
@@ -69,10 +50,6 @@ function save(book) {
     }
 }
 
-function addGoogleBook(book){
-
-}
-
 function _setNextPrevBookId(book) {
     return storageService.query(BOOK_KEY)
         .then(books => {
@@ -84,8 +61,6 @@ function _setNextPrevBookId(book) {
             return book
         })
 }
-
-
 
 function getEmptyBook(title = '', publishedDate = 0, pageCount = 0,
         isOnSale = false, amount = 0) {
@@ -109,8 +84,6 @@ function getEmptyBook(title = '', publishedDate = 0, pageCount = 0,
       }
 }
 
-
-
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
@@ -118,10 +91,4 @@ function _createBooks() {
         console.log('books:', books)
         utilService.saveToStorage(BOOK_KEY, books)
     }
-}
-
-function _createBook(vendor, maxSpeed = 250) {
-    const car = getEmptyCar(vendor, maxSpeed)
-    car.id = utilService.makeId()
-    return car
 }

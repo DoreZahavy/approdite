@@ -1,7 +1,6 @@
 
 import { noteService } from '../services/note.service.js'
 import { utilService } from '../../../services/util.service.js'
-import { showSuccessMsg, showErrorMsg } from '../../../services/event-bus.service.js'
 
 import NotePreview from '../cmps/NotePreview.js'
 import NoteFilter from '../cmps/NoteFilter.js'
@@ -14,8 +13,7 @@ import Sidebar from '../cmps/Sidebar.js'
 export default {
     template: `
     <section class="note-index">
-       <!-- <h1>notes here</h1> -->
-      
+
        <NoteFilter @search="setFilter"/>
 
        <Sidebar @trash="toTrash" 
@@ -27,8 +25,8 @@ export default {
             :label="label" 
             @labels="setLabels"
             @removelabel="removeLabel"
-            @addlabel="addLabel"/>
-      
+            @addlabel="addLabel"/>  
+            
     </section>
     `,
     data() {
@@ -39,16 +37,10 @@ export default {
             notes: null,
             noteAddType: 'unfocused',
             screen: false
-
         }
     },
     created() {
         this.loadLabels()
-
-    },
-    computed: {
-
-
     },
     methods: {
         loadLabels() {
@@ -66,16 +58,14 @@ export default {
         setLabelFilter(label) {
             this.label = label
         },
-        removeLabel(idx){
-            this.labels.splice(idx , 1)
-            utilService.saveToStorage('labelDB',this.labels)
+        removeLabel(idx) {
+            this.labels.splice(idx, 1)
+            utilService.saveToStorage('labelDB', this.labels)
         },
-        addLabel(val){
+        addLabel(val) {
             this.labels.push(val)
-            utilService.saveToStorage('labelDB',this.labels)
+            utilService.saveToStorage('labelDB', this.labels)
         },
-
-
         exitModal() {
             this.$router.push('/note')
         },
