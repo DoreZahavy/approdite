@@ -11,16 +11,21 @@
         display: none;
         max-width: 100px;
     }
-    .app-header{
+
+    .app-header {
         padding: 0;
+        height: 70px;
     }
-    .app-header i{
+
+    .app-header i {
         display: inline;
         padding: 1rem;
     }
-    .app-header a{
+
+    .app-header a {
         font-size: 1rem;
     }
+
     :root {
         font-size: 14px;
     }
@@ -41,24 +46,58 @@
         max-width: fit-content;
         margin: 0;
     }
-    .email-list ul{
-        padding:0;
+
+    .email-list ul {
+        padding: 0;
     }
-    .compose-btn span{
+
+    .compose-btn span {
         display: none;
     }
-    .email-preview a{
+
+    .email-preview a {
         display: flex;
         flex-wrap: wrap;
     }
-    .email-preview .preview-buttons{
+
+    .email-preview .preview-buttons {
         opacity: 1;
         border-radius: 0;
+        translate: 1rem;
+    }
+    .email-preview:hover .preview-buttons{
         translate:1rem;
+        
+    }
+    .email-compose {
+        left: 0;
+        width: 100vw;
     }
 }
 
 @media (min-width: 720px) {
+    :root {
+        font-size: 18px;
+    }
+
+    /* header */
+    .app-header img {
+        display: flex;
+        max-width: 100px;
+    }
+
+    .app-header {
+        padding: 1em;
+        height: 140px;
+    }
+
+    .app-header i {
+        display: none;
+    }
+
+    .app-header a {
+        font-size: 2rem;
+    }
 
     /*notes*/
     .note-index .notes-columns {
@@ -70,6 +109,46 @@
 
     .note-preview {
         max-width: 400px;
+    }
+
+    /* email */
+    .email-folder-list span:first-child {
+        display: inline;
+    }
+
+    .email-folder-list li {
+        /* width: calc(fit-content + .5rem); */
+        width: fit-content;
+        padding-inline: 1rem;
+    }
+
+    .email-folder-list {
+        max-width: none;
+        margin: 0;
+    }
+
+    .email-list ul {
+        padding: 1rem;
+    }
+
+    .compose-btn span {
+        display: inline;
+    }
+
+    .email-preview a {
+        display: grid;
+        flex-wrap: nowrap;
+    }
+
+    .email-preview .preview-buttons {
+        opacity: 0;
+        border-radius: 999px 0 0 999px;
+        translate: 20px;
+    }
+
+    .email-compose {
+        left: 45vw;
+        width:fit-content;
     }
 }
 
