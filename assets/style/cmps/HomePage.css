@@ -49,6 +49,7 @@
     position: absolute;
     left: 0;
     bottom: 1vh;
+    width: initial;
 }
 
 @-webkit-keyframes slidein {
