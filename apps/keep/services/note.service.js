@@ -119,6 +119,20 @@ const gNoteList = [
         style: {
             backgroundColor: '#e6c9a8'
         }
+    },
+    {
+        id: 'n13tf4',
+        type: 'NoteImg',
+        isTrashed: true,
+        isPinned: false,
+        labels: [],
+        info: {
+            url: 'https://www.wallpapers13.com/wp-content/uploads/2015/12/Nature-Lake-Bled.-Desktop-background-image-840x525.jpg',
+            title: 'Nice place'
+        },
+        style: {
+            backgroundColor: '#d7aefb'
+        }
     }
 ]
 

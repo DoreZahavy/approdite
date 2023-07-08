@@ -57,20 +57,15 @@ export default {
         },
         onSetPin(noteId) {
             this.currNote.isPinned = !this.currNote.isPinned
-            // console.log('preview set pin');
             this.$emit('save', this.currNote)
-            // this.currNote = null 
-           
-            // this.$emit('tack',  noteId)
         },
-        onToggleLabel(label){
+        onToggleLabel(label) {
             const labelIdx = this.currNote.labels.indexOf(label)
 
-            if(labelIdx===-1)this.currNote.labels.push(label)
-            else this.currNote.labels.splice(labelIdx,1)
-            
+            if (labelIdx === -1) this.currNote.labels.push(label)
+            else this.currNote.labels.splice(labelIdx, 1)
+
             this.$emit('save', this.currNote)
-           
         },
         onSendNote() {
             const noteToMail = {
@@ -86,19 +81,16 @@ export default {
             }
             this.$emit('mail', noteToMail)
         },
-        setColor(color){
+        setColor(color) {
             this.currNote.style.backgroundColor = color
             this.$emit('save', this.currNote)
         },
-        toggleLine(idx){
-            console.log('this.currNote.info.todos[idx].doneAt:', this.currNote.info.todos[idx].doneAt)
+        toggleLine(idx) {
             const todo = this.currNote.info.todos[idx]
-            todo.doneAt = (todo.doneAt)? null : Date.now()
-            todo.isDone= !todo.isDone
+            todo.doneAt = (todo.doneAt) ? null : Date.now()
+            todo.isDone = !todo.isDone
             this.$emit('save', this.currNote)
-            console.log('this.currNote.info.todos[idx].doneAt:', this.currNote.info.todos[idx].doneAt)
         }
-
     },
     computed: {
         bgColor() {
@@ -107,7 +99,7 @@ export default {
         inputId() {
             return `color-input ${this.note.id}`
         },
-        isPinned(){
+        isPinned() {
             return {
                 'fa-regular': !this.currNote.isPinned,
                 'fa-solid': this.currNote.isPinned

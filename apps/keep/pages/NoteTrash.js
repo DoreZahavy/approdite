@@ -8,9 +8,9 @@ export default {
     props: ['filter'],
     template: `
         <section class="note-trash">
-           <section class="trash-columns" v-if="notes">
-            <!-- <button @click="removeTrash" class="empty-btn">Empty Trash</button> -->
-           <div v-for="(note, idx) in trashedNotes" class="notes-grp" >
+            <button class="empty-btn" @click="removeTrash">Empty trash</button>
+            <section class="trash-columns" v-if="notes">
+                <div v-for="(note, idx) in trashedNotes" class="notes-grp" >
                     <TrashPreview  
                         :note="note" 
                         @remove="removeNote"
@@ -31,7 +31,6 @@ export default {
         loadNotes() {
             noteService.query()
                 .then(notes => {
-                    console.log('notes:', notes)
                     this.notes = notes
                 })
         },
@@ -66,7 +65,16 @@ export default {
                 this.notes.splice(idx, 1)
             }
             noteService.remove(trashedNotes[0].id)
-            noteService.remove(trashedNotes[1].id)
+                .then(() => {
+                    noteService.remove(trashedNotes[1].id)
+                        .then(() => {
+
+                            showSuccessMsg('Deleted Permanently')
+                        })
+                        .catch(err => {
+                            showErrorMsg('Cannot delete trash')
+                        })
+                })
         }
     },
     computed: {
