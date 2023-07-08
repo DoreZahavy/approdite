@@ -9,7 +9,7 @@
     /* "sidebar notes" */
     ;
 
-    min-height: calc(100vh - 220px);
+    min-height: calc(100vh - 100px);
 
     font-size: 16px;
     color: rgb(32, 33, 36);
